@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import asyncio
 import csv
+import re
 from collections.abc import Iterator, Sequence
 from dataclasses import dataclass
 from pathlib import Path
@@ -20,6 +21,21 @@ SEED_SOURCE = "seed"
 DEFAULT_DATA_DIR = Path(__file__).resolve().parent / "seed_data"
 DEFAULT_PASSWORD = "SeedPassword123!"
 DEFAULT_BATCH_SIZE = 1_000
+
+# Маппинг возможных альтернативных названий колонок в CSV
+COLUMN_ALIASES: dict[str, list[str]] = {
+    "email": ["email", "mail", "user_email"],
+    "first_name": ["first_name", "fname", "firstname", "name"],
+    "last_name": ["last_name", "lname", "lastname", "surname"],
+    "password": ["password", "pass", "pwd"],
+    "role": ["role", "user_role"],
+    "phone_number": ["phone_number", "phone", "mobile", "telephone"],
+    "is_active": ["is_active", "active", "enabled"],
+    "specialization": ["specialization", "specialty", "spec"],
+    "years_experience": ["years_experience", "experience", "exp", "years"],
+    "employment_type": ["employment_type", "employment", "type"],
+    "avatar_url": ["avatar_url", "avatar", "photo", "image"],
+}
 
 
 @dataclass(frozen=True)
@@ -227,15 +243,15 @@ class DatabasePopulator:
                 DoctorSeedRow(
                     user=user,
                     specialization=_required(row, "specialization", path, line),
-                    years_experience=_int_or_none(row.get("years_experience")),
+                    years_experience=_int_or_none(_get_field(row, "years_experience")),
                     employment_type=_enum_or_none(
-                        row.get("employment_type"),
+                        _get_field(row, "employment_type"),
                         DoctorEmploymentTypeEnum,
                         "employment_type",
                         path,
                         line,
                     ),
-                    avatar_url=_blank_to_none(row.get("avatar_url")),
+                    avatar_url=_blank_to_none(_get_field(row, "avatar_url")),
                 )
             )
 
@@ -255,6 +271,15 @@ def _should_skip_user(row: UserSeedRow, existing_users: Sequence[UserModel]) -> 
     return False
 
 
+def _get_field(row: dict[str, str], field_key: str) -> str | None:
+    """Извлекает значение поля из строки CSV по ключу или его алиасам."""
+    aliases = COLUMN_ALIASES.get(field_key, [field_key])
+    for alias in aliases:
+        if alias in row:
+            return row[alias]
+    return None
+
+
 def _parse_user(
     row: dict[str, str],
     default_password: str,
@@ -262,15 +287,15 @@ def _parse_user(
     path: Path,
     line: int,
 ) -> UserSeedRow:
-    role = _enum_or_none(row.get("role"), UserRoleEnum, "role", path, line)
+    role = _enum_or_none(_get_field(row, "role"), UserRoleEnum, "role", path, line)
     return UserSeedRow(
         email=_required(row, "email", path, line).lower(),
         first_name=_required(row, "first_name", path, line),
         last_name=_required(row, "last_name", path, line),
-        password=_blank_to_none(row.get("password")) or default_password,
+        password=_blank_to_none(_get_field(row, "password")) or default_password,
         role=role or default_role,
-        phone_number=_blank_to_none(row.get("phone_number")),
-        is_active=_bool_or_default(row.get("is_active"), default=True),
+        phone_number=_blank_to_none(_get_field(row, "phone_number")),
+        is_active=_bool_or_default(_get_field(row, "is_active"), default=True),
     )
 
 
@@ -281,11 +306,16 @@ def _read_csv(path: Path) -> Iterator[tuple[int, dict[str, str]]]:
     with path.open(newline="", encoding="utf-8-sig") as csv_file:
         reader = csv.DictReader(csv_file)
         for line, row in enumerate(reader, start=2):
-            yield line, {key: value.strip() for key, value in row.items() if key}
+            cleaned_row = {
+                key.strip().lower(): value.strip()
+                for key, value in row.items()
+                if key
+            }
+            yield line, cleaned_row
 
 
 def _required(row: dict[str, str], field: str, path: Path, line: int) -> str:
-    value = _blank_to_none(row.get(field))
+    value = _blank_to_none(_get_field(row, field))
     if value is None:
         raise ValueError(f"{path}:{line} missing required field '{field}'.")
     return value
@@ -300,16 +330,19 @@ def _blank_to_none(value: str | None) -> str | None:
 
 def _int_or_none(value: str | None) -> int | None:
     value = _blank_to_none(value)
-    return int(value) if value is not None else None
+    if value is None:
+        return None
+    digits = re.findall(r"\d+", value)
+    return int(digits[0]) if digits else None
 
 
 def _bool_or_default(value: str | None, *, default: bool) -> bool:
     value = _blank_to_none(value)
     if value is None:
         return default
-    if value.lower() in {"1", "true", "yes", "y"}:
+    if value.lower() in {"1", "true", "yes", "y", "t", "да"}:
         return True
-    if value.lower() in {"0", "false", "no", "n"}:
+    if value.lower() in {"0", "false", "no", "n", "f", "нет"}:
         return False
     raise ValueError(f"Invalid boolean value: {value!r}.")
 
@@ -325,8 +358,10 @@ def _enum_or_none(
     if value is None:
         return None
 
+    normalized_value = value.lower().replace(" ", "_").replace("-", "_")
+
     try:
-        return enum_class(value.lower())
+        return enum_class(normalized_value)
     except ValueError as error:
         allowed = ", ".join(item.value for item in enum_class)
         raise ValueError(
