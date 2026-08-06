@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 # Run migrations
 alembic upgrade head
 
