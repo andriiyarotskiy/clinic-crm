@@ -38,6 +38,7 @@ class Settings(BaseSettings):
     EMAIL_HOST_PASSWORD: str = ""
     EMAIL_USE_TLS: bool = False
     EMAIL_FROM: str = "clinic@mail.com"
+    EMAIL_API_KEY: str = "BREVO_API_KEY"
 
     S3_STORAGE_URL: str = "http://minio:9000"
     S3_STORAGE_ACCESS_KEY: str = "minio_admin"
