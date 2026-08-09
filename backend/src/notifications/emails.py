@@ -1,35 +1,29 @@
 import logging
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
 
-import aiosmtplib
+import httpx
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 from exceptions import BaseEmailError
 from notifications.interfaces import EmailSenderInterface
 
+BREVO_API_URL = "https://api.brevo.com/v3/smtp/email"
+
 
 class EmailSender(EmailSenderInterface):
     def __init__(
         self,
-        hostname: str,
-        port: int,
-        email: str,
+        api_key: str,
         email_from: str,
-        password: str,
-        use_tls: bool,
+        sender_name: str,
         template_dir: str,
         activation_email_template_name: str,
         activation_complete_email_template_name: str,
         password_email_template_name: str,
         password_complete_email_template_name: str,
     ):
-        self._hostname = hostname
-        self._port = port
-        self._email = email
+        self._api_key = api_key
         self._email_from = email_from
-        self._password = password
-        self._use_tls = use_tls
+        self._sender_name = sender_name
         self._activation_email_template_name = activation_email_template_name
         self._activation_complete_email_template_name = (
             activation_complete_email_template_name
@@ -46,22 +40,24 @@ class EmailSender(EmailSenderInterface):
     async def _send_email(
         self, recipient: str, subject: str, html_content: str
     ) -> None:
-        message = MIMEMultipart()
-        message["From"] = self._email_from
-        message["To"] = recipient
-        message["Subject"] = subject
-        message.attach(MIMEText(html_content, "html"))
-
+        payload = {
+            "sender": {"name": self._sender_name, "email": self._email_from},
+            "to": [{"email": recipient}],
+            "subject": subject,
+            "htmlContent": html_content,
+        }
+        headers = {
+            "accept": "application/json",
+            "api-key": self._api_key,
+            "content-type": "application/json",
+        }
         try:
-            smtp = aiosmtplib.SMTP(
-                hostname=self._hostname, port=self._port, start_tls=self._use_tls
-            )
-            await smtp.connect()
-            if self._password:
-                await smtp.login(self._email, self._password)
-            await smtp.sendmail(self._email_from, [recipient], message.as_string())
-            await smtp.quit()
-        except aiosmtplib.SMTPException as error:
+            async with httpx.AsyncClient(timeout=10) as client:
+                response = await client.post(
+                    BREVO_API_URL, json=payload, headers=headers
+                )
+                response.raise_for_status()
+        except httpx.HTTPError as error:
             logging.exception("Failed to send email to %s", recipient)
             raise BaseEmailError(
                 f"Failed to send email to {recipient}: {error}"
