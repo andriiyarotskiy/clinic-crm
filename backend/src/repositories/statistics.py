@@ -1,16 +1,21 @@
 from datetime import datetime
 
-
-from sqlalchemy import func, select
+from sqlalchemy import func, or_, select
 from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.orm import aliased
 
 from database.models.appointments import (
     AppointmentModel,
     AppointmentStatusEnum,
 )
 from database.models.patient import PatientModel
-from database.models.users import UserModel
 from database.models.treatments import TreatmentModel
+from database.models.users import UserModel
+from database.models.visits import VisitModel
+
+
+AdditionalTreatment1 = aliased(TreatmentModel)
+AdditionalTreatment2 = aliased(TreatmentModel)
 
 
 class StatisticsRepository:
@@ -217,20 +222,37 @@ class StatisticsRepository:
             self,
             patient_id: int,
     ) -> datetime | None:
+        hygiene_treatments = (
+            "Professional Cleaning",
+            "Periodontal Cleaning",
+        )
+
         query = (
             select(func.max(AppointmentModel.date_time))
-            .join(
+            .select_from(AppointmentModel)
+            .outerjoin(
+                VisitModel,
+                VisitModel.appointment_id == AppointmentModel.id,
+            )
+            .outerjoin(
                 TreatmentModel,
                 AppointmentModel.treatment_id == TreatmentModel.id,
+            )
+            .outerjoin(
+                AdditionalTreatment1,
+                VisitModel.treatment_add1 == AdditionalTreatment1.id,
+            )
+            .outerjoin(
+                AdditionalTreatment2,
+                VisitModel.treatment_add2 == AdditionalTreatment2.id,
             )
             .where(
                 AppointmentModel.patient_id == patient_id,
                 AppointmentModel.status == AppointmentStatusEnum.COMPLETED,
-                TreatmentModel.treatment.in_(
-                    [
-                        "cleaning",
-                        "deep_cleaning",
-                    ]
+                or_(
+                    TreatmentModel.treatment.in_(hygiene_treatments),
+                    AdditionalTreatment1.treatment.in_(hygiene_treatments),
+                    AdditionalTreatment2.treatment.in_(hygiene_treatments),
                 ),
             )
         )
