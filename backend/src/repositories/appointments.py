@@ -206,6 +206,47 @@ class AppointmentRepository:
 
         return False
 
+    async def is_patient_busy(
+            self,
+            patient_id: int,
+            date_time: datetime,
+            duration: int,
+            exclude_appointment_id: int | None = None,
+    ) -> bool:
+        new_appointment_end = date_time + timedelta(minutes=duration)
+
+        statement = select(AppointmentModel).where(
+            AppointmentModel.patient_id == patient_id,
+            AppointmentModel.status.in_(
+                ACTIVE_APPOINTMENT_STATUSES,
+            ),
+        )
+
+        if exclude_appointment_id is not None:
+            statement = statement.where(
+                AppointmentModel.id != exclude_appointment_id,
+            )
+
+        result = await self.session.execute(statement)
+
+        appointments = result.scalars().all()
+
+        for appointment in appointments:
+            appointment_start = appointment.date_time
+            appointment_end = appointment_start + timedelta(
+                minutes=appointment.duration
+            )
+
+            has_overlap = (
+                    date_time < appointment_end
+                    and new_appointment_end > appointment_start
+            )
+
+            if has_overlap:
+                return True
+
+        return False
+
     async def get_details_by_id(
         self,
         appointment_id: int,

@@ -14,7 +14,7 @@ from database.models.appointments import (
 
 CLINIC_TIMEZONE = ZoneInfo("Europe/Kyiv")
 WORKDAY_START = time(hour=8, minute=0)
-WORKDAY_END = time(hour=18, minute=0)
+WORKDAY_END = time(hour=21, minute=0)
 
 
 class DoctorRepository:
