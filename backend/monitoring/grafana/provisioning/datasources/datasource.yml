@@ -4,6 +4,8 @@ datasources:
   - name: Prometheus
     type: prometheus
     access: proxy
+    # TODO: this should point to your Prometheus server URL (not the FastAPI backend).
+    # Replace the placeholder below with the actual Prometheus endpoint.
     url: https://clinic-crm-1-snle.onrender.com
     isDefault: true
     editable: false

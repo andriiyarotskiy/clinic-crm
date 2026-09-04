@@ -10,7 +10,29 @@ on:
 jobs:
   backend-lint-and-test:
     runs-on: ubuntu-latest
-    
+
+    env:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_HOST: localhost
+      POSTGRES_DB_PORT: 5432
+      POSTGRES_DB: clinic_db
+
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: admin
+          POSTGRES_PASSWORD: admin
+          POSTGRES_DB: clinic_db
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd="pg_isready -U admin -d clinic_db"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=10
+
     defaults:
       run:
         working-directory: ./backend
@@ -30,8 +52,25 @@ jobs:
       - name: Run linter (ruff)
         run: uv run ruff check .
 
-      - name: Run tests
-        run: uv run pytest -v
+      - name: Run unit tests without integration
+        run: uv run pytest -v -m "not integration"
+
+      - name: Wait for PostgreSQL to be ready
+        run: |
+          for i in {1..30}; do
+            pg_isready -h localhost -p 5432 -U admin -d clinic_db && exit 0
+            sleep 2
+          done
+          echo "PostgreSQL did not become ready in time" >&2
+          exit 1
+
+      - name: Apply database migrations
+        run: uv run alembic upgrade head
+
+      - name: Run integration tests
+        env:
+          RUN_INTEGRATION: "1"
+        run: uv run pytest -v -m integration
 
   # frontend-lint-and-build:
 #     runs-on: ubuntu-latest

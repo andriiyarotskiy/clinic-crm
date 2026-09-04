@@ -9,6 +9,7 @@ from datetime import date, datetime, timezone
 from decimal import Decimal
 from pathlib import Path
 from typing import Any
+from urllib.parse import urlparse
 
 import sqlalchemy as sa
 from sqlalchemy.dialects.postgresql import insert as pg_insert
@@ -30,6 +31,7 @@ from database import (  # noqa: E402
     UserRoleEnum,
     VisitModel,
 )
+from config import get_settings  # noqa: E402
 
 logger = logging.getLogger("clinic_seed")
 
@@ -216,6 +218,24 @@ def import_table(session: Any, table_name: str, rows: list[dict[str, Any]]) -> i
     return imported_count
 
 
+def is_local_host(host: str | None) -> bool:
+    if host is None:
+        return False
+
+    candidate = host.strip().lower()
+    if not candidate:
+        return False
+
+    if candidate.startswith(("http://", "https://")):
+        candidate = urlparse(candidate).hostname or candidate
+
+    candidate = candidate.strip("[]")
+    if ":" in candidate and not candidate.startswith("["):
+        candidate = candidate.split(":", 1)[0]
+
+    return candidate in {"localhost", "127.0.0.1", "0.0.0.0", "::1", "db", "postgres"}
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Seed the Clinic CRM database with CSV fixtures.")
     parser.add_argument(
@@ -239,6 +259,16 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Skip the confirmation prompt for --truncate.",
     )
+    parser.add_argument(
+        "--allow-remote",
+        action="store_true",
+        help="Allow running against non-local hosts. Use with caution.",
+    )
+    parser.add_argument(
+        "--allow-remote-truncate",
+        action="store_true",
+        help="Additionally allow --truncate against non-local hosts. Dangerous; requires explicit opt-in.",
+    )
     return parser.parse_args()
 
 
@@ -259,6 +289,25 @@ def main() -> int:
     csv_dir = args.csv_dir.resolve()
     if not csv_dir.exists():
         raise FileNotFoundError(f"CSV directory not found: {csv_dir}")
+
+    # Protect against accidental runs against non-local/production hosts.
+    # The script is intentionally allowlist-based: only local Docker/dev hosts are accepted by default.
+    settings = get_settings()
+    host_name = getattr(settings, "POSTGRES_HOST", "") or ""
+    is_remote = not is_local_host(host_name)
+    if is_remote and not args.allow_remote:
+        raise RuntimeError(
+            "Refusing to run seed script: POSTGRES_HOST is not on the local allowlist "
+            "(localhost, 127.0.0.1, 0.0.0.0, ::1, db, postgres). "
+            "If you really mean to run against a remote host, pass --allow-remote explicitly."
+        )
+
+    # Additionally be extra-safe with destructive --truncate on remote hosts.
+    # Even if --allow-remote is provided, require an explicit --allow-remote-truncate to proceed.
+    if is_remote and args.truncate and not args.allow_remote_truncate:
+        raise RuntimeError(
+            "Refusing to --truncate on a non-local host. To proceed explicitly pass --allow-remote-truncate."
+        )
 
     if args.truncate and not args.dry_run:
         logger.warning(
