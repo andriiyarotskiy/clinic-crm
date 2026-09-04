@@ -19,7 +19,6 @@ if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
 os.chdir(BASE_DIR)
 
-from config import get_settings  # noqa: E402
 from database import (  # noqa: E402
     AppointmentModel,
     AppointmentStatusEnum,
