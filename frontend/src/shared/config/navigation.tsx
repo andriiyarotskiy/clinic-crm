@@ -1,10 +1,11 @@
 import { CiHome } from "react-icons/ci";
 import { PiChatDotsLight } from "react-icons/pi";
-import { CiUser } from "react-icons/ci";
+import { FiUsers } from "react-icons/fi";
 import { ROUTES } from "./routes";
 import { Stethoscope } from 'lucide-react';
 import { PiHandshakeLight } from "react-icons/pi";
 import { CiCalendar } from "react-icons/ci";
+import { LuDock } from "react-icons/lu";
 export const navigation = [
   {
     title: "Dashboard",
@@ -20,7 +21,7 @@ export const navigation = [
   {
     title: "Patients",
     path: ROUTES.PATIENT,
-    icon: <CiUser className="h-[20px] w-[20px]" />,
+    icon: <FiUsers strokeWidth={1} className="h-[20px] w-[20px]" />,
      roles:['admin','superadmin','doctor'],
   },
    {
@@ -38,7 +39,7 @@ export const navigation = [
   {
     title: "Appointments",
     path: ROUTES.APPOINTMENTS,
-    icon: <PiHandshakeLight className="h-[20px] w-[20px]"/>,
+    icon: <LuDock strokeWidth={1} className="h-[20px] w-[20px]"/>,
      roles:['admin','superadmin']
   },
   {

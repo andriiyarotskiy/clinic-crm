@@ -196,7 +196,7 @@ export const BaseSelect = ({
               border
               border-[#E5E7EB]
               bg-white
-              mt-[12px]
+              mt-[8px]
               p-[4px]
               shadow-[0_4px_12px_rgba(0,0,0,0.08)]
             "

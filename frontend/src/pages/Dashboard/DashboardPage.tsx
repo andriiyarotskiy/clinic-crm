@@ -36,6 +36,7 @@ export const DashboardPage = () => {
   const userData = useAppSelector((state) => state.auth.user);
    const access = getAccess(userData);
   const cards = useAppSelector((state) => state.statistic.statistics?.cards);
+  console.log("CardStatistics",cards)
   const revenue = useAppSelector(
     (state) => state.statistic.statistics?.weeklyRevenue,
   );
@@ -60,7 +61,7 @@ export const DashboardPage = () => {
         getAppointmentsThunk({
           appointmentDate: now.toISOString().split("T")[0],
           appointmentStatus: "scheduled",
-          pageSize: 8,
+          pageSize: 10,
           page: 1,
           ...(access?.isDoctor && access.doctorId) ? {
             doctorId:access.doctorId,
@@ -112,7 +113,7 @@ const handleCreateVisit = async () => {
   
   return (
     <>
-      <div className="flex justify-between items-center  mb-[26px] h-[57px]">
+      <div className="flex justify-between items-center  mb-[16px] h-[57px]">
         <PageTitle
       text={
   userData?.role === "doctor"
@@ -237,7 +238,7 @@ const handleCreateVisit = async () => {
                   
                 }}
               >
-                <Td>{`#${appointment.id}`}</Td>
+                <Td className="text-[#4B5563]">{`#${appointment.id}`}</Td>
 
                 <Td>
                   <UserContacts
@@ -248,7 +249,7 @@ const handleCreateVisit = async () => {
                   />
                 </Td>
 
-                <Td>
+                <Td className="font-medium">
                   {
                     <>
                       <div>{dayjs(appointment.dateTime).format("HH:mm")}</div>

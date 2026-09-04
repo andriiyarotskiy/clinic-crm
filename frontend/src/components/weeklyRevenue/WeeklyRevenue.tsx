@@ -53,13 +53,13 @@ const yAxis = Array.from(
 
         {/* Chart */}
 
-        <div className="relative mt-[28px] h-[236px]">
+        <div className="relative mt-[40px] h-[236px]">
           {/* Y axis */}
 
           <div className="absolute left-0 top-0 flex h-[208px] flex-col justify-between text-[12px] text-gray-500">
       {yAxis.map((item,index) => (
   <span key={`${item}-${index}`}>
-    ${item >= 1000 ?  `${Math.round(item / 1000)}K` : item}
+    ₴{item >= 1000 ?  `${Math.round(item / 1000)}K` : item}
   </span>
 ))}
            
@@ -86,18 +86,18 @@ const yAxis = Array.from(
             {data.map((item) => (
               <div
                 key={item.day}
-                className="relative flex h-full w-8 items-end justify-center"
+                className="relative flex h-full w-[44px] items-end justify-center"
               >
                 {/* Peak day */}
 
-                {item.isPeakDay && item.actual>0 && (
+                {item.isPeakDay && item.expected < item.actual && (
                   <div
-                    className=" absolute left-6 -translate-x-1/2 z-20" 
+                    className=" absolute  left-5.5 -translate-x-1/2 z-20 " 
                     style={{
                       bottom: `${(item.actual / maxValue) * 101}%`,
                     }}
                   >
-                    <div className="  relative p-[3px] whitespace-nowrap rounded-lg bg-blue-600  text-[12px] font-medium text-white">
+                    <div className="  relative w-[80px] h-[32px] p-[8px] whitespace-nowrap rounded-lg bg-blue-600  text-[12px] font-medium text-white">
                       ↑ Peak day
 
                       <span className="absolute bottom-[-6px] left-1/2 -translate-x-1/2 border-x-[6px] border-t-[6px] border-x-transparent border-t-blue-600" />
@@ -107,7 +107,7 @@ const yAxis = Array.from(
 
                 {/* EXPECTED BAR */}
 
-                <div
+                {item.expected > 0 && <div
                   className="relative w-[22px]  rounded-t-md  hover:border-[2px] border-amber-400  "
                   style={{
                     height: `${(item.expected / maxValue) * 98}%`,
@@ -126,27 +126,27 @@ const yAxis = Array.from(
 
                   {hoveredBar?.day === item.day &&
                     hoveredBar.type === "expected" && (
-                     <div className="absolute bottom-[calc(100%-10px)] left-[14px] z-50">
-        <div className="relative w-[207px] h-[64px] rounded-[8px] border border-amber-400 bg-white px-[14px] p-[8px] shadow-sm">
-          <div className="flex items-center gap-[6px] text-[12px] font-medium text-blue-500">
-            <span className="text-[16px] leading-none">
-               +
-            </span>
+                      <div className="absolute bottom-[calc(100%-10px)] left-[14px] z-50">
+                        <div className="relative w-[207px] h-[64px] rounded-[8px] border border-amber-400 bg-white px-[14px] p-[8px] shadow-sm">
+                          <div className="flex items-center gap-[6px] text-[12px] font-medium text-blue-500">
+                            <span className="text-[16px] leading-none">
+                              +
+                            </span>
 
-            <span>Expected of  this day</span>
-          </div>
+                            <span>Expected of  this day</span>
+                          </div>
 
-          <div className="mt-[4px] text-[14px] font-semibold text-gray-900">
-            ₴ {item.expected.toLocaleString("uk-UA")}
-          </div>
-
-         
+                          <div className="mt-[4px] text-[14px] font-semibold text-gray-900">
+                            ₴ {item.expected.toLocaleString("uk-UA")}
+                          </div>
 
          
-        </div>
-      </div>
+
+         
+                        </div>
+                      </div>
                     )}
-                </div>
+                </div>}
 
                 {/* ACTUAL BAR */}
 

@@ -23,8 +23,8 @@ export const NavBar: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col w-[260px] p-[16px] h-full bottom-0 bg-[#fff]">
-      <div className="h-[68px] flex items-center border-b border-[#F3F4F6] mb-[24px] p-[16px]">
+    <div className="flex flex-col w-[260px] px-[16px] py-[8px] h-full bottom-0 bg-[#fff]">
+      <div className="h-[68px] flex items-center border-b border-[#F3F4F6] mb-[24px] ">
         <img
           className="mr-[16px]"
           src="smallLogo.png"
@@ -67,7 +67,7 @@ export const NavBar: React.FC = () => {
                   {nav.icon}
                 </span>
 
-                <span className="font-[Inter] font-medium text-[16px]">
+                <span className="font-[Inter] font-medium text-[16px] text-[#374151]">
                   {nav.title}
                 </span>
               </NavLink>

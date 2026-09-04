@@ -18,7 +18,7 @@ import { doctorDetailsStatisticThunk } from "@/features/statistics/thunk/doctorD
 import { doctorDetailsNavigation } from "@/features/doctors/model/doctorDetailsNavigation";
 import { SmallNavbar } from "./components/SmallNavbar";
 import { getAccess } from "@/premissoons/getAccessPremissions";
-
+import { LuPencilLine } from "react-icons/lu";
 export const DoctorDetailsPage = () => {
   const dispatch = useAppDispatch();
   const [aside, setOpenAside] = useState(false);
@@ -116,7 +116,7 @@ const doctorId = paramsDoctorId ?? access.doctorId?.toString();
 
               <ButtonPage
                 className={buttonStyles.editButton}
-                icon={<TfiPencil className="mr-2" />}
+                icon={<LuPencilLine className="mr-2" />}
                 onClick={handleAside}
               >
                 Edit doctor

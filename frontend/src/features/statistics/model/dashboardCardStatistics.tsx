@@ -1,9 +1,9 @@
 import {
   FiCalendar,
-  FiDollarSign,
-  FiGitBranch,
   FiUsers,
 } from "react-icons/fi"; 
+import { LuBadgeDollarSign } from "react-icons/lu";
+import { IoGitCompareOutline } from "react-icons/io5";
 type DashboardCardKey =
   | "patientToday"
   | "dailyAppointments"
@@ -40,16 +40,16 @@ export const dashboardCards:StatisticsCard[] = [
       title: "DAILY REVENUE",
       value: 0,
       change: 0,
-     prefix:'$',
-      icon: FiDollarSign,
-      iconClass: "bg-orange-100 text-orange-600",
+     prefix:'₴',
+      icon: LuBadgeDollarSign,
+      iconClass: "bg-[#FFEDD5] text-[#9A3412]",
     },
     {key: 'monthlyRevenue',
       title: "MONTHLY REVENUE",
       value: 0,
       change: 0,
-    prefix:"$",
-      icon: FiGitBranch,
+    prefix:"₴",
+      icon: IoGitCompareOutline,
       iconClass: "bg-purple-100 text-purple-600",
     },
   ];

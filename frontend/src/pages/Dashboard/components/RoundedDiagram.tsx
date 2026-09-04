@@ -54,12 +54,12 @@ const cancelledEnd = cancelledStart + cancelledPercent * 3.6;
 
     white 0deg ${completedStart}deg,
 
-    #8bb9f5 ${completedStart}deg ${completedEnd}deg,
+    #8ee24d ${completedStart}deg ,
+    #22d3ee ${completedEnd}deg,
 
     white ${completedEnd}deg ${noShowStart}deg,
 
-    #8ee24d ${noShowStart}deg,
-    #22d3ee ${noShowEnd}deg,
+    #FDBA74 ${noShowStart}deg ${noShowEnd}deg,
 
     white ${noShowEnd}deg ${cancelledStart}deg,
 
@@ -92,7 +92,7 @@ const cancelledEnd = cancelledStart + cancelledPercent * 3.6;
               {/* New */}
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <span className="h-2 w-2 rounded-full bg-blue-300" />
+                  <span className="h-2 w-2 rounded-full  bg-gradient-to-r from-green-400 to-cyan-400" />
 
                   <span className="text-[12px] text-gray-600">
                   Completed
@@ -101,7 +101,7 @@ const cancelledEnd = cancelledStart + cancelledPercent * 3.6;
 
                 <div className="flex items-center gap-4">
                   <div className="h-1.5 w-[75px] rounded-full bg-gray-200">
-              <div className={`h-full  rounded-full bg-blue-300`}
+              <div className={`h-full  rounded-full  bg-gradient-to-r from-green-400 to-cyan-400`}
               style={{ width: `${completedPercent}%` }}/>
                   </div>
 
@@ -114,7 +114,7 @@ const cancelledEnd = cancelledStart + cancelledPercent * 3.6;
               {/* Repeated */}
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <span className="h-2 w-2 rounded-full bg-green-400" />
+                  <span className="h-2 w-2 rounded-full bg-[#FDBA74]" />
 
                   <span className="text-[12px] text-gray-600">
                    No-show
@@ -123,7 +123,7 @@ const cancelledEnd = cancelledStart + cancelledPercent * 3.6;
 
                 <div className="flex items-center gap-4">
                   <div className="h-1.5 w-[75px] rounded-full bg-gray-200">
-              <div className={`h-full  rounded-full bg-gradient-to-r from-green-400 to-cyan-400`}
+              <div className={`h-full  rounded-full bg-[#FDBA74]`}
                style={{ width: `${noShowPercent}%` }}/>
                   </div>
 
