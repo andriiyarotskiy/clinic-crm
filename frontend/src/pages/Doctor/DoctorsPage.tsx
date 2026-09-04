@@ -194,7 +194,7 @@ export const DoctorsPage = () => {
                      <Td>{employmentTypes.map((status) =>
                         
                                           status.value === doctor.employmentType && (
-                                            <span className={`text-[12px]  rounded-[8px] px-[15px] py-[6px] ${status.color} ${status.textColor}`}>{status.label}</span>
+                                            <span  key={`${status.value}${status.color}`} className={`text-[12px]  rounded-[8px] px-[15px] py-[6px] ${status.color} ${status.textColor}`}>{status.label}</span>
                                           ))}
                                           </Td>
                 </tr>

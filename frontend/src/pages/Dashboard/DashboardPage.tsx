@@ -265,7 +265,7 @@ const handleCreateVisit = async () => {
                   {statusOptions.map(
                     (status) =>
                       status.value === appointment.status && (
-                        <span
+                        <span  key={`${status.value}${status.color}`}
                           className={`text-[12px] ${status.textColor} rounded-[8px] px-[15px] py-[6px] ${status.color}`}
                         >
                           {status.label}

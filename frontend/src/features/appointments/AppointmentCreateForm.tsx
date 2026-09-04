@@ -12,6 +12,7 @@ import { getAppointmentsThunk } from "./thunk/getAppointmentsThunk";
 import { getAvailableTimeSlotsThunk } from "./thunk/getAvailableSlots";
 import { Loader } from "@/components/loader/Loader";
 import type { Patient } from "@/types/patient";
+import { UserContacts } from "@/components/userContacts/UserContacts";
 
 export const AppointmentCreateForm: React.FC = () => {
   const methods = useForm<AppointmentFormData>();
@@ -108,10 +109,13 @@ const {selectedDoctor,selectedDate,selectedSlotsTime,selectedTreatment} = useApp
               getValue={(user) => `${user.firstName} ${user.lastName}`}
               renderItem={(user) => (
                 <>
-                  <div>
-                    {user.firstName} {user.lastName}
-                  </div>
-                  <div>{user.email}</div>
+                  <UserContacts
+                    
+                                            avatar={"patient.jpg"}
+                                            firstName={user.firstName}
+                                            lastName={user.lastName}
+                                            phone={user.phoneNumber}
+                                          />
                 </>
               )}
             />

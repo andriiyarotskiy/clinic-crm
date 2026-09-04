@@ -11,6 +11,7 @@ import { createPatientThunk } from "./thunk/createPatientThunk";
 import { PatientsFormFields } from "@/components/formField/PatientFormField";
 import { getAllPatientThunk } from "./thunk/getAllPacientThunk";
 import type { User } from "@/types/user";
+import { UserContacts } from "@/components/userContacts/UserContacts";
 
 
 export const PatientCreateForm:React.FC = () => {
@@ -70,6 +71,7 @@ export const PatientCreateForm:React.FC = () => {
               </section>
             <section className="mb-[24px]">
             <Search
+              
               searchLabel="Search users"
                 items={users}
                 placeholder="Find an activated user"
@@ -81,10 +83,13 @@ export const PatientCreateForm:React.FC = () => {
                 getValue={(user) => `${user.firstName} ${user.lastName}`}
                 renderItem={(user) => (
                   <>
-                    <div>
-                      {user.firstName} {user.lastName}
-                    </div>
-                    <div>{user.email}</div>
+                     <UserContacts
+                                       
+                                                               avatar={"user.png"}
+                                                               firstName={user.firstName}
+                                                               lastName={user.lastName}
+                                                               phone={user.email}
+                                                             />
                   </>
                 )}
               />

@@ -3,6 +3,7 @@ import { Input } from "@/components";
 import { Loader } from "../loader/Loader";
 import type { User } from "@/types/user";
 import type { Patient } from "@/types/patient";
+import { useDebounce } from "@/hooks/useDebounce";
 
 type Props<T> = {
   items: T[];
@@ -18,6 +19,7 @@ type Props<T> = {
 };
 
 export function Search<T>({
+  
   searchLabel,
   items,
   loading,
@@ -31,20 +33,17 @@ export function Search<T>({
 }: Props<T>) {
   const [query, setQuery] = useState("");
   const open = query.trim().length >= 1;
+ 
+  const debouncedQuery = useDebounce(query, 500);
 
   useEffect(() => {
-    if (!open) {
-      return
+    if (!debouncedQuery.trim()) {
+      return;
     }
-     
-    const timer = setTimeout(() => {
-      onSearch(query);
-      
-    }, 1000);
 
-    return () => clearTimeout(timer);
-  }, [ query]);
-
+    onSearch(debouncedQuery);
+  }, [debouncedQuery]);
+  
   return (
     <div className="relative">
       <Input
@@ -59,19 +58,21 @@ export function Search<T>({
       />
 
       {open && (
-        <div className="absolute left-0 right-0 top-full mt-1 max-h-60 overflow-y-auto bg-amber-50 z-30">
+        <div className="absolute left-0 p-[8px]
+        right-0 top-full mt-1 max-h-60 overflow-y-auto
+        rounded-[8px] border border-[#E5E7EB] bg-[#FFFFFF] z-30">
           {loading && (
-            <div className="p-3 text-center">
+            <div className="p-3 text-center " >
               <Loader/>
             </div>
           )}
 
-          {!loading &&
+          {!loading && items.length>0 && open &&
             items.map((item) => (
               <button
                 key={getKey(item)}
                 type="button"
-                className="block w-full p-3 text-left hover:bg-[#DBEAFE]"
+                className="block w-full rounded-[8px]  p-3 text-left hover:bg-[#F3F4F6]"
                 onClick={() => {
                   onSelect(item);
                   setQuery(getValue(item));

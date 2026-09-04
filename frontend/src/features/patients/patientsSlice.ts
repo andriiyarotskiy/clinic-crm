@@ -73,18 +73,21 @@ const patientsSlice = createSlice({
         state.error = action.error.message ?? 'failed to create patient'
       })
       .addCase(getAllPatientThunk.pending, (state) => {
-        state.loading = true;
+         state.loading = true;
+  state.patients = [];
       })
       .addCase(getAllPatientThunk.fulfilled, (state, action) => {
+        
         state.loading = false;
         state.patients = action.payload.items
         state.total = action.payload.total
-        console.log(action.payload)
+        
         
         
       })
       .addCase(getAllPatientThunk.rejected, (state) => {
         state.loading = false;
+        state.patients = [];
       })
       .addCase(getPatientByIdThunk.pending, (state) => {
         state.loading = true;

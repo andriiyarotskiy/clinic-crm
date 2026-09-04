@@ -134,7 +134,7 @@ export const AppointmentFormFields: React.FC<Props> = ({ type }) => {
           label="Time *"
           placeholder="Choose Time"
           options={availableTime.map((time) => ({
-            disabled: time.status === "booked",
+            disabled: time.status === "expired",
             value: String(time.time),
             label: `${time.time.slice(0, -3)}  `,
           }))}

@@ -137,7 +137,7 @@ export const PatientsPage = () => {
               <tbody>
                 {patients.map((patient) => (
                   <tr
-                    key={patient.userId}
+                    key={`${patient.userId}${patient.id}`}
                     onClick={() => {
                       navigate(`/patients/${patient.id}`);
                     }}
@@ -172,7 +172,7 @@ export const PatientsPage = () => {
                      <Td>{hygieneStatus.map((status) =>
                           
                                             status.value ===patient.status && (
-                                              <span className={`text-[12px] ${status.textColor} rounded-[8px] px-[15px] py-[6px] ${status.color}`}>{status.label}</span>
+                                              <span  key={`${status.value}${status.textColor}`} className={`text-[12px] ${status.textColor} rounded-[8px] px-[15px] py-[6px] ${status.color}`}>{status.label}</span>
                                             ))}
                     </Td>
                     

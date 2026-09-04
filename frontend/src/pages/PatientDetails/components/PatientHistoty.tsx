@@ -92,7 +92,7 @@ export const PatientHistory = () => {
                               <Td>{statusOptions.map((status) =>
               
                                 status.value === appointment.status && (
-                                  <span className={`text-[12px] ${status.textColor} rounded-[8px] px-[15px] py-[6px] text-[#1F2937] bg-[#E5E7EB]`}>{status.label}</span>
+                                  <span  key={`${status.value}${status.color}`} className={`text-[12px] ${status.textColor} rounded-[8px] px-[15px] py-[6px] text-[#1F2937] bg-[#E5E7EB]`}>{status.label}</span>
                                 ))}
                                 </Td>
                             
