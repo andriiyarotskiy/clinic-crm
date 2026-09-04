@@ -1,0 +1,1201 @@
+id,user_id,gender,date_of_birth,city,address,source
+1,10,female,1992-06-23,Kyiv,127 Akhmatovoi St.,paid_social
+2,11,female,2006-01-21,Kyiv,139 Myloslavska St.,organic_search
+3,12,male,1992-05-01,Irpin,113 Tsentralna St.,organic_social
+4,13,male,2007-02-06,Kyiv,99 Urlivska St.,referral
+5,14,female,1956-01-27,Kyiv,20 Saksahanskoho St.,referral
+6,15,female,1989-07-15,Kyiv,95 Dniprovska Naberezhna St.,organic_search
+7,16,male,1988-03-07,Kyiv,"78 Borshchahivska St., Apt. 90",organic_search
+8,17,child,2022-08-02,Kyiv,127 Obolonskyi Ave.,paid_search
+9,18,male,2005-06-16,Bucha,153 Yablunska St.,paid_search
+10,19,child,2015-07-04,Brovary,1 Symona Petliury St.,organic_search
+11,20,male,1944-12-21,Kyiv,31 Velyka Vasylkivska St.,direct
+12,21,male,1992-08-27,Vyshhorod,134 Naberezhna St.,paid_search
+13,22,female,1951-05-08,Kyiv,12 Kniazhyi Zaton St.,referral
+14,23,child,2019-12-22,Kyiv,"79 Obolonskyi Ave., Apt. 41",referral
+15,24,male,1983-10-04,Brovary,13 Heroiv Ukrainy St.,offline_ad
+16,25,female,1986-12-13,Kyiv,"49 Lypkivskoho St., Apt. 43",organic_social
+17,26,female,2008-03-10,Kyiv,"53 Kyrylivska St., Apt. 8",direct
+18,27,male,1996-10-17,Kyiv,4 Kadetskyi Hai St.,paid_search
+19,28,male,2004-06-04,Kyiv,150 Saksahanskoho St.,organic_search
+20,29,male,2005-03-16,Kyiv,"65 Sribnokilska St., Apt. 125",referral
+21,30,female,1984-12-22,Kyiv,82 Urlivska St.,referral
+22,31,child,2022-04-26,Vyshneve,"175 Lesi Ukrainky St., Apt. 137",organic_search
+23,32,female,1968-01-13,Kyiv,"84 Kadetskyi Hai St., Apt. 87",offline_ad
+24,33,male,1968-10-12,Boryspil,130 Yevropeiska St.,paid_search
+25,34,female,1994-01-28,Kyiv,"103 Avtozavodska St., Apt. 130",organic_search
+26,35,child,2014-01-21,Boryspil,115 Momota St.,organic_search
+27,36,child,2009-11-26,Boryspil,145 Kyivskyi Shliakh St.,referral
+28,37,male,1943-07-10,Bucha,123 Kyievo-Myrotska St.,organic_search
+29,38,female,1955-02-28,Kyiv,9 Kniazhyi Zaton St.,organic_search
+30,39,female,1973-05-12,Boryspil,"177 Holovatoho St., Apt. 147",organic_search
+31,40,male,1991-01-26,Kyiv,154 Saksahanskoho St.,organic_search
+32,41,female,1981-12-20,Vyshneve,154 Osvity St.,referral
+33,42,male,1965-11-05,Irpin,"88 Severynivska St., Apt. 45",paid_social
+34,43,female,1963-05-12,Kyiv,"179 Urlivska St., Apt. 11",organic_social
+35,44,male,2002-03-13,Kyiv,52 Solomianska St.,referral
+36,45,female,1989-01-23,Vyshhorod,132 Sholudenka St.,organic_search
+37,46,female,1971-05-28,Kyiv,178 Velyka Vasylkivska St.,organic_search
+38,47,female,1991-10-16,Kyiv,156 Vyshhorodska St.,organic_search
+39,48,female,2002-07-10,Brovary,1 Hrushevskoho St.,referral
+40,49,female,2007-11-10,Kyiv,57 Dniprovska Naberezhna St.,referral
+41,50,child,2015-10-28,Boryspil,116 Bezhivka St.,organic_search
+42,51,female,1952-09-21,Bucha,"45 Enerhetykiv St., Apt. 9",other
+43,52,male,1993-02-08,Kyiv,154 Borshchahivska St.,paid_search
+44,53,male,1986-06-03,Kyiv,84 Borshchahivska St.,organic_social
+45,54,male,1982-12-23,Vyshhorod,87 Naberezhna St.,organic_search
+46,55,female,1993-09-09,Kyiv,27 Urlivska St.,organic_search
+47,56,female,1968-05-24,Kyiv,"64 Velyka Vasylkivska St., Apt. 80",organic_search
+48,57,female,1990-05-09,Brovary,69 Hrushevskoho St.,organic_social
+49,58,child,2018-10-26,Kyiv,86 Obolonskyi Ave.,organic_search
+50,59,female,1975-04-26,Kyiv,125 Akademika Zabolotnoho St.,offline_ad
+51,60,child,2015-12-02,Kyiv,"171 Saksahanskoho St., Apt. 14",organic_search
+52,61,female,1996-12-16,Irpin,81 Soborna St.,referral
+53,62,male,1978-09-01,Kyiv,"130 Akhmatovoi St., Apt. 96",organic_search
+54,63,male,1999-02-25,Irpin,49 Tsentralna St.,referral
+55,64,male,1975-07-02,Brovary,"13 Chornovola St., Apt. 120",organic_social
+56,65,female,1981-08-25,Kyiv,"160 Beresteiskyi Ave., Apt. 96",direct
+57,66,child,2019-08-19,Bucha,170 Yablunska St.,referral
+58,67,female,1998-01-07,Kyiv,118 Dniprovska Naberezhna St.,referral
+59,68,female,2004-06-25,Brovary,127 Chornovola St.,offline_ad
+60,69,male,1990-04-07,Kyiv,85 Avtozavodska St.,paid_social
+61,70,female,1993-11-20,Kyiv,"8 Lypkivskoho St., Apt. 18",organic_search
+62,71,child,2009-08-01,Boryspil,76 Momota St.,organic_search
+63,72,child,2018-02-03,Kyiv,"104 Saksahanskoho St., Apt. 42",paid_social
+64,73,child,2015-02-28,Kyiv,"60 Myloslavska St., Apt. 153",organic_search
+65,74,male,1956-04-20,Kyiv,"61 Urlivska St., Apt. 3",referral
+66,75,child,2015-12-10,Kyiv,"96 Lomonosova St., Apt. 43",direct
+67,76,female,1988-06-16,Kyiv,62 Heroiv Dnipra St.,direct
+68,77,male,1969-02-21,Kyiv,9 Revutskoho St.,organic_social
+69,78,male,1943-06-04,Brovary,95 Heroiv Ukrainy St.,paid_social
+70,79,male,1999-09-18,Boryspil,92 Momota St.,referral
+71,80,female,1987-01-17,Kyiv,9 Drahomanova St.,referral
+72,81,male,1960-03-24,Kyiv,"138 Obolonskyi Ave., Apt. 77",referral
+73,82,child,2015-06-08,Brovary,155 Chornovola St.,organic_search
+74,83,female,1980-01-10,Kyiv,172 Heroiv Dnipra St.,direct
+75,84,child,2012-09-28,Kyiv,46 Lypkivskoho St.,organic_social
+76,85,child,2015-04-10,Brovary,"151 Hrushevskoho St., Apt. 87",organic_social
+77,86,male,1977-01-25,Kyiv,"147 Heroiv Dnipra St., Apt. 44",organic_search
+78,87,male,1985-09-27,Kyiv,102 Borshchahivska St.,organic_search
+79,88,female,1951-12-12,Kyiv,167 Vyshhorodska St.,referral
+80,89,female,1994-04-19,Brovary,129 Heroiv Ukrainy St.,direct
+81,90,male,1996-03-17,Brovary,"137 Heroiv Ukrainy St., Apt. 46",organic_search
+82,91,child,2019-11-27,Kyiv,67 Kadetskyi Hai St.,organic_social
+83,92,male,1985-07-13,Kyiv,"167 Dniprovska Naberezhna St., Apt. 114",referral
+84,93,male,1964-09-04,Kyiv,23 Akhmatovoi St.,organic_social
+85,94,male,1980-01-21,Kyiv,"34 Lomonosova St., Apt. 152",paid_search
+86,95,female,1976-10-25,Boryspil,46 Momota St.,organic_search
+87,96,male,1975-05-15,Brovary,147 Kyivska St.,other
+88,97,female,1957-09-17,Kyiv,63 Avtozavodska St.,referral
+89,98,female,1969-10-08,Brovary,63 Symona Petliury St.,organic_social
+90,99,female,1969-10-22,Kyiv,"32 Kadetskyi Hai St., Apt. 133",organic_search
+91,100,male,1985-02-07,Irpin,175 Severynivska St.,referral
+92,101,male,1970-02-24,Kyiv,"157 Akhmatovoi St., Apt. 93",offline_ad
+93,102,male,1991-11-28,Kyiv,"89 Revutskoho St., Apt. 22",organic_social
+94,103,female,1995-11-25,Boryspil,51 Holovatoho St.,organic_search
+95,104,male,1978-04-01,Irpin,"108 Tsentralna St., Apt. 44",paid_search
+96,105,female,1986-06-14,Kyiv,"101 Saksahanskoho St., Apt. 101",referral
+97,106,female,1947-05-26,Kyiv,"6 Drahomanova St., Apt. 119",referral
+98,107,male,1985-02-23,Kyiv,80 Sribnokilska St.,referral
+99,108,child,2022-01-05,Kyiv,138 Lypkivskoho St.,direct
+100,109,male,1986-07-20,Kyiv,121 Lomonosova St.,other
+101,110,female,1945-02-14,Kyiv,91 Urlivska St.,direct
+102,111,child,2022-05-17,Brovary,165 Chornovola St.,offline_ad
+103,112,male,1972-01-16,Brovary,163 Kyivska St.,referral
+104,113,child,2022-07-07,Vyshhorod,"40 Mezhyhirskoho Spasa St., Apt. 77",organic_social
+105,114,male,1982-08-12,Kyiv,96 Obolonskyi Ave.,referral
+106,115,child,2022-03-23,Irpin,58 Universytetska St.,organic_search
+107,116,female,1979-02-11,Kyiv,"160 Vyshhorodska St., Apt. 2",organic_search
+108,117,female,1992-06-25,Brovary,23 Chornovola St.,paid_social
+109,118,child,2020-01-19,Kyiv,97 Velyka Vasylkivska St.,referral
+110,119,child,2015-04-22,Kyiv,"43 Obolonskyi Ave., Apt. 23",paid_search
+111,120,female,1984-02-27,Kyiv,30 Revutskoho St.,organic_social
+112,121,child,2022-03-07,Kyiv,9 Avtozavodska St.,paid_search
+113,122,female,1987-01-05,Irpin,"54 Severynivska St., Apt. 142",paid_search
+114,123,male,1960-07-27,Kyiv,"119 Vyshhorodska St., Apt. 113",paid_search
+115,124,male,1992-09-08,Vyshhorod,"84 Shevchenka Ave., Apt. 85",referral
+116,125,female,1966-04-25,Kyiv,"88 Lypkivskoho St., Apt. 53",referral
+117,126,female,2000-02-19,Kyiv,"84 Obolonskyi Ave., Apt. 123",paid_search
+118,127,child,2022-07-07,Kyiv,"44 Akhmatovoi St., Apt. 146",organic_search
+119,128,male,1971-11-05,Kyiv,119 Lomonosova St.,paid_search
+120,129,male,1959-06-13,Kyiv,"118 Velyka Vasylkivska St., Apt. 49",organic_search
+121,130,female,1996-09-06,Kyiv,119 Urlivska St.,referral
+122,131,male,1974-07-07,Kyiv,"71 Vyshhorodska St., Apt. 101",organic_social
+123,132,male,1992-02-25,Kyiv,96 Akademika Zabolotnoho St.,referral
+124,133,female,1954-10-15,Bucha,103 Nove Shose St.,paid_social
+125,134,male,1988-05-03,Brovary,130 Chornovola St.,direct
+126,135,male,1977-12-17,Kyiv,68 Antonovycha St.,paid_search
+127,136,female,1992-09-25,Kyiv,166 Akademika Zabolotnoho St.,offline_ad
+128,137,female,1960-08-14,Vyshhorod,28 Sholudenka St.,organic_search
+129,138,male,1965-01-08,Kyiv,2 Vyshhorodska St.,organic_social
+130,139,child,2015-02-24,Kyiv,13 Saksahanskoho St.,paid_social
+131,140,female,1994-06-09,Kyiv,149 Dniprovska Naberezhna St.,organic_search
+132,141,female,1957-07-05,Kyiv,18 Antonovycha St.,paid_social
+133,142,female,1953-07-24,Irpin,"77 Lisova St., Apt. 134",paid_search
+134,143,female,2001-05-08,Kyiv,32 Borshchahivska St.,direct
+135,144,child,2015-10-04,Kyiv,54 Avtozavodska St.,paid_search
+136,145,male,1968-06-13,Kyiv,"40 Lomonosova St., Apt. 51",paid_social
+137,146,female,1970-09-24,Kyiv,"69 Kniazhyi Zaton St., Apt. 90",organic_social
+138,147,female,1944-12-09,Kyiv,57 Avtozavodska St.,organic_search
+139,148,child,2015-12-22,Kyiv,119 Saksahanskoho St.,organic_social
+140,149,child,2022-05-05,Kyiv,"5 Kyrylivska St., Apt. 25",paid_social
+141,150,female,2005-09-06,Kyiv,151 Vyshhorodska St.,referral
+142,151,female,1978-12-16,Kyiv,148 Sribnokilska St.,direct
+143,152,female,1994-02-03,Brovary,"127 Chornovola St., Apt. 6",organic_search
+144,153,male,1997-11-23,Kyiv,154 Obolonskyi Ave.,organic_search
+145,154,female,1978-06-04,Brovary,128 Hrushevskoho St.,referral
+146,155,female,1985-03-13,Kyiv,56 Lypkivskoho St.,organic_social
+147,156,female,1971-10-04,Kyiv,174 Beresteiskyi Ave.,offline_ad
+148,157,child,2015-12-10,Kyiv,"79 Avtozavodska St., Apt. 29",organic_search
+149,158,female,1982-09-17,Kyiv,124 Obolonskyi Ave.,referral
+150,159,male,2003-06-11,Kyiv,119 Heroiv Dnipra St.,referral
+151,160,male,1975-10-06,Kyiv,77 Avtozavodska St.,paid_search
+152,161,female,1986-08-15,Kyiv,"77 Kadetskyi Hai St., Apt. 152",organic_social
+153,162,male,1950-12-23,Kyiv,40 Drahomanova St.,referral
+154,163,female,1954-04-03,Kyiv,144 Kyrylivska St.,paid_search
+155,164,child,2015-02-28,Irpin,26 Universytetska St.,direct
+156,165,female,1972-11-12,Brovary,69 Kyivska St.,organic_social
+157,166,male,1994-06-27,Boryspil,175 Yevropeiska St.,referral
+158,167,child,2015-04-06,Kyiv,147 Akademika Zabolotnoho St.,referral
+159,168,female,2007-01-26,Kyiv,28 Sribnokilska St.,direct
+160,169,child,2015-08-02,Kyiv,"40 Avtozavodska St., Apt. 18",referral
+161,170,child,2022-01-13,Brovary,58 Kyivska St.,organic_search
+162,171,male,1992-03-05,Kyiv,172 Velyka Vasylkivska St.,direct
+163,172,child,2022-03-11,Kyiv,124 Antonovycha St.,direct
+164,173,child,2015-02-04,Kyiv,101 Heroiv Dnipra St.,paid_social
+165,174,male,1983-06-12,Brovary,"21 Heroiv Ukrainy St., Apt. 109",organic_social
+166,175,female,1973-02-09,Kyiv,5 Akhmatovoi St.,organic_search
+167,176,female,1980-04-13,Irpin,178 Lisova St.,offline_ad
+168,177,male,2004-05-16,Bucha,100 Vokzalna St.,direct
+169,178,female,1981-04-14,Kyiv,"141 Kniazhyi Zaton St., Apt. 128",direct
+170,179,female,1957-03-04,Kyiv,"62 Velyka Vasylkivska St., Apt. 37",paid_social
+171,180,child,2022-09-21,Kyiv,27 Antonovycha St.,direct
+172,181,child,2021-10-13,Kyiv,"175 Lypkivskoho St., Apt. 140",direct
+173,182,male,1984-12-19,Irpin,"152 Soborna St., Apt. 20",referral
+174,183,female,1961-04-24,Kyiv,"94 Sribnokilska St., Apt. 132",paid_social
+175,184,child,2015-04-06,Kyiv,"63 Akademika Zabolotnoho St., Apt. 90",referral
+176,185,female,1970-02-16,Irpin,161 Lisova St.,organic_search
+177,186,child,2015-08-02,Kyiv,15 Chervonoi Kalyny Ave.,organic_search
+178,187,female,2007-07-12,Vyshneve,"66 Lesi Ukrainky St., Apt. 84",paid_search
+179,188,female,1992-02-16,Kyiv,"65 Kadetskyi Hai St., Apt. 81",direct
+180,189,child,2015-04-22,Kyiv,6 Kyrylivska St.,organic_social
+181,190,female,1989-02-07,Kyiv,47 Drahomanova St.,organic_search
+182,191,female,1981-12-18,Kyiv,140 Obolonskyi Ave.,referral
+183,192,male,1973-04-15,Kyiv,137 Drahomanova St.,organic_social
+184,193,child,2013-12-27,Kyiv,"41 Myloslavska St., Apt. 143",paid_social
+185,194,female,1972-01-21,Kyiv,"153 Avtozavodska St., Apt. 46",offline_ad
+186,195,male,1993-11-16,Kyiv,106 Akademika Zabolotnoho St.,organic_search
+187,196,female,1983-08-11,Kyiv,138 Beresteiskyi Ave.,paid_social
+188,197,female,1973-12-14,Kyiv,"166 Solomianska St., Apt. 98",paid_social
+189,198,male,1980-06-10,Kyiv,26 Kadetskyi Hai St.,organic_search
+190,199,male,1996-03-11,Kyiv,21 Revutskoho St.,referral
+191,200,female,1961-08-04,Kyiv,"138 Chervonoi Kalyny Ave., Apt. 118",referral
+192,201,female,1980-01-04,Kyiv,31 Kniazhyi Zaton St.,offline_ad
+193,202,child,2022-07-15,Irpin,43 Lisova St.,referral
+194,203,child,2022-11-27,Kyiv,"44 Drahomanova St., Apt. 111",referral
+195,204,male,1995-06-08,Kyiv,98 Vyshhorodska St.,referral
+196,205,female,1995-08-20,Kyiv,97 Kniazhyi Zaton St.,organic_social
+197,206,male,1977-09-26,Vyshneve,41 Lesi Ukrainky St.,direct
+198,207,male,1977-10-10,Kyiv,20 Kniazhyi Zaton St.,paid_search
+199,208,female,1942-10-22,Irpin,110 Tsentralna St.,organic_social
+200,209,male,2000-11-21,Kyiv,21 Myloslavska St.,organic_search
+201,210,child,2015-08-18,Kyiv,"84 Lomonosova St., Apt. 104",organic_search
+202,211,female,1994-10-17,Kyiv,120 Obolonskyi Ave.,other
+203,212,female,2003-08-05,Kyiv,26 Lypkivskoho St.,referral
+204,213,female,1982-02-23,Kyiv,"99 Lomonosova St., Apt. 14",organic_search
+205,214,child,2018-02-23,Brovary,137 Symona Petliury St.,unknown
+206,215,male,1966-12-23,Kyiv,"106 Kniazhyi Zaton St., Apt. 63",paid_search
+207,216,male,1981-11-03,Kyiv,72 Kadetskyi Hai St.,organic_search
+208,217,female,1967-12-17,Kyiv,96 Drahomanova St.,organic_search
+209,218,child,2022-07-26,Brovary,84 Kyivska St.,organic_social
+210,219,male,1959-08-27,Kyiv,102 Obolonskyi Ave.,organic_search
+211,220,male,1980-11-04,Kyiv,47 Heroiv Dnipra St.,organic_search
+212,221,male,1968-08-28,Kyiv,151 Akhmatovoi St.,referral
+213,222,male,1975-02-12,Kyiv,41 Avtozavodska St.,paid_search
+214,223,male,1968-07-12,Kyiv,50 Velyka Vasylkivska St.,direct
+215,224,male,1955-01-28,Kyiv,79 Myloslavska St.,direct
+216,225,male,2000-10-27,Kyiv,"111 Urlivska St., Apt. 137",referral
+217,226,child,2022-05-01,Bucha,131 Enerhetykiv St.,paid_social
+218,227,female,1992-07-20,Kyiv,140 Avtozavodska St.,referral
+219,228,male,1975-06-22,Kyiv,118 Vyshhorodska St.,organic_search
+220,229,female,1972-12-25,Vyshhorod,"95 Mezhyhirskoho Spasa St., Apt. 21",referral
+221,230,child,2015-10-12,Kyiv,27 Kadetskyi Hai St.,referral
+222,231,female,2006-08-23,Kyiv,7 Kniazhyi Zaton St.,referral
+223,232,child,2012-10-18,Bucha,"123 Kyievo-Myrotska St., Apt. 37",organic_social
+224,233,female,1980-01-14,Kyiv,115 Drahomanova St.,referral
+225,234,male,1985-06-04,Boryspil,"46 Yevropeiska St., Apt. 19",direct
+226,235,child,2011-06-03,Kyiv,174 Obolonskyi Ave.,offline_ad
+227,236,female,1975-07-27,Kyiv,"128 Avtozavodska St., Apt. 101",paid_search
+228,237,child,2015-08-10,Kyiv,145 Kadetskyi Hai St.,referral
+229,238,male,1985-06-11,Kyiv,28 Beresteiskyi Ave.,organic_search
+230,239,female,1991-09-22,Kyiv,"34 Lomonosova St., Apt. 153",organic_search
+231,240,male,1998-09-27,Vyshhorod,150 Mezhyhirskoho Spasa St.,other
+232,241,female,1953-02-09,Kyiv,"126 Kniazhyi Zaton St., Apt. 41",paid_search
+233,242,child,2022-07-19,Kyiv,"175 Akhmatovoi St., Apt. 25",offline_ad
+234,243,female,2006-03-14,Kyiv,"58 Obolonskyi Ave., Apt. 107",referral
+235,244,male,1968-07-02,Kyiv,38 Kniazhyi Zaton St.,paid_social
+236,245,female,1982-05-12,Brovary,167 Symona Petliury St.,referral
+237,246,male,1941-08-24,Kyiv,81 Borshchahivska St.,organic_search
+238,247,female,2003-09-03,Irpin,175 Lisova St.,referral
+239,248,child,2022-03-23,Kyiv,164 Borshchahivska St.,referral
+240,249,male,1978-06-26,Irpin,"50 Lisova St., Apt. 17",organic_social
+241,250,female,1980-07-20,Bucha,"122 Enerhetykiv St., Apt. 59",organic_social
+242,251,female,1965-11-20,Brovary,"106 Symona Petliury St., Apt. 119",referral
+243,252,female,2005-12-23,Kyiv,135 Sribnokilska St.,paid_social
+244,253,female,1947-02-10,Kyiv,"83 Dniprovska Naberezhna St., Apt. 30",paid_social
+245,254,female,1986-05-20,Irpin,"83 Soborna St., Apt. 44",paid_search
+246,255,male,1977-07-19,Kyiv,"81 Dniprovska Naberezhna St., Apt. 63",referral
+247,256,child,2022-03-07,Kyiv,54 Heroiv Dnipra St.,referral
+248,257,female,1985-04-17,Brovary,"149 Kyivska St., Apt. 97",paid_search
+249,258,female,2007-04-03,Brovary,89 Chornovola St.,referral
+250,259,female,1986-01-21,Kyiv,154 Urlivska St.,paid_search
+251,260,female,1965-09-14,Kyiv,13 Dniprovska Naberezhna St.,paid_search
+252,261,unknown,1992-11-20,Kyiv,34 Velyka Vasylkivska St.,paid_search
+253,262,child,2015-10-20,Brovary,144 Hrushevskoho St.,paid_search
+254,263,child,2022-03-07,Kyiv,"59 Sribnokilska St., Apt. 15",referral
+255,264,male,2001-03-02,Bucha,20 Vokzalna St.,referral
+256,265,female,1991-07-05,Kyiv,"2 Drahomanova St., Apt. 156",unknown
+257,266,male,1996-12-14,Kyiv,131 Sribnokilska St.,organic_search
+258,267,male,1967-01-06,Kyiv,44 Saksahanskoho St.,organic_social
+259,268,male,1969-05-13,Kyiv,"91 Velyka Vasylkivska St., Apt. 111",referral
+260,269,female,2007-01-13,Kyiv,65 Vyshhorodska St.,direct
+261,270,female,1946-01-13,Kyiv,41 Akademika Zabolotnoho St.,referral
+262,271,female,1977-12-14,Kyiv,46 Heroiv Dnipra St.,organic_search
+263,272,female,1975-03-05,Brovary,44 Kyivska St.,paid_social
+264,273,male,2006-10-12,Kyiv,77 Obolonskyi Ave.,organic_social
+265,274,female,1958-09-12,Bucha,75 Enerhetykiv St.,paid_search
+266,275,male,1975-05-16,Irpin,87 Soborna St.,organic_social
+267,276,female,1977-07-25,Kyiv,"107 Heroiv Dnipra St., Apt. 111",referral
+268,277,male,1996-11-18,Kyiv,117 Akhmatovoi St.,paid_social
+269,278,male,1974-02-18,Boryspil,"15 Kyivskyi Shliakh St., Apt. 106",paid_search
+270,279,child,2014-10-17,Brovary,106 Kyivska St.,organic_social
+271,280,female,1982-09-28,Kyiv,158 Solomianska St.,organic_social
+272,281,child,2015-06-20,Irpin,"47 Soborna St., Apt. 66",referral
+273,282,female,1991-12-26,Kyiv,47 Revutskoho St.,referral
+274,283,male,1987-12-26,Kyiv,"7 Beresteiskyi Ave., Apt. 24",direct
+275,284,female,1971-08-06,Kyiv,46 Akhmatovoi St.,paid_search
+276,285,female,1981-09-15,Kyiv,42 Lypkivskoho St.,organic_search
+277,286,male,1996-07-10,Kyiv,1 Heroiv Dnipra St.,referral
+278,287,child,2015-04-02,Boryspil,168 Yevropeiska St.,referral
+279,288,child,2012-07-10,Bucha,45 Yablunska St.,unknown
+280,289,male,1960-04-03,Kyiv,126 Solomianska St.,paid_search
+281,290,male,1996-09-09,Kyiv,"70 Kniazhyi Zaton St., Apt. 80",direct
+282,291,female,1983-07-21,Kyiv,111 Kniazhyi Zaton St.,paid_social
+283,292,male,1992-07-06,Boryspil,167 Momota St.,offline_ad
+284,293,female,1969-04-13,Kyiv,"162 Solomianska St., Apt. 37",direct
+285,294,male,1990-09-13,Kyiv,"5 Kyrylivska St., Apt. 55",offline_ad
+286,295,female,1992-05-17,Kyiv,47 Velyka Vasylkivska St.,offline_ad
+287,296,male,1977-11-03,Vyshhorod,80 Naberezhna St.,direct
+288,297,child,2015-02-12,Kyiv,"63 Solomianska St., Apt. 50",organic_search
+289,298,male,2000-12-03,Kyiv,12 Drahomanova St.,referral
+290,299,male,1981-03-15,Kyiv,"85 Solomianska St., Apt. 89",referral
+291,300,female,1964-06-13,Kyiv,15 Metrolohichna St.,paid_search
+292,301,male,1982-10-19,Kyiv,44 Akhmatovoi St.,referral
+293,302,female,1990-05-02,Irpin,"176 Tsentralna St., Apt. 77",organic_search
+294,303,male,1988-06-28,Kyiv,92 Lomonosova St.,referral
+295,304,male,1973-09-01,Brovary,171 Symona Petliury St.,organic_social
+296,305,female,1979-02-07,Kyiv,"9 Kyrylivska St., Apt. 96",organic_search
+297,306,child,2008-10-05,Vyshneve,"107 Sviatoshynska St., Apt. 123",other
+298,307,child,2015-02-12,Kyiv,105 Obolonskyi Ave.,referral
+299,308,female,1995-09-17,Kyiv,33 Urlivska St.,organic_search
+300,309,female,1988-03-07,Kyiv,122 Akhmatovoi St.,organic_social
+301,310,female,1955-02-04,Kyiv,165 Metrolohichna St.,direct
+302,311,female,1971-08-18,Kyiv,"70 Akhmatovoi St., Apt. 157",paid_social
+303,312,male,1993-03-11,Kyiv,107 Akademika Zabolotnoho St.,organic_search
+304,313,child,2015-06-24,Vyshhorod,140 Sholudenka St.,organic_social
+305,314,female,1985-09-06,Vyshhorod,117 Naberezhna St.,organic_search
+306,315,female,2008-03-08,Kyiv,80 Saksahanskoho St.,offline_ad
+307,316,female,1994-06-02,Kyiv,129 Akhmatovoi St.,referral
+308,317,male,1959-11-07,Brovary,131 Symona Petliury St.,paid_search
+309,318,child,2015-06-12,Kyiv,"51 Kadetskyi Hai St., Apt. 100",paid_social
+310,319,child,2021-03-20,Kyiv,"8 Velyka Vasylkivska St., Apt. 141",referral
+311,320,female,1998-01-21,Kyiv,154 Kadetskyi Hai St.,organic_search
+312,321,male,2005-04-27,Brovary,"122 Hrushevskoho St., Apt. 29",organic_social
+313,322,child,2022-07-15,Kyiv,45 Chervonoi Kalyny Ave.,organic_search
+314,323,female,1981-08-12,Kyiv,"155 Myloslavska St., Apt. 134",organic_social
+315,324,female,1942-04-26,Kyiv,87 Saksahanskoho St.,referral
+316,325,child,2022-09-05,Kyiv,7 Beresteiskyi Ave.,referral
+317,326,female,1990-09-07,Boryspil,149 Yevropeiska St.,referral
+318,327,female,1978-05-21,Vyshneve,167 Yevropeiska St.,referral
+319,328,female,2006-10-14,Kyiv,76 Revutskoho St.,organic_social
+320,329,male,1990-03-19,Vyshneve,129 Molodizhna St.,paid_search
+321,330,male,1994-05-02,Kyiv,98 Akademika Zabolotnoho St.,organic_search
+322,331,female,1988-11-16,Kyiv,53 Revutskoho St.,organic_search
+323,332,male,2003-06-11,Kyiv,42 Saksahanskoho St.,direct
+324,333,female,1992-05-14,Kyiv,118 Metrolohichna St.,organic_search
+325,334,child,2015-04-02,Kyiv,22 Revutskoho St.,direct
+326,335,male,1996-07-22,Kyiv,69 Kadetskyi Hai St.,organic_search
+327,336,female,1954-07-27,Kyiv,132 Myloslavska St.,direct
+328,337,female,1973-07-06,Vyshneve,176 Lesi Ukrainky St.,organic_search
+329,338,female,1978-09-19,Kyiv,170 Avtozavodska St.,referral
+330,339,male,1996-07-14,Irpin,34 Universytetska St.,paid_search
+331,340,female,1951-09-18,Kyiv,10 Urlivska St.,offline_ad
+332,341,child,2015-06-28,Kyiv,143 Kadetskyi Hai St.,direct
+333,342,child,2008-12-12,Kyiv,"119 Akademika Zabolotnoho St., Apt. 23",paid_social
+334,343,male,1940-09-04,Vyshhorod,"53 Shevchenka Ave., Apt. 22",referral
+335,344,male,1983-07-03,Kyiv,73 Akhmatovoi St.,organic_social
+336,345,male,2005-06-27,Kyiv,66 Revutskoho St.,organic_search
+337,346,male,1983-03-25,Kyiv,"20 Akademika Zabolotnoho St., Apt. 20",referral
+338,347,male,1991-06-21,Kyiv,120 Solomianska St.,organic_search
+339,348,female,1981-04-23,Kyiv,62 Akademika Zabolotnoho St.,unknown
+340,349,female,1958-11-19,Kyiv,51 Akhmatovoi St.,paid_search
+341,350,child,2022-05-17,Kyiv,155 Obolonskyi Ave.,paid_social
+342,351,male,1953-05-07,Vyshneve,"152 Sviatoshynska St., Apt. 118",paid_social
+343,352,female,1990-04-22,Kyiv,73 Borshchahivska St.,paid_search
+344,353,child,2022-03-27,Irpin,53 Severynivska St.,unknown
+345,354,female,2000-11-28,Brovary,"42 Hrushevskoho St., Apt. 2",organic_social
+346,355,child,2016-01-10,Kyiv,90 Urlivska St.,direct
+347,356,male,1957-03-25,Kyiv,93 Antonovycha St.,direct
+348,357,male,1996-08-12,Kyiv,12 Metrolohichna St.,organic_social
+349,358,male,1972-06-25,Brovary,159 Kyivska St.,paid_social
+350,359,male,1987-09-28,Irpin,"3 Tsentralna St., Apt. 23",direct
+351,360,female,1987-02-15,Kyiv,59 Heroiv Dnipra St.,paid_search
+352,361,female,2002-12-19,Kyiv,"10 Lomonosova St., Apt. 74",organic_search
+353,362,male,1953-03-03,Kyiv,"3 Lypkivskoho St., Apt. 95",organic_search
+354,363,female,2002-05-06,Kyiv,158 Solomianska St.,paid_search
+355,364,male,1969-11-28,Kyiv,"64 Chervonoi Kalyny Ave., Apt. 28",paid_social
+356,365,child,2015-05-04,Kyiv,"120 Akhmatovoi St., Apt. 86",organic_search
+357,366,male,1997-02-06,Kyiv,"86 Lomonosova St., Apt. 70",offline_ad
+358,367,female,2008-06-08,Kyiv,"3 Urlivska St., Apt. 20",referral
+359,368,female,1967-01-21,Kyiv,149 Kadetskyi Hai St.,organic_search
+360,369,male,1974-03-25,Kyiv,"73 Chervonoi Kalyny Ave., Apt. 86",direct
+361,370,male,1945-03-05,Kyiv,138 Vyshhorodska St.,paid_social
+362,371,female,2003-05-20,Kyiv,105 Vyshhorodska St.,organic_social
+363,372,child,2015-06-04,Brovary,158 Hrushevskoho St.,offline_ad
+364,373,female,1981-09-19,Kyiv,166 Beresteiskyi Ave.,referral
+365,374,male,1992-09-10,Kyiv,27 Heroiv Dnipra St.,referral
+366,375,female,1959-01-20,Boryspil,107 Bezhivka St.,unknown
+367,376,child,2015-02-08,Bucha,56 Vokzalna St.,organic_social
+368,377,male,1952-12-24,Brovary,116 Chornovola St.,organic_search
+369,378,female,1986-07-28,Kyiv,"159 Velyka Vasylkivska St., Apt. 18",paid_social
+370,379,female,2002-10-19,Kyiv,95 Lypkivskoho St.,organic_search
+371,380,child,2015-08-14,Vyshneve,125 Molodizhna St.,referral
+372,381,male,1987-06-01,Kyiv,62 Chervonoi Kalyny Ave.,organic_social
+373,382,male,1987-10-23,Kyiv,127 Beresteiskyi Ave.,organic_search
+374,383,female,1976-04-18,Kyiv,"145 Kniazhyi Zaton St., Apt. 72",referral
+375,384,female,1970-02-03,Kyiv,39 Velyka Vasylkivska St.,offline_ad
+376,385,male,1995-01-20,Kyiv,"38 Myloslavska St., Apt. 64",organic_search
+377,386,male,2005-01-13,Vyshhorod,68 Mezhyhirskoho Spasa St.,other
+378,387,female,1978-01-06,Kyiv,28 Drahomanova St.,organic_search
+379,388,female,2002-05-07,Kyiv,"162 Kyrylivska St., Apt. 87",organic_social
+380,389,child,2018-04-03,Kyiv,60 Vyshhorodska St.,paid_search
+381,390,female,1986-04-23,Kyiv,108 Lypkivskoho St.,paid_search
+382,391,male,1987-12-22,Kyiv,"173 Akademika Zabolotnoho St., Apt. 26",organic_search
+383,392,female,2000-08-28,Kyiv,62 Velyka Vasylkivska St.,organic_social
+384,393,male,1999-08-07,Kyiv,10 Metrolohichna St.,referral
+385,394,female,1961-02-03,Kyiv,180 Heroiv Dnipra St.,paid_search
+386,395,female,1971-04-10,Kyiv,"95 Lypkivskoho St., Apt. 90",paid_search
+387,396,male,1983-09-01,Kyiv,118 Heroiv Dnipra St.,organic_search
+388,397,female,1974-07-08,Kyiv,"64 Myloslavska St., Apt. 76",organic_search
+389,398,female,1970-05-21,Kyiv,86 Dniprovska Naberezhna St.,paid_social
+390,399,male,1970-04-10,Irpin,"151 Universytetska St., Apt. 10",direct
+391,400,female,1982-09-03,Kyiv,39 Avtozavodska St.,organic_social
+392,401,female,1969-10-13,Vyshneve,46 Lesi Ukrainky St.,referral
+393,402,male,1995-04-15,Irpin,103 Soborna St.,organic_search
+394,403,male,1959-12-17,Kyiv,144 Lypkivskoho St.,referral
+395,404,male,1996-01-18,Vyshneve,"110 Osvity St., Apt. 145",organic_social
+396,405,female,1959-10-23,Kyiv,166 Velyka Vasylkivska St.,unknown
+397,406,male,2006-03-08,Kyiv,"124 Saksahanskoho St., Apt. 142",paid_social
+398,407,female,1989-06-22,Brovary,"21 Kyivska St., Apt. 110",organic_search
+399,408,male,1968-06-03,Kyiv,78 Kadetskyi Hai St.,unknown
+400,409,male,2003-06-24,Kyiv,"2 Kadetskyi Hai St., Apt. 44",referral
+401,410,female,2005-01-22,Kyiv,29 Sribnokilska St.,paid_search
+402,411,female,1996-08-25,Bucha,63 Enerhetykiv St.,other
+403,412,female,2003-12-05,Kyiv,63 Chervonoi Kalyny Ave.,direct
+404,413,female,1954-11-12,Kyiv,52 Kyrylivska St.,organic_social
+405,414,female,1969-03-02,Kyiv,"92 Myloslavska St., Apt. 90",organic_search
+406,415,male,1994-12-24,Brovary,127 Hrushevskoho St.,paid_social
+407,416,child,2009-09-06,Kyiv,"37 Metrolohichna St., Apt. 113",organic_social
+408,417,female,1972-02-09,Brovary,171 Kyivska St.,paid_social
+409,418,male,1997-10-19,Irpin,150 Tsentralna St.,organic_social
+410,419,child,2022-05-25,Kyiv,"180 Obolonskyi Ave., Apt. 91",paid_social
+411,420,child,2015-04-06,Kyiv,138 Myloslavska St.,paid_search
+412,421,female,1982-03-06,Kyiv,14 Akhmatovoi St.,referral
+413,422,male,1994-10-14,Kyiv,"94 Kniazhyi Zaton St., Apt. 116",paid_social
+414,423,male,2002-06-05,Vyshhorod,118 Kurhuzova St.,referral
+415,424,female,1982-07-10,Kyiv,130 Vyshhorodska St.,paid_search
+416,425,female,2004-05-05,Bucha,"112 Nove Shose St., Apt. 10",organic_search
+417,426,male,1995-05-21,Kyiv,158 Beresteiskyi Ave.,referral
+418,427,female,1982-05-07,Vyshhorod,42 Sholudenka St.,direct
+419,428,child,2018-01-15,Kyiv,126 Dniprovska Naberezhna St.,organic_search
+420,429,female,1999-06-02,Kyiv,91 Dniprovska Naberezhna St.,referral
+421,430,female,1941-04-09,Kyiv,"23 Avtozavodska St., Apt. 145",direct
+422,431,female,1969-11-07,Irpin,180 Severynivska St.,referral
+423,432,female,2002-09-17,Boryspil,38 Bezhivka St.,organic_search
+424,433,female,2008-04-24,Brovary,75 Hrushevskoho St.,paid_search
+425,434,child,2020-10-02,Brovary,"4 Heroiv Ukrainy St., Apt. 92",referral
+426,435,female,2005-03-07,Irpin,37 Lisova St.,organic_search
+427,436,male,1990-06-15,Irpin,"157 Tsentralna St., Apt. 87",paid_search
+428,437,male,1983-04-11,Kyiv,69 Lypkivskoho St.,organic_search
+429,438,female,2001-03-09,Irpin,96 Tsentralna St.,paid_social
+430,439,female,1996-02-21,Vyshneve,167 Sviatoshynska St.,organic_search
+431,440,female,1993-04-25,Kyiv,"67 Akhmatovoi St., Apt. 76",organic_search
+432,441,male,1943-05-23,Kyiv,94 Velyka Vasylkivska St.,referral
+433,442,male,1977-01-01,Kyiv,147 Obolonskyi Ave.,organic_social
+434,443,male,1994-04-24,Kyiv,128 Saksahanskoho St.,referral
+435,444,female,1981-12-03,Kyiv,167 Avtozavodska St.,referral
+436,445,child,2010-02-18,Kyiv,20 Borshchahivska St.,organic_search
+437,446,male,1992-06-20,Vyshneve,61 Molodizhna St.,organic_search
+438,447,male,1980-03-25,Kyiv,"39 Revutskoho St., Apt. 51",organic_search
+439,448,male,1997-02-13,Brovary,"14 Hrushevskoho St., Apt. 86",paid_search
+440,449,male,1942-01-05,Kyiv,133 Sribnokilska St.,paid_social
+441,450,child,2022-03-27,Kyiv,74 Revutskoho St.,referral
+442,451,child,2015-06-15,Kyiv,136 Revutskoho St.,referral
+443,452,female,2004-01-06,Kyiv,10 Myloslavska St.,organic_search
+444,453,female,1989-10-22,Boryspil,137 Yevropeiska St.,paid_social
+445,454,female,1984-04-22,Vyshhorod,9 Kurhuzova St.,referral
+446,455,female,1955-03-06,Kyiv,15 Akademika Zabolotnoho St.,organic_social
+447,456,female,1987-05-18,Bucha,119 Enerhetykiv St.,offline_ad
+448,457,female,2003-06-16,Kyiv,152 Velyka Vasylkivska St.,organic_search
+449,458,child,2015-06-04,Kyiv,150 Sribnokilska St.,direct
+450,459,female,1995-05-05,Vyshhorod,"104 Naberezhna St., Apt. 95",organic_search
+451,460,child,2015-08-26,Kyiv,101 Heroiv Dnipra St.,referral
+452,461,female,1976-10-10,Kyiv,86 Kadetskyi Hai St.,paid_search
+453,462,male,1975-12-16,Kyiv,111 Kyrylivska St.,organic_social
+454,463,male,1998-03-26,Kyiv,148 Drahomanova St.,referral
+455,464,female,2007-04-17,Bucha,"77 Yablunska St., Apt. 124",offline_ad
+456,465,male,1963-09-23,Brovary,136 Heroiv Ukrainy St.,paid_social
+457,466,female,1969-11-05,Irpin,144 Universytetska St.,organic_search
+458,467,male,1967-08-08,Kyiv,"73 Avtozavodska St., Apt. 28",referral
+459,468,male,1951-11-15,Kyiv,36 Obolonskyi Ave.,direct
+460,469,male,1973-03-10,Kyiv,24 Antonovycha St.,paid_search
+461,470,female,1982-08-01,Kyiv,6 Revutskoho St.,organic_social
+462,471,male,2008-02-08,Kyiv,"93 Solomianska St., Apt. 114",referral
+463,472,female,1969-07-28,Kyiv,"4 Kyrylivska St., Apt. 87",organic_search
+464,473,female,1978-02-06,Kyiv,"43 Kyrylivska St., Apt. 109",paid_search
+465,474,female,2002-12-03,Kyiv,91 Akademika Zabolotnoho St.,referral
+466,475,child,2017-07-21,Kyiv,28 Antonovycha St.,paid_search
+467,476,male,1985-05-12,Vyshneve,"90 Yevropeiska St., Apt. 154",referral
+468,477,child,2017-05-28,Kyiv,60 Chervonoi Kalyny Ave.,organic_social
+469,478,female,1987-06-17,Irpin,58 Lisova St.,paid_social
+470,479,male,2007-10-24,Kyiv,169 Akhmatovoi St.,direct
+471,480,male,1958-09-10,Kyiv,45 Myloslavska St.,referral
+472,481,male,2007-11-12,Kyiv,"10 Dniprovska Naberezhna St., Apt. 78",other
+473,482,child,2022-03-23,Kyiv,167 Sribnokilska St.,paid_social
+474,483,male,1996-06-18,Brovary,168 Chornovola St.,paid_search
+475,484,child,2010-05-21,Bucha,118 Nove Shose St.,referral
+476,485,female,1985-09-22,Kyiv,"79 Kyrylivska St., Apt. 15",referral
+477,486,female,1997-06-17,Kyiv,3 Velyka Vasylkivska St.,referral
+478,487,male,2004-12-28,Kyiv,105 Avtozavodska St.,organic_social
+479,488,child,2010-05-28,Brovary,"134 Symona Petliury St., Apt. 136",referral
+480,489,child,2022-11-23,Irpin,5 Tsentralna St.,referral
+481,490,male,1991-08-17,Kyiv,"178 Vyshhorodska St., Apt. 53",organic_social
+482,491,female,2000-05-27,Kyiv,"125 Lypkivskoho St., Apt. 103",referral
+483,492,child,2022-11-03,Kyiv,"132 Saksahanskoho St., Apt. 152",paid_search
+484,493,male,1967-12-23,Irpin,"177 Lisova St., Apt. 76",direct
+485,494,child,2022-03-07,Kyiv,106 Solomianska St.,organic_search
+486,495,female,1952-04-13,Kyiv,163 Borshchahivska St.,direct
+487,496,child,2015-10-20,Kyiv,59 Sribnokilska St.,paid_search
+488,497,female,2007-12-01,Kyiv,68 Avtozavodska St.,organic_social
+489,498,male,1996-01-22,Kyiv,"24 Lypkivskoho St., Apt. 12",direct
+490,499,female,1988-08-15,Kyiv,"40 Vyshhorodska St., Apt. 144",paid_search
+491,500,female,1997-12-15,Kyiv,"67 Chervonoi Kalyny Ave., Apt. 57",paid_social
+492,501,child,2022-07-23,Irpin,136 Universytetska St.,referral
+493,502,female,1990-12-22,Kyiv,73 Akademika Zabolotnoho St.,referral
+494,503,child,2018-04-02,Kyiv,129 Obolonskyi Ave.,referral
+495,504,female,1970-03-25,Kyiv,"142 Revutskoho St., Apt. 125",paid_search
+496,505,male,2004-10-20,Kyiv,"98 Obolonskyi Ave., Apt. 147",direct
+497,506,male,1958-03-28,Bucha,39 Kyievo-Myrotska St.,organic_search
+498,507,female,2000-08-14,Kyiv,99 Metrolohichna St.,direct
+499,508,female,1970-02-26,Kyiv,154 Antonovycha St.,organic_social
+500,509,child,2012-05-18,Kyiv,145 Kniazhyi Zaton St.,organic_social
+501,510,female,1971-04-01,Kyiv,38 Akademika Zabolotnoho St.,organic_search
+502,511,female,1987-07-17,Bucha,"33 Yablunska St., Apt. 105",direct
+503,512,female,1997-12-09,Kyiv,"14 Antonovycha St., Apt. 63",paid_search
+504,513,female,1968-04-24,Boryspil,30 Kyivskyi Shliakh St.,organic_search
+505,514,male,2002-05-20,Vyshhorod,"121 Mezhyhirskoho Spasa St., Apt. 92",organic_search
+506,515,female,1989-02-20,Kyiv,117 Heroiv Dnipra St.,organic_search
+507,516,male,1989-10-14,Vyshneve,158 Osvity St.,organic_search
+508,517,female,1992-09-07,Kyiv,109 Kniazhyi Zaton St.,organic_social
+509,518,female,1995-10-26,Kyiv,"89 Borshchahivska St., Apt. 80",paid_social
+510,519,female,2001-05-04,Kyiv,92 Avtozavodska St.,direct
+511,520,child,2015-10-04,Irpin,"142 Soborna St., Apt. 57",paid_social
+512,521,male,1985-08-06,Vyshhorod,93 Shevchenka Ave.,paid_search
+513,522,female,1954-05-10,Kyiv,30 Antonovycha St.,direct
+514,523,male,1996-01-26,Kyiv,"83 Sribnokilska St., Apt. 63",direct
+515,524,child,2023-06-26,Brovary,"168 Symona Petliury St., Apt. 53",direct
+516,525,female,2004-06-14,Kyiv,176 Lomonosova St.,organic_search
+517,526,male,1977-03-18,Kyiv,74 Antonovycha St.,direct
+518,527,child,2020-06-04,Kyiv,49 Myloslavska St.,referral
+519,528,female,1977-09-15,Irpin,29 Lisova St.,referral
+520,529,male,1963-09-13,Kyiv,4 Velyka Vasylkivska St.,paid_search
+521,530,female,1974-11-20,Kyiv,97 Saksahanskoho St.,organic_search
+522,531,female,1972-10-20,Kyiv,"159 Lomonosova St., Apt. 35",referral
+523,532,child,2015-06-04,Kyiv,40 Lomonosova St.,organic_search
+524,533,child,2015-10-28,Irpin,14 Soborna St.,organic_search
+525,534,female,1986-07-16,Kyiv,"45 Beresteiskyi Ave., Apt. 41",paid_search
+526,535,female,2000-05-06,Kyiv,30 Velyka Vasylkivska St.,organic_search
+527,536,child,2022-01-25,Kyiv,85 Beresteiskyi Ave.,direct
+528,537,female,1986-07-19,Kyiv,"169 Akhmatovoi St., Apt. 54",referral
+529,538,child,2022-09-25,Kyiv,174 Lypkivskoho St.,organic_search
+530,539,female,1970-02-22,Bucha,"147 Kyievo-Myrotska St., Apt. 74",paid_search
+531,540,female,1970-09-08,Kyiv,36 Obolonskyi Ave.,organic_search
+532,541,female,1994-09-11,Vyshneve,95 Sviatoshynska St.,paid_social
+533,542,male,1985-08-11,Kyiv,149 Drahomanova St.,direct
+534,543,female,2003-04-15,Boryspil,"70 Kyivskyi Shliakh St., Apt. 144",referral
+535,544,female,2003-05-17,Kyiv,"79 Lypkivskoho St., Apt. 75",organic_search
+536,545,male,1992-04-11,Kyiv,58 Drahomanova St.,referral
+537,546,male,1997-10-16,Kyiv,138 Chervonoi Kalyny Ave.,direct
+538,547,female,1999-11-13,Kyiv,"93 Metrolohichna St., Apt. 30",organic_search
+539,548,male,1987-01-06,Kyiv,"99 Antonovycha St., Apt. 28",organic_search
+540,549,male,1969-12-01,Kyiv,116 Revutskoho St.,direct
+541,550,male,1981-03-05,Kyiv,179 Chervonoi Kalyny Ave.,referral
+542,551,male,1978-09-19,Bucha,"64 Yablunska St., Apt. 94",organic_social
+543,552,female,2002-11-11,Kyiv,"137 Beresteiskyi Ave., Apt. 8",other
+544,553,child,2012-01-14,Kyiv,41 Myloslavska St.,referral
+545,554,female,1985-11-13,Kyiv,145 Revutskoho St.,paid_search
+546,555,male,1983-10-05,Boryspil,85 Kyivskyi Shliakh St.,organic_search
+547,556,female,1956-09-18,Kyiv,"175 Borshchahivska St., Apt. 70",direct
+548,557,child,2014-11-02,Kyiv,"153 Borshchahivska St., Apt. 92",organic_search
+549,558,male,1954-09-09,Kyiv,5 Obolonskyi Ave.,paid_social
+550,559,child,2022-05-09,Kyiv,"42 Chervonoi Kalyny Ave., Apt. 150",referral
+551,560,female,1998-09-27,Kyiv,142 Lypkivskoho St.,organic_social
+552,561,child,2015-04-14,Vyshhorod,90 Naberezhna St.,paid_social
+553,562,child,2018-08-23,Vyshneve,"12 Osvity St., Apt. 140",organic_social
+554,563,child,2013-09-05,Kyiv,44 Kniazhyi Zaton St.,organic_social
+555,564,child,2014-02-13,Kyiv,"83 Kniazhyi Zaton St., Apt. 84",organic_social
+556,565,female,1975-08-06,Kyiv,"38 Metrolohichna St., Apt. 60",organic_social
+557,566,child,2021-01-21,Kyiv,"156 Akademika Zabolotnoho St., Apt. 131",referral
+558,567,female,1977-05-01,Bucha,2 Enerhetykiv St.,organic_search
+559,568,female,2000-10-03,Kyiv,134 Kyrylivska St.,organic_social
+560,569,female,1967-06-01,Vyshneve,"145 Lesi Ukrainky St., Apt. 84",referral
+561,570,female,1970-01-02,Kyiv,45 Solomianska St.,paid_social
+562,571,female,1981-08-14,Boryspil,97 Holovatoho St.,paid_social
+563,572,male,2007-02-12,Kyiv,"27 Akademika Zabolotnoho St., Apt. 52",referral
+564,573,female,1972-04-21,Brovary,133 Hrushevskoho St.,organic_search
+565,574,female,1998-08-14,Brovary,"115 Kyivska St., Apt. 108",paid_search
+566,575,child,2022-05-01,Kyiv,"131 Lomonosova St., Apt. 157",paid_social
+567,576,female,1983-09-04,Kyiv,170 Velyka Vasylkivska St.,referral
+568,577,female,1952-11-26,Kyiv,"103 Antonovycha St., Apt. 18",offline_ad
+569,578,male,1978-07-18,Kyiv,"71 Dniprovska Naberezhna St., Apt. 9",organic_search
+570,579,female,1985-09-22,Kyiv,"74 Avtozavodska St., Apt. 117",paid_social
+571,580,child,2014-12-18,Kyiv,74 Vyshhorodska St.,paid_social
+572,581,female,2002-08-03,Kyiv,28 Borshchahivska St.,direct
+573,582,female,1961-01-19,Vyshneve,21 Lesi Ukrainky St.,direct
+574,583,male,1984-05-25,Kyiv,76 Lomonosova St.,organic_search
+575,584,female,1987-09-06,Kyiv,141 Kadetskyi Hai St.,referral
+576,585,female,1975-06-21,Kyiv,88 Metrolohichna St.,organic_search
+577,586,female,1979-06-06,Irpin,"76 Lisova St., Apt. 107",organic_social
+578,587,male,2006-09-28,Kyiv,"143 Borshchahivska St., Apt. 116",referral
+579,588,child,2010-01-14,Kyiv,67 Velyka Vasylkivska St.,referral
+580,589,male,1957-10-01,Irpin,173 Tsentralna St.,referral
+581,590,female,1976-04-23,Kyiv,97 Kyrylivska St.,referral
+582,591,child,2022-01-01,Kyiv,"32 Saksahanskoho St., Apt. 156",organic_search
+583,592,male,2001-11-09,Irpin,102 Universytetska St.,referral
+584,593,female,1988-12-16,Boryspil,130 Kyivskyi Shliakh St.,unknown
+585,594,female,1968-07-15,Kyiv,158 Akademika Zabolotnoho St.,referral
+586,595,male,1946-09-08,Kyiv,44 Kadetskyi Hai St.,direct
+587,596,male,1988-07-07,Brovary,72 Kyivska St.,organic_search
+588,597,male,2007-07-26,Kyiv,"22 Urlivska St., Apt. 49",organic_social
+589,598,female,1996-12-14,Vyshhorod,"93 Shevchenka Ave., Apt. 24",paid_social
+590,599,female,1986-03-16,Kyiv,71 Akademika Zabolotnoho St.,organic_social
+591,600,female,1944-10-10,Boryspil,"78 Yevropeiska St., Apt. 43",paid_social
+592,601,child,2015-08-06,Vyshhorod,9 Sholudenka St.,direct
+593,602,female,1966-10-13,Bucha,84 Kyievo-Myrotska St.,organic_search
+594,603,male,1971-08-05,Kyiv,"1 Kyrylivska St., Apt. 17",referral
+595,604,female,1960-04-07,Kyiv,"72 Kniazhyi Zaton St., Apt. 22",organic_search
+596,605,female,1995-04-12,Kyiv,90 Kniazhyi Zaton St.,referral
+597,606,male,1982-11-19,Kyiv,8 Akhmatovoi St.,paid_search
+598,607,female,1964-06-05,Brovary,124 Hrushevskoho St.,referral
+599,608,male,2003-01-03,Kyiv,168 Chervonoi Kalyny Ave.,paid_search
+600,609,child,2022-05-01,Kyiv,20 Chervonoi Kalyny Ave.,organic_search
+601,610,male,1977-08-23,Kyiv,70 Kniazhyi Zaton St.,organic_social
+602,611,female,1961-01-17,Bucha,122 Kyievo-Myrotska St.,direct
+603,612,child,2022-02-07,Irpin,"164 Soborna St., Apt. 80",paid_search
+604,613,child,2015-04-26,Brovary,29 Hrushevskoho St.,referral
+605,614,female,1995-02-14,Bucha,31 Kyievo-Myrotska St.,organic_search
+606,615,male,1999-06-02,Kyiv,20 Drahomanova St.,direct
+607,616,female,2001-09-11,Kyiv,"13 Chervonoi Kalyny Ave., Apt. 67",other
+608,617,female,1968-01-21,Kyiv,"158 Sribnokilska St., Apt. 87",paid_search
+609,618,female,1962-12-23,Kyiv,"33 Lomonosova St., Apt. 90",paid_search
+610,619,female,1987-11-02,Kyiv,178 Avtozavodska St.,organic_search
+611,620,child,2022-05-13,Kyiv,33 Avtozavodska St.,direct
+612,621,child,2015-02-04,Kyiv,144 Akhmatovoi St.,referral
+613,622,male,1984-07-18,Kyiv,114 Vyshhorodska St.,organic_search
+614,623,male,1942-10-04,Kyiv,46 Urlivska St.,referral
+615,624,male,1986-01-26,Kyiv,104 Lypkivskoho St.,paid_search
+616,625,female,1987-10-06,Kyiv,"104 Metrolohichna St., Apt. 86",referral
+617,626,male,1962-01-03,Kyiv,57 Beresteiskyi Ave.,organic_search
+618,627,female,1988-09-05,Kyiv,"126 Saksahanskoho St., Apt. 127",paid_search
+619,628,female,1984-06-13,Brovary,65 Chornovola St.,organic_search
+620,629,female,1997-03-21,Kyiv,6 Antonovycha St.,referral
+621,630,female,1986-09-23,Kyiv,"135 Solomianska St., Apt. 36",paid_social
+622,631,male,1975-07-15,Kyiv,49 Velyka Vasylkivska St.,organic_search
+623,632,child,2022-07-27,Irpin,88 Tsentralna St.,organic_social
+624,633,child,2015-10-24,Kyiv,"29 Saksahanskoho St., Apt. 153",offline_ad
+625,634,female,1988-12-01,Kyiv,160 Avtozavodska St.,paid_search
+626,635,child,2022-05-17,Kyiv,"180 Lypkivskoho St., Apt. 10",organic_social
+627,636,male,1983-07-03,Kyiv,8 Akademika Zabolotnoho St.,paid_search
+628,637,male,1982-03-26,Irpin,"145 Soborna St., Apt. 112",referral
+629,638,female,1990-03-20,Kyiv,"74 Dniprovska Naberezhna St., Apt. 31",direct
+630,639,female,1952-07-01,Bucha,81 Enerhetykiv St.,paid_search
+631,640,male,1942-09-14,Vyshneve,23 Sviatoshynska St.,direct
+632,641,female,1979-06-15,Kyiv,"21 Sribnokilska St., Apt. 75",referral
+633,642,male,2001-06-25,Kyiv,155 Velyka Vasylkivska St.,referral
+634,643,male,1978-11-23,Kyiv,"22 Borshchahivska St., Apt. 64",organic_social
+635,644,child,2022-03-15,Kyiv,63 Urlivska St.,organic_search
+636,645,female,2007-10-24,Kyiv,"23 Velyka Vasylkivska St., Apt. 67",organic_search
+637,646,female,1994-01-05,Kyiv,102 Metrolohichna St.,referral
+638,647,female,1990-04-26,Bucha,172 Yablunska St.,paid_search
+639,648,female,1997-04-23,Kyiv,34 Obolonskyi Ave.,organic_social
+640,649,male,1990-01-20,Brovary,43 Symona Petliury St.,paid_search
+641,650,female,1987-11-09,Kyiv,99 Dniprovska Naberezhna St.,paid_search
+642,651,female,1986-11-10,Kyiv,"107 Dniprovska Naberezhna St., Apt. 19",referral
+643,652,female,1974-02-05,Kyiv,58 Dniprovska Naberezhna St.,paid_social
+644,653,male,1991-10-19,Kyiv,79 Metrolohichna St.,direct
+645,654,female,1996-07-16,Kyiv,70 Metrolohichna St.,paid_social
+646,655,female,1971-03-02,Kyiv,"9 Antonovycha St., Apt. 150",paid_search
+647,656,female,1994-12-25,Vyshneve,"14 Molodizhna St., Apt. 147",paid_search
+648,657,female,1973-01-16,Bucha,21 Yablunska St.,other
+649,658,child,2014-12-12,Kyiv,25 Urlivska St.,organic_search
+650,659,male,1993-06-25,Kyiv,"157 Avtozavodska St., Apt. 16",offline_ad
+651,660,female,1956-04-16,Kyiv,128 Saksahanskoho St.,referral
+652,661,female,1995-10-16,Brovary,"96 Hrushevskoho St., Apt. 151",unknown
+653,662,female,2000-08-06,Kyiv,62 Saksahanskoho St.,referral
+654,663,male,1980-12-22,Kyiv,168 Borshchahivska St.,organic_social
+655,664,female,1980-03-18,Kyiv,20 Heroiv Dnipra St.,paid_social
+656,665,male,2003-03-13,Brovary,130 Heroiv Ukrainy St.,referral
+657,666,female,1998-01-26,Kyiv,"166 Lomonosova St., Apt. 38",organic_search
+658,667,female,1973-10-01,Kyiv,121 Drahomanova St.,paid_social
+659,668,female,2007-06-28,Kyiv,125 Drahomanova St.,referral
+660,669,male,1999-08-13,Kyiv,142 Sribnokilska St.,offline_ad
+661,670,male,1995-11-14,Kyiv,140 Avtozavodska St.,organic_search
+662,671,female,1982-05-21,Vyshneve,174 Lesi Ukrainky St.,paid_social
+663,672,male,1971-11-17,Kyiv,118 Kadetskyi Hai St.,offline_ad
+664,673,male,1941-08-23,Kyiv,167 Akhmatovoi St.,organic_search
+665,674,child,2015-04-22,Kyiv,"165 Kniazhyi Zaton St., Apt. 110",organic_search
+666,675,male,1967-08-03,Bucha,75 Enerhetykiv St.,paid_social
+667,676,female,1984-11-17,Boryspil,"144 Yevropeiska St., Apt. 8",organic_search
+668,677,child,2009-03-17,Kyiv,6 Solomianska St.,organic_search
+669,678,female,1985-03-21,Kyiv,174 Beresteiskyi Ave.,organic_search
+670,679,child,2022-01-09,Kyiv,"160 Vyshhorodska St., Apt. 98",paid_social
+671,680,child,2022-05-13,Kyiv,32 Beresteiskyi Ave.,organic_search
+672,681,male,1975-03-11,Kyiv,86 Akhmatovoi St.,organic_social
+673,682,female,1961-07-05,Kyiv,100 Obolonskyi Ave.,referral
+674,683,female,1989-12-02,Brovary,"87 Hrushevskoho St., Apt. 59",organic_search
+675,684,female,1988-12-09,Kyiv,126 Kyrylivska St.,paid_social
+676,685,female,1988-09-22,Kyiv,71 Dniprovska Naberezhna St.,paid_social
+677,686,male,1986-10-09,Kyiv,"108 Kadetskyi Hai St., Apt. 62",referral
+678,687,female,2002-07-01,Irpin,107 Lisova St.,paid_search
+679,688,female,1998-11-14,Brovary,142 Kyivska St.,organic_search
+680,689,child,2018-08-25,Vyshneve,"15 Sviatoshynska St., Apt. 150",organic_search
+681,690,child,2022-07-07,Kyiv,19 Chervonoi Kalyny Ave.,paid_social
+682,691,male,2004-10-27,Kyiv,10 Myloslavska St.,offline_ad
+683,692,male,1995-08-15,Kyiv,116 Obolonskyi Ave.,organic_social
+684,693,male,1969-06-03,Vyshneve,"105 Lesi Ukrainky St., Apt. 123",direct
+685,694,female,1986-10-12,Boryspil,37 Holovatoho St.,organic_social
+686,695,male,1988-08-08,Kyiv,161 Sribnokilska St.,organic_social
+687,696,male,1999-08-15,Kyiv,134 Urlivska St.,offline_ad
+688,697,female,2003-03-08,Kyiv,40 Vyshhorodska St.,organic_search
+689,698,female,2002-02-27,Irpin,121 Lisova St.,paid_search
+690,699,female,2001-05-25,Irpin,"115 Lisova St., Apt. 124",referral
+691,700,child,2016-05-17,Kyiv,96 Borshchahivska St.,organic_search
+692,701,female,2001-10-01,Boryspil,"91 Momota St., Apt. 27",organic_search
+693,702,male,1974-02-27,Kyiv,110 Kniazhyi Zaton St.,organic_search
+694,703,child,2015-02-28,Kyiv,32 Vyshhorodska St.,direct
+695,704,male,1973-12-27,Kyiv,"44 Myloslavska St., Apt. 90",organic_search
+696,705,child,2023-04-19,Brovary,172 Kyivska St.,paid_search
+697,706,child,2011-10-27,Kyiv,16 Akademika Zabolotnoho St.,referral
+698,707,child,2022-11-23,Vyshhorod,7 Mezhyhirskoho Spasa St.,offline_ad
+699,708,male,1989-04-19,Kyiv,"71 Vyshhorodska St., Apt. 52",paid_search
+700,709,female,1979-01-27,Irpin,173 Soborna St.,paid_search
+701,710,female,1943-03-19,Kyiv,42 Kyrylivska St.,organic_social
+702,711,female,2005-03-12,Kyiv,59 Akhmatovoi St.,referral
+703,712,male,1977-05-10,Kyiv,180 Sribnokilska St.,referral
+704,713,male,2001-06-01,Irpin,48 Soborna St.,offline_ad
+705,714,female,1984-12-08,Bucha,67 Enerhetykiv St.,organic_search
+706,715,female,1986-09-07,Boryspil,"132 Kyivskyi Shliakh St., Apt. 150",referral
+707,716,female,1996-03-02,Kyiv,127 Lypkivskoho St.,direct
+708,717,child,2008-08-20,Vyshneve,35 Sviatoshynska St.,organic_search
+709,718,female,2006-12-04,Kyiv,85 Drahomanova St.,paid_social
+710,719,male,1967-02-18,Kyiv,48 Obolonskyi Ave.,organic_social
+711,720,child,2013-05-10,Kyiv,97 Kyrylivska St.,organic_search
+712,721,male,2000-06-19,Boryspil,"44 Yevropeiska St., Apt. 121",referral
+713,722,female,2003-02-17,Kyiv,178 Heroiv Dnipra St.,offline_ad
+714,723,female,1993-02-12,Boryspil,89 Yevropeiska St.,organic_social
+715,724,female,1971-07-13,Brovary,151 Kyivska St.,paid_social
+716,725,male,1994-09-06,Vyshhorod,164 Shevchenka Ave.,referral
+717,726,child,2022-09-01,Kyiv,"143 Solomianska St., Apt. 20",organic_search
+718,727,female,1978-01-23,Kyiv,22 Drahomanova St.,unknown
+719,728,male,1969-09-05,Kyiv,"13 Lomonosova St., Apt. 147",paid_social
+720,729,female,1987-10-10,Kyiv,175 Drahomanova St.,referral
+721,730,female,2008-01-14,Kyiv,62 Borshchahivska St.,referral
+722,731,child,2022-11-15,Boryspil,"104 Momota St., Apt. 39",referral
+723,732,male,2004-07-12,Kyiv,141 Dniprovska Naberezhna St.,paid_search
+724,733,female,2004-10-06,Boryspil,180 Momota St.,organic_social
+725,734,male,1988-01-19,Kyiv,"72 Vyshhorodska St., Apt. 66",referral
+726,735,female,1980-10-03,Brovary,66 Symona Petliury St.,direct
+727,736,female,1976-12-25,Kyiv,111 Solomianska St.,organic_search
+728,737,child,2022-11-15,Kyiv,"152 Avtozavodska St., Apt. 96",referral
+729,738,unknown,2000-09-23,Kyiv,11 Kniazhyi Zaton St.,unknown
+730,739,child,2016-08-17,Irpin,"174 Severynivska St., Apt. 44",referral
+731,740,female,1995-11-22,Kyiv,12 Kyrylivska St.,organic_search
+732,741,female,1959-04-17,Kyiv,97 Velyka Vasylkivska St.,organic_search
+733,742,female,1999-12-02,Kyiv,125 Urlivska St.,referral
+734,743,female,1962-06-04,Kyiv,"15 Metrolohichna St., Apt. 119",organic_search
+735,744,male,2002-01-25,Kyiv,"20 Dniprovska Naberezhna St., Apt. 14",organic_search
+736,745,female,1973-03-26,Kyiv,10 Lypkivskoho St.,paid_search
+737,746,male,1969-01-06,Kyiv,138 Solomianska St.,organic_search
+738,747,child,2022-05-13,Vyshneve,163 Molodizhna St.,offline_ad
+739,748,male,2004-08-17,Vyshneve,89 Yevropeiska St.,paid_social
+740,749,female,1962-07-22,Kyiv,45 Chervonoi Kalyny Ave.,organic_search
+741,750,female,1972-05-22,Kyiv,30 Dniprovska Naberezhna St.,organic_search
+742,751,female,1977-03-23,Kyiv,"96 Obolonskyi Ave., Apt. 95",referral
+743,752,male,1970-04-11,Kyiv,"51 Kniazhyi Zaton St., Apt. 136",organic_search
+744,753,male,1974-12-24,Boryspil,78 Momota St.,paid_social
+745,754,female,1983-08-21,Kyiv,"82 Myloslavska St., Apt. 124",organic_social
+746,755,male,1998-03-10,Kyiv,"110 Borshchahivska St., Apt. 17",paid_search
+747,756,male,1969-10-27,Irpin,49 Lisova St.,paid_search
+748,757,female,1989-10-14,Vyshneve,"92 Molodizhna St., Apt. 46",paid_search
+749,758,female,1990-02-15,Kyiv,158 Beresteiskyi Ave.,organic_search
+750,759,female,1979-08-08,Kyiv,134 Lomonosova St.,paid_search
+751,760,child,2011-04-10,Brovary,166 Symona Petliury St.,organic_search
+752,761,female,1942-01-03,Kyiv,133 Solomianska St.,organic_social
+753,762,male,1989-07-05,Kyiv,81 Lypkivskoho St.,paid_social
+754,763,male,1968-01-02,Boryspil,23 Holovatoho St.,organic_search
+755,764,female,1994-10-17,Kyiv,"37 Lypkivskoho St., Apt. 39",organic_search
+756,765,child,2022-09-21,Kyiv,53 Lomonosova St.,paid_social
+757,766,female,1952-11-08,Bucha,7 Nove Shose St.,offline_ad
+758,767,female,1990-10-15,Kyiv,"180 Solomianska St., Apt. 66",paid_search
+759,768,female,1988-10-01,Kyiv,"3 Akhmatovoi St., Apt. 10",referral
+760,769,female,1982-05-02,Brovary,152 Symona Petliury St.,referral
+761,770,female,1963-07-04,Kyiv,76 Akademika Zabolotnoho St.,organic_social
+762,771,female,2004-08-01,Kyiv,"43 Beresteiskyi Ave., Apt. 40",paid_social
+763,772,female,1991-10-27,Kyiv,50 Kyrylivska St.,organic_social
+764,773,male,1986-12-05,Kyiv,"41 Lypkivskoho St., Apt. 36",referral
+765,774,female,2006-01-25,Kyiv,172 Dniprovska Naberezhna St.,paid_search
+766,775,female,1979-04-03,Brovary,"98 Hrushevskoho St., Apt. 153",referral
+767,776,male,1997-11-25,Kyiv,"68 Kyrylivska St., Apt. 96",direct
+768,777,male,1986-09-02,Kyiv,97 Antonovycha St.,organic_search
+769,778,male,1966-09-04,Irpin,"4 Soborna St., Apt. 69",referral
+770,779,female,2000-07-22,Kyiv,130 Avtozavodska St.,referral
+771,780,female,1962-11-17,Boryspil,80 Holovatoho St.,offline_ad
+772,781,female,2006-12-28,Kyiv,"57 Lomonosova St., Apt. 43",paid_search
+773,782,female,1995-03-17,Kyiv,41 Beresteiskyi Ave.,direct
+774,783,child,2015-04-22,Kyiv,93 Velyka Vasylkivska St.,organic_search
+775,784,male,1965-01-22,Kyiv,139 Velyka Vasylkivska St.,paid_social
+776,785,female,1979-12-24,Kyiv,53 Metrolohichna St.,referral
+777,786,female,1991-08-17,Vyshneve,"55 Sviatoshynska St., Apt. 101",paid_search
+778,787,female,2002-02-16,Kyiv,10 Dniprovska Naberezhna St.,other
+779,788,female,1998-01-20,Vyshneve,52 Osvity St.,direct
+780,789,male,2006-12-17,Kyiv,"6 Myloslavska St., Apt. 48",direct
+781,790,child,2015-08-10,Irpin,82 Severynivska St.,referral
+782,791,female,2002-04-02,Kyiv,122 Vyshhorodska St.,paid_search
+783,792,female,1986-11-28,Kyiv,48 Kadetskyi Hai St.,organic_search
+784,793,female,1941-10-14,Kyiv,"66 Solomianska St., Apt. 131",referral
+785,794,female,2005-03-28,Kyiv,120 Akademika Zabolotnoho St.,organic_search
+786,795,child,2015-02-08,Kyiv,163 Avtozavodska St.,paid_search
+787,796,female,1982-08-22,Kyiv,12 Chervonoi Kalyny Ave.,referral
+788,797,male,1988-12-25,Vyshhorod,160 Sholudenka St.,paid_social
+789,798,female,1972-06-27,Kyiv,"1 Kniazhyi Zaton St., Apt. 77",paid_search
+790,799,female,2005-12-07,Vyshhorod,"21 Sholudenka St., Apt. 137",organic_search
+791,800,male,1954-07-26,Brovary,"63 Kyivska St., Apt. 109",organic_search
+792,801,female,1955-11-04,Kyiv,53 Saksahanskoho St.,paid_search
+793,802,female,1990-08-10,Kyiv,162 Solomianska St.,referral
+794,803,female,2003-03-16,Brovary,"2 Kyivska St., Apt. 25",direct
+795,804,male,2007-05-24,Kyiv,48 Lomonosova St.,organic_search
+796,805,child,2022-03-03,Brovary,39 Kyivska St.,referral
+797,806,female,1999-04-24,Kyiv,70 Dniprovska Naberezhna St.,offline_ad
+798,807,female,1988-11-14,Kyiv,"168 Beresteiskyi Ave., Apt. 106",organic_social
+799,808,male,2003-07-02,Kyiv,104 Dniprovska Naberezhna St.,referral
+800,809,unknown,1952-07-23,Boryspil,"9 Bezhivka St., Apt. 17",paid_social
+801,810,male,1973-03-24,Kyiv,"35 Kadetskyi Hai St., Apt. 64",organic_search
+802,811,child,2009-12-14,Kyiv,2 Saksahanskoho St.,other
+803,812,female,1969-06-04,Kyiv,77 Velyka Vasylkivska St.,offline_ad
+804,813,female,1986-08-17,Vyshneve,"180 Osvity St., Apt. 27",organic_search
+805,814,male,1978-04-11,Kyiv,23 Borshchahivska St.,other
+806,815,male,1984-04-02,Kyiv,154 Lomonosova St.,referral
+807,816,child,2015-12-26,Kyiv,"4 Lomonosova St., Apt. 128",paid_social
+808,817,male,1960-08-28,Kyiv,35 Akademika Zabolotnoho St.,direct
+809,818,female,1964-04-26,Vyshhorod,108 Sholudenka St.,paid_social
+810,819,male,1988-02-07,Vyshhorod,90 Kurhuzova St.,referral
+811,820,female,1990-06-25,Kyiv,"123 Metrolohichna St., Apt. 157",organic_search
+812,821,child,2011-12-15,Brovary,"125 Chornovola St., Apt. 124",offline_ad
+813,822,male,1988-12-28,Brovary,176 Heroiv Ukrainy St.,referral
+814,823,female,1963-11-07,Kyiv,49 Kadetskyi Hai St.,referral
+815,824,child,2016-09-14,Kyiv,102 Lomonosova St.,paid_social
+816,825,male,2000-12-12,Kyiv,"31 Akademika Zabolotnoho St., Apt. 60",paid_social
+817,826,female,1983-09-15,Kyiv,72 Urlivska St.,referral
+818,827,male,1993-02-22,Kyiv,45 Kadetskyi Hai St.,organic_social
+819,828,male,1975-03-17,Kyiv,72 Avtozavodska St.,direct
+820,829,child,2022-03-11,Kyiv,"30 Myloslavska St., Apt. 76",paid_search
+821,830,male,1961-08-17,Kyiv,63 Solomianska St.,referral
+822,831,child,2022-11-07,Kyiv,"161 Beresteiskyi Ave., Apt. 47",paid_social
+823,832,female,2005-12-08,Kyiv,106 Borshchahivska St.,paid_social
+824,833,male,1992-08-05,Kyiv,91 Myloslavska St.,referral
+825,834,female,1999-08-20,Bucha,"179 Kyievo-Myrotska St., Apt. 63",organic_search
+826,835,male,1989-05-16,Kyiv,105 Sribnokilska St.,paid_social
+827,836,female,1976-01-17,Brovary,40 Chornovola St.,organic_social
+828,837,female,1985-01-13,Kyiv,"125 Dniprovska Naberezhna St., Apt. 159",referral
+829,838,child,2021-12-16,Kyiv,75 Akhmatovoi St.,organic_search
+830,839,female,1995-02-07,Irpin,"70 Tsentralna St., Apt. 92",paid_search
+831,840,female,2002-11-26,Irpin,"101 Lisova St., Apt. 92",referral
+832,841,male,1971-12-04,Kyiv,"151 Borshchahivska St., Apt. 115",referral
+833,842,male,1975-11-26,Boryspil,"62 Momota St., Apt. 79",referral
+834,843,female,1991-04-11,Kyiv,148 Chervonoi Kalyny Ave.,paid_search
+835,844,female,1976-11-23,Kyiv,106 Dniprovska Naberezhna St.,organic_search
+836,845,child,2014-01-08,Brovary,43 Symona Petliury St.,direct
+837,846,female,1978-01-12,Kyiv,82 Chervonoi Kalyny Ave.,direct
+838,847,female,1996-01-01,Kyiv,169 Metrolohichna St.,organic_search
+839,848,male,1967-05-28,Kyiv,142 Drahomanova St.,paid_social
+840,849,child,2022-11-27,Kyiv,"67 Beresteiskyi Ave., Apt. 20",offline_ad
+841,850,child,2021-09-14,Kyiv,"125 Avtozavodska St., Apt. 154",organic_search
+842,851,child,2015-04-10,Vyshneve,178 Sviatoshynska St.,organic_search
+843,852,female,1947-05-06,Kyiv,156 Kyrylivska St.,referral
+844,853,male,1990-04-04,Kyiv,104 Antonovycha St.,referral
+845,854,male,1991-04-04,Kyiv,25 Antonovycha St.,referral
+846,855,male,1959-06-26,Kyiv,"110 Kniazhyi Zaton St., Apt. 20",organic_search
+847,856,male,1982-09-05,Kyiv,73 Solomianska St.,paid_social
+848,857,male,1994-06-10,Kyiv,163 Drahomanova St.,paid_search
+849,858,male,2005-01-21,Kyiv,"157 Velyka Vasylkivska St., Apt. 124",referral
+850,859,female,1976-10-02,Kyiv,124 Metrolohichna St.,organic_search
+851,860,female,1947-03-02,Kyiv,146 Lomonosova St.,referral
+852,861,female,1996-12-09,Kyiv,131 Akhmatovoi St.,organic_search
+853,862,female,1955-09-06,Kyiv,"107 Kadetskyi Hai St., Apt. 32",referral
+854,863,child,2008-08-24,Kyiv,160 Solomianska St.,paid_social
+855,864,child,2022-05-25,Boryspil,86 Bezhivka St.,organic_search
+856,865,child,2017-09-04,Kyiv,80 Beresteiskyi Ave.,organic_social
+857,866,child,2018-05-08,Kyiv,120 Beresteiskyi Ave.,organic_search
+858,867,female,1981-04-26,Bucha,65 Enerhetykiv St.,offline_ad
+859,868,female,1941-12-17,Kyiv,"82 Kadetskyi Hai St., Apt. 110",offline_ad
+860,869,male,1994-05-07,Kyiv,"102 Urlivska St., Apt. 20",organic_search
+861,870,child,2017-06-21,Kyiv,78 Akademika Zabolotnoho St.,organic_search
+862,871,female,1996-07-04,Kyiv,79 Solomianska St.,organic_search
+863,872,female,1979-01-15,Kyiv,158 Beresteiskyi Ave.,paid_search
+864,873,child,2023-04-07,Kyiv,68 Sribnokilska St.,organic_search
+865,874,female,1973-10-12,Irpin,56 Soborna St.,referral
+866,875,male,1990-07-24,Irpin,29 Tsentralna St.,organic_search
+867,876,male,1999-01-23,Vyshneve,167 Sviatoshynska St.,referral
+868,877,male,1962-02-07,Kyiv,16 Velyka Vasylkivska St.,organic_search
+869,878,male,1982-01-07,Kyiv,"131 Velyka Vasylkivska St., Apt. 32",organic_search
+870,879,child,2009-06-11,Kyiv,"68 Urlivska St., Apt. 5",organic_social
+871,880,child,2015-12-14,Kyiv,125 Urlivska St.,paid_search
+872,881,female,2002-09-04,Kyiv,155 Drahomanova St.,direct
+873,882,female,1953-07-25,Kyiv,"1 Heroiv Dnipra St., Apt. 15",referral
+874,883,male,1965-05-11,Kyiv,60 Kniazhyi Zaton St.,organic_social
+875,884,female,1959-06-08,Kyiv,"25 Chervonoi Kalyny Ave., Apt. 47",paid_search
+876,885,child,2015-04-14,Vyshhorod,129 Naberezhna St.,paid_social
+877,886,child,2015-02-04,Boryspil,"64 Bezhivka St., Apt. 72",organic_search
+878,887,male,1961-03-14,Kyiv,"22 Kadetskyi Hai St., Apt. 47",paid_search
+879,888,male,1987-07-25,Kyiv,62 Sribnokilska St.,paid_search
+880,889,child,2020-10-01,Brovary,116 Kyivska St.,organic_search
+881,890,unknown,1974-10-14,Kyiv,94 Kadetskyi Hai St.,paid_search
+882,891,female,1980-06-22,Kyiv,"108 Drahomanova St., Apt. 75",referral
+883,892,child,2022-09-05,Irpin,"3 Soborna St., Apt. 103",organic_search
+884,893,male,1998-07-12,Brovary,78 Heroiv Ukrainy St.,organic_social
+885,894,male,1952-01-06,Kyiv,159 Kniazhyi Zaton St.,organic_social
+886,895,male,1969-11-16,Kyiv,104 Lypkivskoho St.,organic_social
+887,896,male,1999-07-20,Kyiv,34 Vyshhorodska St.,referral
+888,897,male,1986-10-16,Brovary,144 Symona Petliury St.,offline_ad
+889,898,male,1975-08-02,Irpin,"20 Severynivska St., Apt. 38",organic_search
+890,899,female,2004-05-08,Kyiv,131 Lomonosova St.,referral
+891,900,female,1992-02-05,Brovary,"64 Symona Petliury St., Apt. 99",organic_social
+892,901,male,1993-03-06,Kyiv,117 Kniazhyi Zaton St.,paid_social
+893,902,female,1951-06-26,Kyiv,175 Myloslavska St.,organic_social
+894,903,male,1996-12-21,Irpin,"129 Universytetska St., Apt. 151",paid_social
+895,904,child,2022-11-03,Bucha,"53 Kyievo-Myrotska St., Apt. 55",organic_social
+896,905,male,2002-10-23,Kyiv,109 Drahomanova St.,referral
+897,906,male,1958-10-09,Kyiv,20 Akademika Zabolotnoho St.,organic_search
+898,907,female,2005-02-04,Kyiv,16 Sribnokilska St.,referral
+899,908,child,2012-12-28,Kyiv,71 Kyrylivska St.,organic_search
+900,909,female,1984-02-25,Vyshhorod,167 Sholudenka St.,organic_search
+901,910,male,1985-04-08,Kyiv,134 Sribnokilska St.,paid_social
+902,911,female,2003-02-10,Kyiv,18 Myloslavska St.,paid_search
+903,912,female,1974-04-23,Kyiv,"35 Akhmatovoi St., Apt. 148",referral
+904,913,female,1951-06-04,Vyshneve,136 Yevropeiska St.,organic_search
+905,914,female,1986-08-05,Kyiv,146 Beresteiskyi Ave.,paid_social
+906,915,male,1982-06-10,Kyiv,14 Avtozavodska St.,paid_social
+907,916,female,1974-06-23,Kyiv,84 Drahomanova St.,organic_search
+908,917,male,1986-07-12,Kyiv,127 Myloslavska St.,organic_search
+909,918,female,2004-02-22,Brovary,5 Heroiv Ukrainy St.,organic_social
+910,919,child,2022-07-11,Vyshhorod,14 Sholudenka St.,direct
+911,920,female,2004-10-01,Kyiv,"31 Solomianska St., Apt. 48",referral
+912,921,female,2008-01-25,Kyiv,90 Metrolohichna St.,paid_search
+913,922,child,2015-08-26,Kyiv,89 Kyrylivska St.,organic_search
+914,923,female,1992-07-03,Kyiv,95 Lypkivskoho St.,direct
+915,924,female,1989-07-07,Kyiv,"96 Vyshhorodska St., Apt. 157",referral
+916,925,child,2022-09-01,Kyiv,70 Drahomanova St.,referral
+917,926,child,2022-11-23,Kyiv,"157 Urlivska St., Apt. 132",referral
+918,927,male,1985-03-12,Kyiv,159 Akhmatovoi St.,paid_social
+919,928,male,1999-08-25,Vyshneve,147 Sviatoshynska St.,organic_search
+920,929,male,2007-10-19,Kyiv,"49 Saksahanskoho St., Apt. 91",other
+921,930,female,1976-09-27,Kyiv,168 Akademika Zabolotnoho St.,referral
+922,931,child,2022-11-11,Vyshneve,"61 Yevropeiska St., Apt. 156",paid_search
+923,932,male,1988-04-24,Kyiv,"35 Kniazhyi Zaton St., Apt. 122",paid_search
+924,933,child,2010-12-25,Kyiv,87 Kadetskyi Hai St.,referral
+925,934,female,1983-04-16,Kyiv,111 Akhmatovoi St.,organic_search
+926,935,female,1984-07-15,Vyshhorod,"140 Naberezhna St., Apt. 107",paid_social
+927,936,male,1997-03-05,Brovary,103 Chornovola St.,organic_social
+928,937,female,1955-07-08,Kyiv,139 Metrolohichna St.,paid_search
+929,938,male,1981-03-22,Brovary,83 Kyivska St.,referral
+930,939,male,1972-08-19,Kyiv,"138 Kadetskyi Hai St., Apt. 14",direct
+931,940,male,1988-08-02,Kyiv,"14 Sribnokilska St., Apt. 24",organic_social
+932,941,male,1945-07-15,Boryspil,"98 Momota St., Apt. 71",referral
+933,942,male,1975-05-06,Vyshneve,"59 Sviatoshynska St., Apt. 50",paid_search
+934,943,female,2004-11-24,Irpin,157 Universytetska St.,organic_search
+935,944,male,1980-01-21,Bucha,37 Yablunska St.,referral
+936,945,male,1981-05-25,Kyiv,"83 Antonovycha St., Apt. 73",paid_search
+937,946,male,1985-02-01,Kyiv,14 Kniazhyi Zaton St.,referral
+938,947,female,1989-11-14,Vyshneve,52 Osvity St.,unknown
+939,948,male,2000-01-24,Kyiv,163 Heroiv Dnipra St.,paid_social
+940,949,female,1965-06-10,Irpin,72 Soborna St.,paid_search
+941,950,male,2000-05-04,Kyiv,33 Chervonoi Kalyny Ave.,paid_social
+942,951,child,2011-08-15,Kyiv,"87 Chervonoi Kalyny Ave., Apt. 31",referral
+943,952,female,1952-03-07,Brovary,34 Hrushevskoho St.,organic_social
+944,953,male,1987-04-26,Kyiv,99 Kniazhyi Zaton St.,organic_social
+945,954,female,1978-10-02,Brovary,50 Hrushevskoho St.,organic_social
+946,955,female,1981-07-22,Kyiv,78 Vyshhorodska St.,paid_search
+947,956,child,2015-09-11,Kyiv,93 Beresteiskyi Ave.,paid_social
+948,957,female,2003-03-11,Irpin,"81 Universytetska St., Apt. 43",organic_search
+949,958,male,1985-02-05,Irpin,171 Lisova St.,referral
+950,959,female,2008-01-15,Kyiv,116 Avtozavodska St.,organic_social
+951,960,child,2017-10-23,Kyiv,97 Borshchahivska St.,organic_social
+952,961,female,1991-10-15,Kyiv,108 Kniazhyi Zaton St.,paid_search
+953,962,female,1968-12-23,Irpin,74 Severynivska St.,organic_search
+954,963,male,1972-06-25,Kyiv,28 Myloslavska St.,paid_search
+955,964,female,1978-09-21,Kyiv,8 Chervonoi Kalyny Ave.,referral
+956,965,female,1984-10-10,Kyiv,58 Obolonskyi Ave.,organic_search
+957,966,female,2005-01-04,Brovary,48 Symona Petliury St.,referral
+958,967,male,1988-03-01,Kyiv,"176 Urlivska St., Apt. 18",organic_social
+959,968,male,1981-02-05,Bucha,38 Enerhetykiv St.,paid_social
+960,969,female,1959-02-27,Kyiv,135 Velyka Vasylkivska St.,paid_social
+961,970,male,1987-10-17,Kyiv,77 Antonovycha St.,unknown
+962,971,female,1986-10-21,Kyiv,50 Dniprovska Naberezhna St.,organic_social
+963,972,female,1992-07-06,Kyiv,18 Lypkivskoho St.,referral
+964,973,female,1987-04-22,Vyshneve,19 Yevropeiska St.,organic_social
+965,974,child,2022-01-05,Kyiv,87 Lomonosova St.,organic_social
+966,975,female,2002-04-07,Kyiv,"12 Lypkivskoho St., Apt. 145",referral
+967,976,male,1986-08-08,Brovary,10 Chornovola St.,referral
+968,977,female,1977-06-10,Kyiv,129 Lomonosova St.,direct
+969,978,female,1955-05-07,Kyiv,126 Heroiv Dnipra St.,organic_search
+970,979,male,1981-11-26,Kyiv,123 Antonovycha St.,direct
+971,980,female,1998-05-17,Kyiv,"60 Avtozavodska St., Apt. 33",referral
+972,981,male,1988-08-18,Brovary,102 Chornovola St.,paid_social
+973,982,female,2001-06-19,Kyiv,166 Borshchahivska St.,organic_social
+974,983,male,1967-11-26,Boryspil,118 Bezhivka St.,organic_search
+975,984,male,1994-03-04,Kyiv,103 Borshchahivska St.,paid_search
+976,985,female,1986-02-15,Kyiv,164 Obolonskyi Ave.,paid_social
+977,986,female,1989-10-28,Kyiv,161 Dniprovska Naberezhna St.,organic_search
+978,987,female,1970-09-19,Kyiv,22 Solomianska St.,referral
+979,988,male,1979-03-18,Bucha,112 Kyievo-Myrotska St.,organic_social
+980,989,child,2022-05-09,Kyiv,"31 Saksahanskoho St., Apt. 108",paid_social
+981,990,child,2021-04-07,Kyiv,154 Kniazhyi Zaton St.,organic_search
+982,991,female,2005-03-19,Kyiv,39 Lypkivskoho St.,referral
+983,992,female,1970-10-17,Irpin,74 Universytetska St.,organic_social
+984,993,child,2020-02-22,Kyiv,72 Heroiv Dnipra St.,organic_search
+985,994,male,1992-05-18,Kyiv,2 Kadetskyi Hai St.,direct
+986,995,male,2001-09-26,Kyiv,18 Avtozavodska St.,organic_social
+987,996,male,1983-08-27,Irpin,"180 Universytetska St., Apt. 105",paid_social
+988,997,male,1964-04-07,Kyiv,"1 Kniazhyi Zaton St., Apt. 17",paid_social
+989,998,child,2022-05-09,Kyiv,117 Akademika Zabolotnoho St.,organic_social
+990,999,male,1960-11-19,Kyiv,29 Kyrylivska St.,direct
+991,1000,male,1991-10-28,Brovary,56 Symona Petliury St.,organic_search
+992,1001,male,1989-06-14,Kyiv,137 Beresteiskyi Ave.,organic_search
+993,1002,male,1985-12-25,Kyiv,27 Solomianska St.,referral
+994,1003,female,1998-12-27,Kyiv,"78 Obolonskyi Ave., Apt. 130",paid_social
+995,1004,male,1943-06-27,Kyiv,130 Myloslavska St.,organic_search
+996,1005,female,1988-07-22,Vyshneve,"29 Lesi Ukrainky St., Apt. 145",organic_search
+997,1006,female,1969-06-23,Kyiv,"106 Metrolohichna St., Apt. 75",organic_search
+998,1007,child,2022-01-17,Brovary,127 Chornovola St.,paid_social
+999,1008,female,2002-12-26,Kyiv,19 Sribnokilska St.,organic_search
+1000,1009,male,1983-01-28,Kyiv,142 Dniprovska Naberezhna St.,referral
+1001,1010,female,2005-06-11,Kyiv,64 Akademika Zabolotnoho St.,organic_search
+1002,1011,male,1976-08-17,Kyiv,83 Saksahanskoho St.,organic_search
+1003,1012,male,1987-06-19,Irpin,35 Universytetska St.,direct
+1004,1013,female,1984-12-23,Irpin,124 Universytetska St.,paid_search
+1005,1014,male,1976-02-15,Kyiv,2 Kadetskyi Hai St.,direct
+1006,1015,female,2005-11-03,Kyiv,18 Antonovycha St.,paid_social
+1007,1016,male,2001-04-03,Kyiv,69 Myloslavska St.,organic_social
+1008,1017,child,2022-01-05,Kyiv,"70 Sribnokilska St., Apt. 38",paid_search
+1009,1018,female,1998-02-22,Vyshhorod,43 Kurhuzova St.,paid_search
+1010,1019,male,1990-01-13,Kyiv,134 Urlivska St.,organic_social
+1011,1020,female,1997-08-14,Kyiv,8 Revutskoho St.,organic_social
+1012,1021,female,1951-11-01,Kyiv,71 Antonovycha St.,paid_social
+1013,1022,male,1973-07-13,Kyiv,"165 Antonovycha St., Apt. 117",organic_search
+1014,1023,male,1981-07-24,Kyiv,"55 Akhmatovoi St., Apt. 97",referral
+1015,1024,male,1946-04-09,Vyshhorod,85 Kurhuzova St.,referral
+1016,1025,child,2015-10-12,Kyiv,175 Beresteiskyi Ave.,referral
+1017,1026,female,1972-04-18,Vyshhorod,3 Kurhuzova St.,organic_search
+1018,1027,male,1995-11-01,Bucha,"80 Nove Shose St., Apt. 140",organic_search
+1019,1028,child,2015-08-06,Kyiv,32 Kyrylivska St.,paid_search
+1020,1029,male,2005-08-04,Kyiv,137 Beresteiskyi Ave.,organic_search
+1021,1030,child,2015-06-28,Kyiv,175 Antonovycha St.,organic_social
+1022,1031,unknown,1981-09-05,Boryspil,"27 Yevropeiska St., Apt. 73",paid_social
+1023,1032,male,1970-11-08,Kyiv,153 Lomonosova St.,organic_social
+1024,1033,female,1990-06-05,Boryspil,98 Yevropeiska St.,organic_search
+1025,1034,male,1981-04-14,Kyiv,1 Drahomanova St.,organic_social
+1026,1035,female,1957-02-06,Kyiv,89 Metrolohichna St.,organic_search
+1027,1036,female,2002-02-09,Kyiv,"111 Revutskoho St., Apt. 4",organic_social
+1028,1037,child,2015-10-08,Brovary,170 Chornovola St.,organic_search
+1029,1038,female,1952-02-06,Bucha,171 Kyievo-Myrotska St.,organic_social
+1030,1039,male,1995-08-20,Brovary,41 Symona Petliury St.,organic_search
+1031,1040,child,2015-12-26,Kyiv,20 Beresteiskyi Ave.,paid_search
+1032,1041,female,1976-08-09,Kyiv,"7 Heroiv Dnipra St., Apt. 11",referral
+1033,1042,female,1997-09-19,Irpin,112 Soborna St.,referral
+1034,1043,female,2004-10-24,Kyiv,"137 Heroiv Dnipra St., Apt. 33",organic_social
+1035,1044,child,2015-02-24,Kyiv,"130 Metrolohichna St., Apt. 8",organic_social
+1036,1045,female,2001-02-12,Irpin,167 Universytetska St.,organic_social
+1037,1046,male,1956-03-02,Kyiv,130 Chervonoi Kalyny Ave.,organic_search
+1038,1047,child,2015-02-24,Kyiv,"156 Chervonoi Kalyny Ave., Apt. 32",organic_social
+1039,1048,female,1994-07-13,Kyiv,"19 Urlivska St., Apt. 82",referral
+1040,1049,female,1999-03-22,Kyiv,88 Obolonskyi Ave.,paid_social
+1041,1050,female,2003-04-28,Kyiv,172 Lomonosova St.,referral
+1042,1051,child,2015-04-22,Boryspil,17 Momota St.,referral
+1043,1052,child,2022-07-11,Kyiv,148 Antonovycha St.,paid_social
+1044,1053,male,2006-12-23,Kyiv,"123 Urlivska St., Apt. 153",organic_search
+1045,1054,male,1991-01-27,Brovary,"29 Kyivska St., Apt. 90",paid_search
+1046,1055,female,1952-08-04,Kyiv,"139 Velyka Vasylkivska St., Apt. 89",organic_search
+1047,1056,male,1964-07-19,Brovary,"65 Kyivska St., Apt. 96",organic_search
+1048,1057,male,1987-07-24,Kyiv,172 Chervonoi Kalyny Ave.,direct
+1049,1058,female,1987-01-10,Boryspil,105 Holovatoho St.,paid_search
+1050,1059,male,1997-05-22,Kyiv,96 Myloslavska St.,paid_search
+1051,1060,female,1982-12-11,Kyiv,"65 Dniprovska Naberezhna St., Apt. 49",direct
+1052,1061,female,1991-06-09,Irpin,135 Universytetska St.,organic_search
+1053,1062,female,1992-06-19,Brovary,"50 Chornovola St., Apt. 72",organic_search
+1054,1063,child,2015-04-06,Kyiv,8 Saksahanskoho St.,organic_search
+1055,1064,male,1948-08-12,Vyshhorod,"3 Mezhyhirskoho Spasa St., Apt. 153",paid_social
+1056,1065,child,2022-09-21,Brovary,34 Kyivska St.,paid_social
+1057,1066,female,1951-05-27,Brovary,"61 Kyivska St., Apt. 63",referral
+1058,1067,female,1980-08-05,Kyiv,"3 Akademika Zabolotnoho St., Apt. 141",paid_search
+1059,1068,female,1983-08-22,Kyiv,33 Myloslavska St.,organic_search
+1060,1069,child,2022-11-23,Kyiv,"131 Lypkivskoho St., Apt. 54",organic_search
+1061,1070,female,1982-07-16,Kyiv,139 Dniprovska Naberezhna St.,unknown
+1062,1071,child,2021-01-17,Kyiv,"26 Vyshhorodska St., Apt. 106",paid_search
+1063,1072,child,2009-11-14,Kyiv,"172 Avtozavodska St., Apt. 87",referral
+1064,1073,female,1991-12-04,Kyiv,46 Metrolohichna St.,organic_social
+1065,1074,female,1995-09-28,Irpin,123 Soborna St.,referral
+1066,1075,child,2012-06-24,Kyiv,"157 Avtozavodska St., Apt. 80",organic_search
+1067,1076,child,2015-04-18,Kyiv,"68 Obolonskyi Ave., Apt. 104",direct
+1068,1077,male,1964-05-01,Kyiv,139 Akademika Zabolotnoho St.,referral
+1069,1078,female,2007-10-28,Kyiv,"175 Kadetskyi Hai St., Apt. 62",organic_search
+1070,1079,female,1989-03-28,Kyiv,"149 Drahomanova St., Apt. 95",paid_social
+1071,1080,female,1987-05-15,Kyiv,"168 Solomianska St., Apt. 81",referral
+1072,1081,male,1951-10-01,Kyiv,"60 Kyrylivska St., Apt. 138",referral
+1073,1082,female,2003-06-10,Bucha,167 Kyievo-Myrotska St.,paid_social
+1074,1083,female,1952-01-27,Kyiv,12 Metrolohichna St.,paid_search
+1075,1084,female,1987-10-09,Kyiv,"179 Kadetskyi Hai St., Apt. 155",paid_search
+1076,1085,female,1941-08-26,Kyiv,54 Obolonskyi Ave.,organic_social
+1077,1086,male,1989-10-02,Kyiv,"81 Revutskoho St., Apt. 132",organic_social
+1078,1087,female,1989-08-09,Vyshneve,92 Osvity St.,referral
+1079,1088,female,2007-04-24,Kyiv,133 Vyshhorodska St.,organic_social
+1080,1089,male,1990-05-03,Kyiv,70 Kadetskyi Hai St.,referral
+1081,1090,child,2015-08-18,Kyiv,162 Chervonoi Kalyny Ave.,organic_search
+1082,1091,male,1974-10-01,Kyiv,"132 Saksahanskoho St., Apt. 148",organic_search
+1083,1092,male,1971-10-16,Kyiv,115 Akademika Zabolotnoho St.,direct
+1084,1093,female,1990-04-12,Bucha,43 Yablunska St.,paid_search
+1085,1094,male,1967-10-08,Irpin,"57 Severynivska St., Apt. 39",paid_social
+1086,1095,male,1986-02-20,Brovary,171 Chornovola St.,organic_social
+1087,1096,female,1981-11-06,Kyiv,"148 Velyka Vasylkivska St., Apt. 151",paid_search
+1088,1097,child,2015-04-02,Boryspil,"73 Holovatoho St., Apt. 73",organic_search
+1089,1098,male,1980-07-26,Kyiv,16 Vyshhorodska St.,other
+1090,1099,female,2000-12-26,Brovary,56 Symona Petliury St.,offline_ad
+1091,1100,female,1981-03-06,Vyshneve,79 Lesi Ukrainky St.,organic_search
+1092,1101,male,1991-07-01,Kyiv,"74 Lomonosova St., Apt. 159",paid_search
+1093,1102,male,1994-04-22,Kyiv,33 Sribnokilska St.,organic_search
+1094,1103,child,2022-01-09,Brovary,"99 Heroiv Ukrainy St., Apt. 42",paid_search
+1095,1104,child,2015-06-12,Kyiv,72 Antonovycha St.,organic_search
+1096,1105,male,1957-05-24,Kyiv,"9 Kadetskyi Hai St., Apt. 57",organic_social
+1097,1106,female,1958-02-16,Kyiv,141 Solomianska St.,other
+1098,1107,child,2015-10-04,Kyiv,16 Kyrylivska St.,organic_social
+1099,1108,male,1966-12-11,Kyiv,68 Kyrylivska St.,referral
+1100,1109,female,1956-03-17,Kyiv,20 Sribnokilska St.,organic_social
+1101,1110,female,1983-11-24,Kyiv,53 Avtozavodska St.,offline_ad
+1102,1111,female,1985-08-02,Vyshneve,102 Molodizhna St.,other
+1103,1112,female,1998-06-03,Kyiv,84 Kadetskyi Hai St.,organic_social
+1104,1113,male,1973-10-06,Kyiv,68 Beresteiskyi Ave.,paid_search
+1105,1114,male,1955-07-27,Irpin,111 Tsentralna St.,organic_search
+1106,1115,female,1959-10-21,Kyiv,"129 Metrolohichna St., Apt. 67",direct
+1107,1116,male,1973-03-21,Kyiv,"116 Sribnokilska St., Apt. 85",referral
+1108,1117,male,1980-12-12,Brovary,"178 Symona Petliury St., Apt. 26",referral
+1109,1118,female,2003-09-16,Kyiv,112 Avtozavodska St.,paid_search
+1110,1119,female,1994-07-15,Kyiv,154 Borshchahivska St.,organic_search
+1111,1120,child,2015-10-12,Kyiv,75 Chervonoi Kalyny Ave.,referral
+1112,1121,child,2022-05-17,Kyiv,174 Kadetskyi Hai St.,paid_search
+1113,1122,male,1976-08-21,Kyiv,170 Saksahanskoho St.,referral
+1114,1123,female,2003-02-11,Brovary,37 Chornovola St.,paid_search
+1115,1124,female,2004-12-19,Irpin,10 Severynivska St.,organic_search
+1116,1125,male,1978-01-27,Kyiv,178 Dniprovska Naberezhna St.,organic_social
+1117,1126,female,2001-01-05,Kyiv,"71 Dniprovska Naberezhna St., Apt. 153",organic_search
+1118,1127,female,2004-09-11,Kyiv,32 Lomonosova St.,paid_search
+1119,1128,female,1996-11-04,Vyshneve,95 Lesi Ukrainky St.,referral
+1120,1129,child,2015-02-16,Brovary,"71 Chornovola St., Apt. 57",paid_search
+1121,1130,male,1997-10-03,Kyiv,11 Borshchahivska St.,direct
+1122,1131,male,1951-11-18,Kyiv,"23 Vyshhorodska St., Apt. 144",direct
+1123,1132,child,2016-12-12,Kyiv,86 Avtozavodska St.,organic_social
+1124,1133,male,2000-04-12,Bucha,159 Vokzalna St.,organic_social
+1125,1134,female,1967-08-22,Irpin,82 Lisova St.,direct
+1126,1135,female,2001-12-01,Kyiv,23 Akademika Zabolotnoho St.,paid_search
+1127,1136,female,2001-09-05,Vyshneve,"83 Yevropeiska St., Apt. 100",organic_search
+1128,1137,female,1967-06-17,Vyshhorod,102 Shevchenka Ave.,referral
+1129,1138,female,1993-12-07,Kyiv,42 Borshchahivska St.,organic_search
+1130,1139,male,1992-07-28,Kyiv,9 Vyshhorodska St.,organic_search
+1131,1140,female,1977-11-07,Kyiv,101 Obolonskyi Ave.,referral
+1132,1141,child,2011-01-21,Boryspil,122 Holovatoho St.,organic_search
+1133,1142,female,1973-02-25,Kyiv,"80 Myloslavska St., Apt. 127",organic_search
+1134,1143,female,2000-04-20,Kyiv,49 Lomonosova St.,direct
+1135,1144,female,2006-05-24,Kyiv,"17 Vyshhorodska St., Apt. 152",referral
+1136,1145,female,1987-02-22,Kyiv,"157 Borshchahivska St., Apt. 44",organic_social
+1137,1146,male,1981-01-11,Kyiv,"52 Akhmatovoi St., Apt. 7",organic_search
+1138,1147,child,2022-05-25,Kyiv,23 Solomianska St.,paid_social
+1139,1148,child,2011-01-04,Kyiv,130 Saksahanskoho St.,referral
+1140,1149,female,1984-04-23,Brovary,96 Chornovola St.,direct
+1141,1150,female,1975-01-09,Kyiv,1 Solomianska St.,organic_search
+1142,1151,female,2001-01-09,Brovary,22 Hrushevskoho St.,direct
+1143,1152,female,1975-12-02,Kyiv,105 Obolonskyi Ave.,referral
+1144,1153,female,1982-10-08,Kyiv,97 Akademika Zabolotnoho St.,offline_ad
+1145,1154,male,1956-05-23,Kyiv,82 Kadetskyi Hai St.,paid_search
+1146,1155,male,1996-08-23,Brovary,23 Kyivska St.,referral
+1147,1156,male,2004-03-13,Kyiv,"118 Lypkivskoho St., Apt. 89",paid_search
+1148,1157,female,1960-07-26,Kyiv,"71 Metrolohichna St., Apt. 56",paid_search
+1149,1158,female,1983-07-22,Kyiv,"50 Obolonskyi Ave., Apt. 45",organic_social
+1150,1159,child,2022-11-19,Vyshhorod,"77 Shevchenka Ave., Apt. 89",paid_social
+1151,1160,child,2022-09-17,Kyiv,61 Vyshhorodska St.,paid_search
+1152,1161,female,1988-07-10,Brovary,"148 Kyivska St., Apt. 53",referral
+1153,1162,female,2005-10-27,Kyiv,53 Drahomanova St.,paid_search
+1154,1163,female,1984-12-06,Brovary,"82 Kyivska St., Apt. 22",paid_search
+1155,1164,child,2009-04-01,Kyiv,142 Saksahanskoho St.,paid_search
+1156,1165,female,1999-10-05,Kyiv,121 Kniazhyi Zaton St.,organic_search
+1157,1166,male,1983-03-18,Kyiv,"112 Revutskoho St., Apt. 97",paid_search
+1158,1167,child,2017-02-04,Boryspil,"8 Kyivskyi Shliakh St., Apt. 104",organic_social
+1159,1168,male,1991-10-19,Vyshhorod,"153 Mezhyhirskoho Spasa St., Apt. 21",organic_social
+1160,1169,male,1960-03-15,Kyiv,"151 Lomonosova St., Apt. 10",referral
+1161,1170,female,2007-01-10,Kyiv,"55 Antonovycha St., Apt. 40",paid_search
+1162,1171,unknown,1995-04-19,Kyiv,157 Kyrylivska St.,organic_search
+1163,1172,male,1978-03-17,Kyiv,"89 Solomianska St., Apt. 138",unknown
+1164,1173,male,2006-09-25,Kyiv,119 Obolonskyi Ave.,paid_social
+1165,1174,female,1976-07-18,Brovary,69 Heroiv Ukrainy St.,offline_ad
+1166,1175,child,2015-08-10,Kyiv,19 Saksahanskoho St.,organic_search
+1167,1176,male,1989-01-12,Kyiv,"108 Borshchahivska St., Apt. 158",referral
+1168,1177,female,1979-01-03,Vyshneve,"4 Lesi Ukrainky St., Apt. 135",referral
+1169,1178,female,1981-08-08,Kyiv,103 Velyka Vasylkivska St.,referral
+1170,1179,female,1974-10-25,Kyiv,179 Kadetskyi Hai St.,organic_search
+1171,1180,child,2014-10-21,Kyiv,46 Lomonosova St.,organic_social
+1172,1181,female,1955-03-15,Kyiv,"157 Dniprovska Naberezhna St., Apt. 62",organic_search
+1173,1182,child,2022-11-27,Kyiv,41 Solomianska St.,referral
+1174,1183,female,1984-06-03,Kyiv,75 Chervonoi Kalyny Ave.,organic_search
+1175,1184,female,1979-02-27,Kyiv,"59 Solomianska St., Apt. 2",referral
+1176,1185,female,1995-04-13,Kyiv,112 Kniazhyi Zaton St.,paid_search
+1177,1186,male,2001-02-09,Kyiv,100 Akademika Zabolotnoho St.,referral
+1178,1187,female,1993-07-11,Kyiv,"125 Vyshhorodska St., Apt. 33",organic_search
+1179,1188,female,1966-10-24,Boryspil,95 Yevropeiska St.,referral
+1180,1189,female,1985-09-07,Kyiv,"122 Avtozavodska St., Apt. 93",organic_social
+1181,1190,child,2020-05-18,Bucha,46 Vokzalna St.,paid_search
+1182,1191,male,1954-11-09,Kyiv,72 Metrolohichna St.,paid_social
+1183,1192,male,1992-09-25,Kyiv,21 Lypkivskoho St.,paid_search
+1184,1193,male,1981-04-05,Kyiv,"85 Revutskoho St., Apt. 144",organic_search
+1185,1194,female,1967-02-10,Kyiv,129 Heroiv Dnipra St.,paid_search
+1186,1195,male,1961-05-08,Kyiv,142 Avtozavodska St.,organic_search
+1187,1196,male,1971-06-19,Kyiv,179 Vyshhorodska St.,paid_search
+1188,1197,male,1957-02-08,Kyiv,171 Obolonskyi Ave.,paid_social
+1189,1198,child,2022-06-06,Kyiv,"172 Kyrylivska St., Apt. 128",organic_social
+1190,1199,child,2021-10-23,Kyiv,47 Kadetskyi Hai St.,organic_search
+1191,1200,female,1990-05-04,Kyiv,20 Saksahanskoho St.,organic_search
+1192,1201,male,2008-04-09,Kyiv,170 Heroiv Dnipra St.,referral
+1193,1202,child,2015-02-08,Kyiv,68 Solomianska St.,organic_social
+1194,1203,child,2022-03-03,Kyiv,"6 Beresteiskyi Ave., Apt. 43",paid_search
+1195,1204,male,2002-03-28,Boryspil,91 Momota St.,organic_search
+1196,1205,male,1966-11-14,Kyiv,10 Vyshhorodska St.,organic_social
+1197,1206,male,1978-10-26,Brovary,63 Chornovola St.,referral
+1198,1207,female,1986-11-21,Kyiv,135 Urlivska St.,organic_search
+1199,1208,female,2002-10-25,Brovary,"178 Hrushevskoho St., Apt. 25",organic_social
+1200,1209,female,1991-03-09,Kyiv,154 Revutskoho St.,organic_search

@@ -1,4 +1,4 @@
-name: CI\СD
+name: CI/CD
 
 on:
   pull_request:
@@ -10,7 +10,29 @@ on:
 jobs:
   backend-lint-and-test:
     runs-on: ubuntu-latest
-    
+
+    env:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_HOST: localhost
+      POSTGRES_DB_PORT: 5432
+      POSTGRES_DB: clinic_db
+
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: admin
+          POSTGRES_PASSWORD: admin
+          POSTGRES_DB: clinic_db
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd="pg_isready -U admin -d clinic_db"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=10
+
     defaults:
       run:
         working-directory: ./backend
@@ -30,59 +52,76 @@ jobs:
       - name: Run linter (ruff)
         run: uv run ruff check .
 
-      - name: Run tests
-        run: uv run pytest -v
+      - name: Run unit tests without integration
+        run: uv run pytest -v -m "not integration"
 
-  # frontend-lint-and-build:
-#     runs-on: ubuntu-latest
-#     defaults:
-#       run:
-#         working-directory: ./frontend
-#
-#     steps:
-#       - uses: actions/checkout@v4
-#
-#       - name: Set up Node.js
-#         uses: actions/setup-node@v4
-#         with:
-#           node-version: "20"
-#           cache: "npm"
-#           cache-dependency-path: frontend/package-lock.json
-#
-#       - name: Install dependencies
-#         run: npm ci
-#
-#       - name: Run linter
-#         run: npm run lint
-#
-#       - name: Build
-#         run: npm run build
-#
-#   docker:
-#     runs-on: ubuntu-latest
-#     if: github.event_name == 'push'
-#     needs: [backend-lint-and-test, frontend-lint-and-build]
-#
-#     steps:
-#       - uses: actions/checkout@v4
-#
-#       - name: Login to Docker Hub
-#         uses: docker/login-action@v4
-#         with:
-#           username: ${{ vars.DOCKERHUB_USERNAME }}
-#           password: ${{ secrets.DOCKERHUB_TOKEN }}
-#
-#       - name: Set up QEMU
-#         uses: docker/setup-qemu-action@v4
-#
-#       - name: Set up Docker Buildx
-#         uses: docker/setup-buildx-action@v4
-#
-#       - name: Build and push
-#         uses: docker/build-push-action@v7
-#         with:
-#           context: ./backend
-#           push: true
-#           tags: |
-#             ${{ vars.DOCKERHUB_USERNAME }}/clinic-crm-backend:latest
-#             ${{ vars.DOCKERHUB_USERNAME }}/clinic-crm-backend:${{ github.sha }}   
+      - name: Wait for PostgreSQL to be ready
+        run: |
+          for i in {1..30}; do
+            pg_isready -h localhost -p 5432 -U admin -d clinic_db && exit 0
+            sleep 2
+          done
+          echo "PostgreSQL did not become ready in time" >&2
+          exit 1
+
+      - name: Apply database migrations
+        run: uv run alembic upgrade head
+
+      - name: Run integration tests
+        env:
+          RUN_INTEGRATION: "1"
+        run: uv run pytest -v -m integration
+
+  frontend-lint-and-build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./frontend
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run linter
+        run: npm run lint
+
+      - name: Build
+        run: npm run build
+
+  docker:
+     runs-on: ubuntu-latest
+     if: github.event_name == 'push'
+     needs: [backend-lint-and-test, frontend-lint-and-build]
+
+     steps:
+       - uses: actions/checkout@v4
+
+       - name: Login to Docker Hub
+         uses: docker/login-action@v4
+         with:
+           username: ${{ vars.DOCKERHUB_USERNAME }}
+           password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+       - name: Set up QEMU
+         uses: docker/setup-qemu-action@v4
+
+       - name: Set up Docker Buildx
+         uses: docker/setup-buildx-action@v4
+
+       - name: Build and push
+         uses: docker/build-push-action@v7
+         with:
+           context: ./backend
+           push: true
+           tags: |
+             ${{ vars.DOCKERHUB_USERNAME }}/clinic-crm-backend:latest
+             ${{ vars.DOCKERHUB_USERNAME }}/clinic-crm-backend:${{ github.sha }}

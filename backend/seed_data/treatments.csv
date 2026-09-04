@@ -1,0 +1,26 @@
+id,treatment,price,is_main
+1,Dental Examination,600.00,t
+2,Specialist Consultation,800.00,t
+3,Professional Cleaning,1700.00,t
+4,Fluoride Treatment,1200.00,t
+5,Fissure Sealing,500.00,t
+6,Emergency Examination,800.00,t
+7,Dental Filling,1800.00,t
+8,Root Canal Treatment,3500.00,t
+9,Tooth Extraction,1500.00,t
+10,Follow-up Examination,400.00,t
+11,Orthodontic Adjustment,1200.00,t
+12,Periodontal Cleaning,3000.00,t
+13,Teeth Whitening,5000.00,t
+14,Dental Crown,8000.00,t
+15,Dental Implant,20000.00,t
+16,Dental X-ray,300.00,f
+17,Intraoral Scan,1000.00,f
+18,Local Anesthesia,350.00,f
+19,Rubber Dam Isolation,400.00,f
+20,Temporary Filling,300.00,f
+21,Medication Dressing,500.00,f
+22,Tooth Polishing,500.00,f
+23,Sensitivity Treatment,500.00,f
+24,Suturing,700.00,f
+25,Bleeding Control,400.00,f
