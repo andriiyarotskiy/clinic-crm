@@ -147,7 +147,7 @@ function CustomCalendarHeader(
 
   return (
     <div
-      className=" h-[36px] w-[300px] flex items-center justify-between mb-[8px] "
+      className=" h-[36px] w-full flex items-center justify-between mb-[8px] "
     >
       <button
         type="button"
@@ -447,16 +447,19 @@ export default function Calendar({
   <DatePicker
               {...commonProps}
               showDaysOutsideCurrentMonth
+               dayOfWeekFormatter={(date) => date.format("dd")}
+               fixedWeekNumber={6}
     format="DD.MM.YYYY"
     slotProps={{
       textField: {
         fullWidth: true,
         sx: {
+          
           "& .MuiPickersInputBase-root": {
             height: "44px",
             borderRadius: "8px",
             width: "100%",
-            padding: "8px",
+            padding: "12px",
           },
 
           "& .MuiPickersInputBase-sectionsContainer": {
@@ -469,10 +472,64 @@ export default function Calendar({
           },
 
           "& .MuiIconButton-root": {
+            
             padding: "8px",
           },
         },
       },
+     day: {
+  sx: {
+    "--PickerDay-size": "28px",
+  
+
+    fontSize: "14px",
+
+   
+  },
+},
+ popper: {
+  sx: {
+    "& .MuiDateCalendar-root": {
+      width: "270px",
+      height: "297px",
+      boxSizing: "border-box",
+
+      padding: "16px",
+
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "flex-start",
+      alignItems: "stretch",
+    },
+
+    "& .MuiDayCalendar-root": {
+      width: "100%",
+    },
+
+    "& .MuiDayCalendar-header": {
+      width: "100%",
+      height: "36px",
+      margin: 0,
+      color: "#6B7280",
+
+      display: "flex",
+      justifyContent: "space-between",
+    },
+
+    "& .MuiDayCalendar-weekContainer": {
+      width: "100%",
+      height: "28px",
+
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+
+      margin: 0,
+      marginBottom: "4px",
+    },
+  },
+},
+    
     }}
   />
 </div>

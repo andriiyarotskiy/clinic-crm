@@ -11,6 +11,7 @@ import type { DoctorFormData } from "@/types/dotorFormData";
 import { DoctorFormFields } from "@/components/formField/DoctorFormFields";
 import { createDoctorThunk } from "./thunk/createDoctorThunk";
 import { getAllDoctorsThunk } from "./thunk/getAllDoctorsThunk";
+import { UserContacts } from "@/components/userContacts/UserContacts";
 
 type Props = {
   handleAside: () => void;
@@ -116,10 +117,13 @@ if (data.phoneNumber) {
               getValue={(user) => `${user.firstName} ${user.lastName}`}
               renderItem={(user) => (
                 <>
-                  <div>
-                    {user.firstName} {user.lastName}
-                  </div>
-                  <div>{user.email}</div>
+                    <UserContacts
+                                     
+                                                             avatar={"patient.jpg"}
+                                                             firstName={user.firstName}
+                                                             lastName={user.lastName}
+                                                             phone={user.email}
+                                                           />
                 </>
               )}
             />
