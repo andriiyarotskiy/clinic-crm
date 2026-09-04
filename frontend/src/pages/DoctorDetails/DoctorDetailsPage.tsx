@@ -1,6 +1,5 @@
 import { useAppDispatch, useAppSelector } from "@/app/store/hook";
 import { ButtonPage } from "@/components/button/ButtonsPage";
-import { TfiPencil } from "react-icons/tfi";
 import { IoTrash } from "react-icons/io5";
 import { useEffect, useState } from "react";
 import { AsideMenu } from "@/components/asideMenu/AsideMenu";

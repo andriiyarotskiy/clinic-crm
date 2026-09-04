@@ -68,56 +68,61 @@ function createServerDay(
     const isPast = day.isBefore(dayjs(), "day");
 
     return (
-      <PickerDay
-        {...other}
-        day={day}
-        sx={[
-          {
-            borderRadius: "8px",
+    <PickerDay
+  {...other}
+  day={day}
+  sx={[
+    {
+      fontWeight: 500,
+      borderRadius: "8px",
 
-            /* Available */
-            ...(isAvailable && {
-              backgroundColor: "#FFFFFF",
-              color: "#1F2937",
-            }),
+      /* Available */
+      ...(isAvailable && {
+        fontFamily:"Inter",
+        fontWeight:500,
+        backgroundColor: "#FFFFFF",
+        color: "#1F2937",
+      }),
 
-            /* Fully booked */
-            ...(isBooked && {
-              backgroundColor: "#FEE2E2",
-              color: "#9CA3AF",
-            }),
+      /* Fully booked */
+      ...(isBooked && {
+        backgroundColor: "#FEE2E2",
+        color: "#9CA3AF",
+      }),
 
-            /* Past */
-            ...(isPast && {
-              backgroundColor: "#FFFFFF",
-              color: "#9CA3AF",
-            }),
+      /* Past */
+      ...(isPast && {
+        
+        backgroundColor: "#FFFFFF",
+        color: "#9CA3AF",
+      }),
 
-            /* Today */
-            "&.MuiPickersDay-today": {
-              border: "2px solid #2563EB",
-              backgroundColor: "#FFFFFF",
-              color: "#1F2937",
-            },
+      /* Today */
+      "&.MuiPickerDay-today": {
+        
+        backgroundColor: "#2563EB",
+        color: "#FFFFFF",
+        border: "none",
+      },
 
-            /* Selected */
-            "&.Mui-selected": {
-              backgroundColor:
-                "#1E3A8A !important",
-              color: "#FFFFFF !important",
-            },
+      /* Selected */
+      "&.Mui-selected": {
+        backgroundColor: "#FFFFFF",
+        color: "#2563EB",
+        border: "2px solid #2563EB",
+      },
 
-            "&.Mui-selected:hover": {
-              backgroundColor:
-                "#1E3A8A !important",
-            },
-          },
+      /* Selected hover */
+      "&.Mui-selected:hover": {
+        backgroundColor: "#FFFFFF",
+        border: "2px solid #2563EB",
+      },
+     
+    },
 
-          ...(Array.isArray(sx)
-            ? sx
-            : [sx]),
-        ]}
-      />
+    ...(Array.isArray(sx) ? sx : [sx]),
+  ]}
+/>
     );
   };
 }
@@ -155,7 +160,7 @@ function CustomCalendarHeader(
         ‹
       </button>
 
-      <div className="text-[16px] font-semibold capitalize">
+      <div className="text-[16px] text-[#1F2937] font-medium capitalize">
         {currentMonth.format("MMMM YYYY")}
       </div>
 
@@ -386,12 +391,15 @@ export default function Calendar({
       margin: 0,    
       display:"flex",
       justifyContent: "space-between",
-      alignItems:"center"
+      alignItems: "center",
+      
+      textColor:"#6B7280"
+  
     },
 
     "& .MuiDayCalendar-weekContainer": {
       width: "300px",
-    
+    fontWeight: 500,
      
       marginBottom: "8px",
        "&:last-child": {
@@ -411,6 +419,12 @@ export default function Calendar({
       overflow: "hidden",
     },
     "& .MuiDayCalendar-weekDayLabel": {
+       
+    fontFamily: "Inter, sans-serif",
+    
+    fontWeight: 500,
+   
+ 
      height:"36px",
       fontSize: "14px",
       marginBottom:"8px"
@@ -419,6 +433,7 @@ export default function Calendar({
 
 "& .MuiPickersDay-root": {
   fontSize: "14px",
+  
 },
   }}
 />

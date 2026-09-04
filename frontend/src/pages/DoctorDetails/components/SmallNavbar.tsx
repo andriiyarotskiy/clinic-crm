@@ -1,6 +1,4 @@
 
-
-import { useAppSelector } from "@/app/store/hook";
 import { NavLink } from "react-router-dom";
 
  type Navigation={
@@ -20,7 +18,7 @@ export const SmallNavbar: React.FC<Props> = ({ arrayNavigation }) => {
   
  
   return (
-    <div className="mb-[16px] border-b border-gray-200">
+    <div className="mb-[24px] border-b border-gray-200">
       <div className="flex h-7 items-start gap-4 font-medium text-[14px]">
         {arrayNavigation.map((item) => (
           <NavLink

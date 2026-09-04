@@ -99,7 +99,7 @@ export const BaseSelect = ({
             rounded-[8px]
             border
             bg-white
-            
+           
             px-[12px]
             py-[8px]
             text-left
@@ -127,8 +127,8 @@ export const BaseSelect = ({
           <span
             className={
               hasValue
-                ? "text-[#1F2937]"
-                : "text-[#1F2937]"
+                ? "text-[#1F2937] font-medium"
+                : "text-[#6B7280] "
             }
           >
             {selectedOption?.label ?? placeholder}
@@ -193,6 +193,7 @@ export const BaseSelect = ({
               w-full
               overflow-hidden
               rounded-[8px]
+              font-medium
               border
               border-[#E5E7EB]
               bg-white

@@ -17,7 +17,7 @@ export const DoctorOverview = () => {
   });
   return (
     <>
-      <div className=" grid grid-cols-1 gap-2 sm:grid-cols-2 xl:grid-cols-4 mb-[24px]">
+      <div className=" grid grid-cols-1 gap-2 sm:grid-cols-2 xl:grid-cols-4 mb-[8px]">
         {cards &&
           detailsDoctorCardStatistics.map((card) => (
             <CardStatistics

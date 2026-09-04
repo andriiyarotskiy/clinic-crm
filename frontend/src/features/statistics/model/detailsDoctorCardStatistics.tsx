@@ -1,7 +1,9 @@
-import {  PiUsersThin } from "react-icons/pi";
-import { PiCheckCircleLight } from "react-icons/pi";
-import { PiUserMinusLight } from "react-icons/pi";
+import {  FiUsers,
+} from "react-icons/fi"; 
+
 import { PiCalendarMinusLight } from "react-icons/pi";
+import { FiUserX } from "react-icons/fi";
+import { FiCheckCircle } from "react-icons/fi";
 type DoctorDetailsCardKey =
   | "patients"
   | "completedVisits"
@@ -24,21 +26,22 @@ export const detailsDoctorCardStatistics: Card[] = [
     
      
   
-      icon:PiUsersThin,
+      icon:FiUsers,
       iconClass: "bg-blue-100 text-blue-600",
     },
     { key: 'completedVisits',
       title: "COMPLETED VISITS",
      
     prefix:'+$',
-      icon: PiCheckCircleLight,
+      icon:FiCheckCircle  ,
       iconClass: "bg-green-100 text-green-600",
-    },
+  },
+    
     {key: 'cancelledVisits',
       title: "CANCELLED VISITS",
       
      
-      icon: PiUserMinusLight,
+      icon: FiUserX,
       iconClass: "bg-orange-100 text-orange-600",
     },
     {key: 'noShowVisits',
@@ -47,6 +50,6 @@ export const detailsDoctorCardStatistics: Card[] = [
       
     
       icon: PiCalendarMinusLight,
-      iconClass: "bg-purple-100 text-purple-600",
+      iconClass: "bg-[#FEE2E2] text-[#991B1B]",
     },
   ];

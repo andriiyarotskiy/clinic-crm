@@ -31,7 +31,7 @@ export const CardStatistics: React.FC<CardStatisticsProps> = ({
         <div
           className={`flex h-10 w-10 items-center justify-center rounded-xl ${iconClass}`}
         >
-          <Icon size={16} strokeWidth={1.7} />
+          <Icon size={16} strokeWidth={1} />
         </div>
       </div>
 
