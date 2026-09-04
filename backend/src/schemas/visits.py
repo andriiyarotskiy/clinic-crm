@@ -103,3 +103,8 @@ class PatientClinicalNoteResponse(BaseModel):
 class PatientClinicalNotesResponse(BaseModel):
     patient_id: int
     clinical_notes: list[PatientClinicalNoteResponse]
+
+    total: int
+    page: int
+    page_size: int
+    pages: int

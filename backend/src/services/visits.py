@@ -1,4 +1,5 @@
 from decimal import Decimal
+from math import ceil
 from typing import Any
 
 from sqlalchemy.exc import SQLAlchemyError
@@ -244,6 +245,8 @@ class VisitService:
     async def get_clinical_notes_by_patient_id(
             self,
             patient_id: int,
+            page: int = 1,
+            page_size: int = 20,
     ) -> dict[str, Any]:
         patient = await self.patients.get_by_id(
             patient_id=patient_id,
@@ -252,13 +255,25 @@ class VisitService:
         if patient is None:
             raise ValueError("Patient not found.")
 
+        offset = (page - 1) * page_size
+
+        total = await self.visits.get_total_by_patient_id(
+            patient_id=patient_id,
+        )
+
         clinical_notes = await self.visits.get_by_patient_id(
             patient_id=patient_id,
+            limit=page_size,
+            offset=offset,
         )
 
         return {
             "patient_id": patient_id,
             "clinical_notes": clinical_notes,
+            "total": total,
+            "page": page,
+            "page_size": page_size,
+            "pages": ceil(total / page_size) if total else 0,
         }
 
     async def update(

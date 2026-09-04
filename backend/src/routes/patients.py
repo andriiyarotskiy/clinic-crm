@@ -123,6 +123,15 @@ async def get_patient_card_statistics(
 async def get_patient_clinical_notes(
     patient_id: int,
     current_user: DoctorAdminOrSuperAdminDep,
+    page: int = Query(
+        default=1,
+        ge=1,
+    ),
+    page_size: int = Query(
+        default=20,
+        ge=1,
+        le=100,
+    ),
     db: AsyncSession = Depends(get_postgresql_db),
 ) -> PatientClinicalNotesResponse:
     service = VisitService(db)
@@ -130,6 +139,8 @@ async def get_patient_clinical_notes(
     try:
         return await service.get_clinical_notes_by_patient_id(
             patient_id=patient_id,
+            page=page,
+            page_size=page_size,
         )
 
     except ValueError as error:

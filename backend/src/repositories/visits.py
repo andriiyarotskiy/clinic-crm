@@ -1,4 +1,4 @@
-from sqlalchemy import select
+from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import aliased, joinedload
 
@@ -64,6 +64,8 @@ class VisitRepository:
     async def get_by_patient_id(
         self,
         patient_id: int,
+        limit: int,
+        offset: int,
     ) -> list[dict]:
         main_treatment = aliased(TreatmentModel)
         additional_treatment_1 = aliased(TreatmentModel)
@@ -126,6 +128,8 @@ class VisitRepository:
             .order_by(
                 AppointmentModel.date_time.desc(),
             )
+            .limit(limit)
+            .offset(offset)
         )
 
         result = await self.session.execute(statement)
@@ -134,6 +138,27 @@ class VisitRepository:
             dict(row._mapping)
             for row in result.all()
         ]
+
+    async def get_total_by_patient_id(
+        self,
+        patient_id: int,
+    ) -> int:
+        statement = (
+            select(
+                func.count(VisitModel.id),
+            )
+            .join(
+                AppointmentModel,
+                VisitModel.appointment_id == AppointmentModel.id,
+            )
+            .where(
+                AppointmentModel.patient_id == patient_id,
+            )
+        )
+
+        result = await self.session.execute(statement)
+
+        return result.scalar_one()
 
     def update(
         self,

@@ -342,9 +342,10 @@ class DoctorService:
             )
         )
 
-        workload = (
-                           daily_appointments_count / 20
-                   ) * 100
+        workload = min(
+            (daily_appointments_count / 10) * 100,
+            100,
+        )
 
         avatar_url = doctor.avatar_url
         if avatar_url and storage:

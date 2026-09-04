@@ -28,7 +28,7 @@ from schemas.appointments import (
 
 CLINIC_TIMEZONE = ZoneInfo("Europe/Kyiv")
 WORKDAY_START = time(hour=8, minute=0)
-WORKDAY_END = time(hour=18, minute=0)
+WORKDAY_END = time(hour=21, minute=0)
 
 SLOT_STEP_MINUTES = 30
 DASHBOARD_SLOT_DURATION_MINUTES = 30
@@ -91,6 +91,17 @@ class AppointmentService:
 
         if doctor_busy:
             raise ValueError("Doctor already has an appointment during this time.")
+
+        patient_busy = await self.appointments.is_patient_busy(
+            patient_id=appointment_data.patient_id,
+            date_time=appointment_date_time,
+            duration=appointment_data.duration,
+        )
+
+        if patient_busy:
+            raise ValueError(
+                "Patient already has an appointment during this time."
+            )
 
         try:
             appointment = self.appointments.add(
@@ -431,6 +442,18 @@ class AppointmentService:
                 if doctor_busy:
                     raise ValueError(
                         "Doctor already has an appointment during this time."
+                    )
+
+                patient_busy = await self.appointments.is_patient_busy(
+                    patient_id=new_patient_id,
+                    date_time=new_date_time,
+                    duration=new_duration,
+                    exclude_appointment_id=appointment.id,
+                )
+
+                if patient_busy:
+                    raise ValueError(
+                        "Patient already has an appointment during this time."
                     )
 
         try:
