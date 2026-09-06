@@ -82,6 +82,8 @@ class AuthService:
             await self.session.refresh(user)
         except SQLAlchemyError as error:
             await self.session.rollback()
+            import logging, traceback
+            logging.error("USER CREATE FAILED: %s", traceback.format_exc())
             raise DatabaseWriteError(
                 "An error occurred during user creation."
             ) from error
