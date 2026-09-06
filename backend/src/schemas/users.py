@@ -89,6 +89,16 @@ class PasswordResetRequestSchema(BaseModel):
 class PasswordResetCompleteRequestSchema(BaseEmailPasswordSchema):
     token: str = Field(..., description="Password reset token from email.")
 
+    model_config = ConfigDict(
+        json_schema_extra={
+            "example": {
+                "email": "doctor@example.com",
+                "password": "StrongPassword123!",
+                "token": "example-reset-token",
+            }
+        }
+    )
+
 
 class UserLoginRequestSchema(BaseEmailPasswordSchema):
     pass
