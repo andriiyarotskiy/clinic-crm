@@ -82,10 +82,6 @@ class AuthService:
             await self.session.refresh(user)
         except SQLAlchemyError as error:
             await self.session.rollback()
-            import traceback
-            print("=== USER CREATE FAILED ===", flush=True)
-            print(traceback.format_exc(), flush=True)
-            print("=== END ===", flush=True)
             raise DatabaseWriteError(
                 "An error occurred during user creation."
             ) from error
@@ -95,12 +91,7 @@ class AuthService:
             f"?email={user.email}"
             f"&token={activation_token.token}"
         )
-        try:
-            await self.email_sender.send_activation_email(user.email, activation_link)
-        except Exception:
-            import logging, traceback
-            logging.error("EMAIL SEND FAILED: %s", traceback.format_exc())
-            raise
+        await self.email_sender.send_activation_email(user.email, activation_link)
         return user
 
     async def activate_account(self, email: str, token: str) -> str:
