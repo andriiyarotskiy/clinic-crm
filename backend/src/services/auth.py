@@ -91,7 +91,12 @@ class AuthService:
             f"?email={user.email}"
             f"&token={activation_token.token}"
         )
-        await self.email_sender.send_activation_email(user.email, activation_link)
+        try:
+            await self.email_sender.send_activation_email(user.email, activation_link)
+        except Exception:
+            import logging, traceback
+            logging.error("EMAIL SEND FAILED: %s", traceback.format_exc())
+            raise
         return user
 
     async def activate_account(self, email: str, token: str) -> str:
