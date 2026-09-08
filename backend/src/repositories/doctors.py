@@ -168,14 +168,74 @@ class DoctorRepository:
         return statement
 
     def _apply_sorting(
-        self, statement: Select, sort_by: str, sort_order: str
+            self,
+            statement: Select,
+            sort_by: str,
+            sort_order: str,
     ) -> Select:
+        if sort_by == "workload":
+            now_local = datetime.now(
+                CLINIC_TIMEZONE,
+            )
+
+            local_day_start = datetime.combine(
+                now_local.date(),
+                WORKDAY_START,
+                tzinfo=CLINIC_TIMEZONE,
+            )
+
+            local_day_end = datetime.combine(
+                now_local.date(),
+                WORKDAY_END,
+                tzinfo=CLINIC_TIMEZONE,
+            )
+
+            day_start_utc = local_day_start.astimezone(
+                timezone.utc,
+            )
+
+            day_end_utc = local_day_end.astimezone(
+                timezone.utc,
+            )
+
+            workload_count = (
+                select(
+                    func.count(AppointmentModel.id),
+                )
+                .where(
+                    AppointmentModel.doctor_id == DoctorModel.id,
+                    AppointmentModel.date_time >= day_start_utc,
+                    AppointmentModel.date_time < day_end_utc,
+                    AppointmentModel.status != AppointmentStatusEnum.CANCELLED,
+                )
+                .correlate(DoctorModel)
+                .scalar_subquery()
+            )
+
+            direction = desc if sort_order == "desc" else asc
+
+            return statement.order_by(
+                direction(workload_count),
+                asc(UserModel.last_name),
+                asc(UserModel.first_name),
+            )
+
         sort_map = {
             "name": UserModel.last_name,
             "specialization": DoctorModel.specialization,
             "years_experience": DoctorModel.years_experience,
             "created_at": DoctorModel.created_at,
         }
-        column = sort_map.get(sort_by, UserModel.last_name)
+
+        column = sort_map.get(
+            sort_by,
+            UserModel.last_name,
+        )
+
         direction = desc if sort_order == "desc" else asc
-        return statement.order_by(direction(column), asc(UserModel.first_name))
+
+        return statement.order_by(
+            direction(column),
+            asc(UserModel.first_name),
+        )
+
