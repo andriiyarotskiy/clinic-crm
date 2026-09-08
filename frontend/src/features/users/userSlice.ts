@@ -32,7 +32,9 @@ const userSlice = createSlice({
         state.loading = false;
       })
       .addCase(searchUsersThunk.pending, (state) => {
+        
         state.loading = true;
+        state.users = [];
         state.error = null;
       })
       .addCase(searchUsersThunk.fulfilled, (state, action) => {
@@ -40,7 +42,9 @@ const userSlice = createSlice({
         state.loading = false;
       })
       .addCase(searchUsersThunk.rejected, (state, action) => {
+        
         state.loading = false;
+        state.users = [];
         state.error = action.payload as string;
       });
   },

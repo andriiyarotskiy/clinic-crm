@@ -1,5 +1,8 @@
 
 export const formValidation = {
+   requireField: {
+    required: "required field",
+  },
   email: {
     required: "email is required",
     pattern: {
@@ -20,7 +23,7 @@ export const formValidation = {
   phoneNumber: {
     required: "Phone number is required",
     pattern: {
-      value: /^\+?[0-9]{10,15}$/,
+      value: /^\+[0-9]{10,15}$/,
       message: "Enter a valid phone number",
     },
   },

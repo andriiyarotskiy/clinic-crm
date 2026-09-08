@@ -45,7 +45,7 @@ useEffect(() => {
   
   return (<>
     
-    <div className=" flex flex-col bg-[#FFFFFF] w-full h-[389px] rounded-[8px] px-[24px] py-[16px]">
+    <div className=" flex flex-col border border-[#E5E7EB] bg-[#FFFFFF] w-full h-[389px] rounded-[8px] px-[24px] py-[16px]">
      
       <div className="mb-[24px]">
         <h1 className="text-[14px] text-[#6B7280] font-semibold">AVALIBLE TIME SLOTS</h1>
@@ -133,7 +133,12 @@ useEffect(() => {
       </div>
      
       
-      {loading ? <Loader /> : (<div className="grid grid-cols-7 gap-2 mb-[85px]">
+      {(<div className="relative grid grid-cols-7 gap-2 mb-[38px]">
+        {loading && (
+                    <div className="absolute inset-0 z-10">
+                      <Loader />
+                    </div>
+                  )}
        {availableTime?.length > 0 ? (
   availableTime.map((slot) => (
     <ButtonPage

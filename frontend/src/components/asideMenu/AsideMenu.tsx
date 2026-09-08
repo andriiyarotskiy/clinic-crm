@@ -30,7 +30,7 @@ export const AsideMenu: React.FC<Props> = ({  title,
           w-[633px]
           h-screen
           bg-[#ffff]
-          p-[35px] 
+          px-[40px] 
            z-[101]
         "
       >

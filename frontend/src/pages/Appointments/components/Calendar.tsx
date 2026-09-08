@@ -173,7 +173,7 @@ function CustomCalendarHeader(
     currentMonth.add(1, "month");
 
   return (
-    <div className="mb-[8px] flex h-[36px] w-full items-center justify-between">
+    <div className="mb-[16px] flex h-[36px] w-full items-center justify-between">
       <button
         type="button"
         onClick={() =>
@@ -470,7 +470,7 @@ export default function Calendar({
         =================================================== */
 
         <div
-          className={`flex h-[389px] w-[348px] rounded-[8px] border bg-white p-[24px] shadow-sm ${
+          className={`flex h-[389px] w-[348px] rounded-[8px] border bg-white p-[20px] shadow-sm ${
             selectedDate
               ? "border-gray-200"
               : "border-red-500"

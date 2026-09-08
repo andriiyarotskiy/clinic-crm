@@ -2,7 +2,7 @@ import { RiToothLine } from "react-icons/ri";
 
 export const Loader = () => {
   return (
-    <div className=" w-full h-full flex items-center justify-center">
+    <div className=" w-full h-full flex items-center justify-center bg-amber-50">
       <div className="relative h-[30px] w-[30px]">
         <div className="absolute inset-0 animate-spin rounded-full border-[3px] border-gray-300 border-t-blue-600" />
 

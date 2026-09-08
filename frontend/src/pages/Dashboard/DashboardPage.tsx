@@ -33,14 +33,14 @@ import { getVisitByAppointmentIdThunk } from "@/features/visits/thunks/getVisits
 export const DashboardPage = () => {
   
   const {selectedAppointment}=useAppSelector(state=>state.appointment)
-  const userData = useAppSelector((state) => state.auth.user);
-   const access = getAccess(userData);
+  const{user,loading} = useAppSelector((state) => state.auth);
+   const access = getAccess(user);
   const cards = useAppSelector((state) => state.statistic.statistics?.cards);
-  console.log("CardStatistics",cards)
+  
   const revenue = useAppSelector(
     (state) => state.statistic.statistics?.weeklyRevenue,
   );
-  console.log("revenueeeeee", revenue)
+ 
   const roundedDiagram = useAppSelector(
     (state) => state.statistic.statistics?.appointmentOutcomes,
   );
@@ -117,9 +117,9 @@ const handleCreateVisit = async () => {
       <div className="flex justify-between items-center  mb-[16px] h-[57px]">
         <PageTitle
       text={
-  userData?.role === "doctor"
-    ? `Hello, Dr. ${userData.firstName}!`
-    : `Hello, ${userData?.firstName}!`
+  user?.role === "doctor"
+    ? `Hello, Dr. ${user.firstName}!`
+    : `Hello, ${user?.firstName}!`
 }
           description={nowTime}
         />
@@ -157,6 +157,7 @@ const handleCreateVisit = async () => {
               <ButtonPage
                 form="user-create"
                 type="submit"
+                disabled={loading}
                 className={buttonStyles.formSubmit}
               >
                 Send an invitation
@@ -195,9 +196,9 @@ const handleCreateVisit = async () => {
           />
         )}
       </div>}</>
-      <div className="w-full min-h-[380px] mt-[8px] p-[16px] rounded-[8px] bg-[#FFFFFF] ">
+      <div className="w-full min-h-[380px] mt-[8px] p-[16px] rounded-[8px] bg-[#FFFFFF] border border-[#E5E7EB] ">
         <div className="flex justify-between mb-[16px]">
-          <span className="text-[14px] font-medium text-[#374151]">
+          <span className="text-[14px] font-semibold text-[#374151]">
             APPOINTMENTS TODAY
           </span>
         {access?.canViewAllAppointments &&  <span
@@ -216,7 +217,7 @@ const handleCreateVisit = async () => {
           description={'Starting the visit begins the timer and logs the encounter.'}
           modalClassName="w-[439px] h-[356px]" />
         }
-        <Table>
+        <Table >
           <thead>
             <tr className="h-[40px] bg-[#F3F4F6]">
               <Th>ID</Th>
@@ -258,9 +259,9 @@ const handleCreateVisit = async () => {
                   }
                 </Td>
 
-                <Td className="font-[Inter]  text-[#1F2937] font-semibold">{`${appointment.treatment}`}</Td>
+                <Td className="font-[Inter]   font-normal">{`${appointment.treatment}`}</Td>
 
-                <Td>{`Dr. ${appointment.doctorFirstName} ${appointment.doctorLastName}`}</Td>
+                <Td className="font-normal">{`Dr. ${appointment.doctorFirstName} ${appointment.doctorLastName}`}</Td>
 
                 <Td>
                   {statusOptions.map(

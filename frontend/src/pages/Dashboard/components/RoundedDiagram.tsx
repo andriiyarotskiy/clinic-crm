@@ -35,7 +35,7 @@ const cancelledEnd = cancelledStart + cancelledPercent * 3.6;
           {/* ================= APPOINTMENTS OUTCOMES ================= */}
 
           <section className="h-[352px] py-[16px] px-[24px] rounded-lg border border-gray-200 bg-white p-5">
-            <h2 className="text-[13px] font-semibold text-gray-600">
+            <h2 className="text-[13px] font-semibold text-[#374151]">
               APPOINTMENTS OUTCOMES
             </h2>
 

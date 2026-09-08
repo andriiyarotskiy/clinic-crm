@@ -33,6 +33,7 @@ import { buttonStyles } from "@/shared/styles/formButtonStyles";
 import { EmptyState } from "@/components/emptyState/EmptyState";
 import { dateOptions } from "@/features/doctors/model/dataRange";
 import { useNavigate } from "react-router-dom";
+import { Loader } from "@/components/loader/Loader";
 
 
 type ViewMode = "list" | "calendar";
@@ -43,7 +44,7 @@ export const AppointmentsPage = () => {
   const [viewMode, setViewMode] = useState<ViewMode>("list");
 const  navigate = useNavigate()
   const dispatch = useAppDispatch();
-  const { appointments, selectedAppointment } = useAppSelector(
+  const { appointments, selectedAppointment,appointmentsLoading } = useAppSelector(
     (state) => state.appointment,
   );
   const {
@@ -196,7 +197,11 @@ const  navigate = useNavigate()
           
  
 
-            <div className="w-full min-h-[380px] p-[16px] rounded-[8px] bg-[#FFFFFF] ">
+        <div className="relative w-full min-h-[380px] p-[16px] rounded-[8px] bg-[#FFFFFF] ">
+           {appointmentsLoading && (
+                      <div className="absolute inset-0 z-10">
+                        <Loader />
+                      </div>)}
               <Table>
                 <thead>
                   <tr className="h-[40px] bg-[#F3F4F6]">

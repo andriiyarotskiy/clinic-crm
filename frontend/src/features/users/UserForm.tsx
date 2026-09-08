@@ -20,7 +20,7 @@ export const UserForm: React.FC = () => {
   const { loading } = useAppSelector((state) => state.user);
 
   const onSubmit = async (data: UserData) => {
-    console.log("UserSubmit", data);
+    
     try {
       await dispatch(createUserThunk(data)).unwrap();
       reset();
@@ -32,10 +32,13 @@ export const UserForm: React.FC = () => {
   return (
     <>
       {" "}
-      {loading ? (
+      
+      <div className="relative w-full h-full">
+          {loading && (
+      <div className="absolute inset-0 z-10">
         <Loader />
-      ) : (
-        <div className="w-full h-full">
+      </div>
+    )}
           <form
             id="user-create"
             className="flex flex-col gap-6"
@@ -109,7 +112,7 @@ export const UserForm: React.FC = () => {
           
           </form>
         </div>
-      )}
+      
     </>
   );
 };

@@ -131,10 +131,12 @@ export const DoctorsPage = () => {
 />
       </div>
 
-      {loading ? (
-        <Loader />
-      ) : (
-        <div className="w-full min-h-[380px] p-[16px] rounded-[8px] bg-[#FFFFFF] ">
+      {(
+        <div className=" relative w-full min-h-[380px] p-[16px] rounded-[8px] bg-[#FFFFFF] ">
+          {loading && (
+            <div className="absolute inset-0 z-10">
+              <Loader />
+            </div>)}
           <Table>
             <thead>
               <tr className="h-[40px] bg-[#F3F4F6]">

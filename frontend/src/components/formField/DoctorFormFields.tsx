@@ -38,8 +38,7 @@ export const DoctorFormFields: React.FC<Props> = ({ type }) => {
             type="text"
             placeholder="First, select a user."
             register={register}
-            rules={formValidation.name}
-            error={errors.firstName?.message}
+            
             readOnly={type === "create"}
           />
 
@@ -51,8 +50,7 @@ export const DoctorFormFields: React.FC<Props> = ({ type }) => {
             type="text"
             placeholder="First, select a user."
             register={register}
-            rules={formValidation.name}
-            error={errors.lastName?.message}
+            
             readOnly={type === "create"}
           />
         </div>
@@ -104,8 +102,7 @@ export const DoctorFormFields: React.FC<Props> = ({ type }) => {
           type="email"
           placeholder="example@gmail.com"
           register={register}
-          rules={formValidation.email}
-          error={errors.email?.message}
+          
         />
       </section>
 
