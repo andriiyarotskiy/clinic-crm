@@ -72,5 +72,5 @@ class DoctorListResponseSchema(BaseModel):
     page_size: int
 
 
-DoctorSortBy = Literal["name", "specialization", "years_experience", "created_at"]
+DoctorSortBy = Literal["name", "specialization", "years_experience", "created_at", "workload",]
 SortOrder = Literal["asc", "desc"]

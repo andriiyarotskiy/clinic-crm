@@ -9,6 +9,7 @@ from database.models.users import UserRoleEnum
 from exceptions import DatabaseWriteError
 from repositories.patients import PatientRepository
 from repositories.users import UserRepository
+from repositories.visits import VisitRepository
 from schemas.patients import (
     PatientCreate,
     PatientStatisticsResponse,
@@ -22,6 +23,7 @@ class PatientService:
         self.session = session
         self.patients = PatientRepository(session)
         self.users = UserRepository(session)
+        self.visits = VisitRepository(session)
 
     async def create_profile(
         self,
@@ -129,6 +131,19 @@ class PatientService:
         if patient is None:
             raise ValueError("Patient profile not found.")
 
+        visits_count = await self.visits.get_total_by_patient_id(
+            patient_id=patient_id,
+        )
+
+        completed_appointments_count = (
+            await self.patients.get_completed_appointments_count(
+                patient_id=patient_id,
+            )
+        )
+
+        patient["visits_count"] = visits_count
+        patient["completed_appointments_count"] = completed_appointments_count
+
         return patient
 
     async def update_profile(
@@ -177,8 +192,8 @@ class PatientService:
         return updated_patient
 
     async def get_patient_card_statistics(
-            self,
-            patient_id: int,
+        self,
+        patient_id: int,
     ) -> PatientCardStatisticsResponse:
         patient = await self.patients.get_by_id(patient_id)
 
@@ -191,22 +206,16 @@ class PatientService:
             )
         )
 
-        value_statistics = (
-            await self.patients.get_patient_card_value_statistics(
-                patient_id=patient_id,
-            )
+        value_statistics = await self.patients.get_patient_card_value_statistics(
+            patient_id=patient_id,
         )
 
-        no_show_statistics = (
-            await self.patients.get_patient_card_no_show_statistics(
-                patient_id=patient_id,
-            )
+        no_show_statistics = await self.patients.get_patient_card_no_show_statistics(
+            patient_id=patient_id,
         )
 
-        hygiene_statistics = (
-            await self.patients.get_patient_card_hygiene_statistics(
-                patient_id=patient_id,
-            )
+        hygiene_statistics = await self.patients.get_patient_card_hygiene_statistics(
+            patient_id=patient_id,
         )
 
         return PatientCardStatisticsResponse(

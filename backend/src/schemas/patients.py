@@ -61,6 +61,8 @@ class PatientResponse(PatientBase):
     last_name: str
     email: str
     phone_number: str | None = None
+    visits_count: int = 0
+    completed_appointments_count: int = 0
 
 
 class PatientListResponse(BaseModel):

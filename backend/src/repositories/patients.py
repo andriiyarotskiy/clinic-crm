@@ -65,6 +65,21 @@ class PatientRepository:
 
         return dict(row._mapping)
 
+    async def get_completed_appointments_count(
+        self,
+        patient_id: int,
+    ) -> int:
+        statement = select(
+            func.count(AppointmentModel.id),
+        ).where(
+            AppointmentModel.patient_id == patient_id,
+            AppointmentModel.status == AppointmentStatusEnum.COMPLETED,
+        )
+
+        result = await self.session.scalar(statement)
+
+        return result or 0
+
     async def get_by_user_id(
         self,
         user_id: int,
@@ -181,9 +196,7 @@ class PatientRepository:
 
     @staticmethod
     def _get_next_appointment_status_subquery():
-        next_appointment_subquery = (
-            PatientRepository._get_next_appointment_subquery()
-        )
+        next_appointment_subquery = PatientRepository._get_next_appointment_subquery()
 
         return (
             select(
@@ -192,10 +205,7 @@ class PatientRepository:
             )
             .join(
                 next_appointment_subquery,
-                (
-                    next_appointment_subquery.c.patient_id
-                    == AppointmentModel.patient_id
-                )
+                (next_appointment_subquery.c.patient_id == AppointmentModel.patient_id)
                 & (
                     next_appointment_subquery.c.next_appointment_date
                     == AppointmentModel.date_time
@@ -237,10 +247,7 @@ class PatientRepository:
             )
             .join(
                 latest_appointment,
-                (
-                    latest_appointment.c.patient_id
-                    == AppointmentModel.patient_id
-                )
+                (latest_appointment.c.patient_id == AppointmentModel.patient_id)
                 & (
                     latest_appointment.c.last_appointment_date
                     == AppointmentModel.date_time
@@ -274,9 +281,7 @@ class PatientRepository:
             )
         )
 
-        hygiene_treatment_ids_subquery = select(
-            TreatmentModel.id
-        ).where(
+        hygiene_treatment_ids_subquery = select(TreatmentModel.id).where(
             TreatmentModel.treatment.in_(
                 hygiene_treatments,
             )
@@ -334,18 +339,15 @@ class PatientRepository:
     ):
         if category == "new":
             statement = statement.where(
-                UserModel.registration_date
-                >= func.now() - text("INTERVAL '3 days'")
+                UserModel.registration_date >= func.now() - text("INTERVAL '3 days'")
             )
 
         elif category == "today":
             today_appointment_exists = exists(
                 select(AppointmentModel.id).where(
                     AppointmentModel.patient_id == PatientModel.id,
-                    func.date(AppointmentModel.date_time)
-                    == func.current_date(),
-                    AppointmentModel.status
-                    != AppointmentStatusEnum.CANCELLED,
+                    func.date(AppointmentModel.date_time) == func.current_date(),
+                    AppointmentModel.status != AppointmentStatusEnum.CANCELLED,
                 )
             )
 
@@ -435,15 +437,15 @@ class PatientRepository:
         return total or 0
 
     async def get_all(
-            self,
-            category: str = "all",
-            search: str | None = None,
-            doctor_id: int | None = None,
-            visit_date: date | None = None,
-            sort_by: str = "last_name",
-            sort_order: str = "asc",
-            offset: int = 0,
-            limit: int = 20,
+        self,
+        category: str = "all",
+        search: str | None = None,
+        doctor_id: int | None = None,
+        visit_date: date | None = None,
+        sort_by: str = "last_name",
+        sort_order: str = "asc",
+        offset: int = 0,
+        limit: int = 20,
     ) -> list[dict]:
         last_visit_subquery = self._get_last_visit_subquery()
         total_visits_subquery = self._get_total_visits_subquery()
@@ -544,10 +546,7 @@ class PatientRepository:
 
         result = await self.session.execute(statement)
 
-        return [
-            dict(row._mapping)
-            for row in result.all()
-        ]
+        return [dict(row._mapping) for row in result.all()]
 
     def update(
         self,
@@ -589,20 +588,16 @@ class PatientRepository:
         await self.session.delete(patient)
 
     async def get_patient_card_appointments_statistics(
-            self,
-            patient_id: int,
+        self,
+        patient_id: int,
     ) -> dict:
-        completed_visits_query = select(
-            func.count(AppointmentModel.id)
-        ).where(
+        completed_visits_query = select(func.count(AppointmentModel.id)).where(
             AppointmentModel.patient_id == patient_id,
             AppointmentModel.status == AppointmentStatusEnum.COMPLETED,
             AppointmentModel.date_time <= func.now(),
         )
 
-        next_appointment_query = select(
-            func.min(AppointmentModel.date_time)
-        ).where(
+        next_appointment_query = select(func.min(AppointmentModel.date_time)).where(
             AppointmentModel.patient_id == patient_id,
             AppointmentModel.date_time > func.now(),
             AppointmentModel.status.in_(
@@ -613,13 +608,9 @@ class PatientRepository:
             ),
         )
 
-        completed_visits = await self.session.scalar(
-            completed_visits_query
-        )
+        completed_visits = await self.session.scalar(completed_visits_query)
 
-        next_appointment = await self.session.scalar(
-            next_appointment_query
-        )
+        next_appointment = await self.session.scalar(next_appointment_query)
 
         return {
             "completed_visits": completed_visits or 0,
@@ -627,8 +618,8 @@ class PatientRepository:
         }
 
     async def get_patient_card_value_statistics(
-            self,
-            patient_id: int,
+        self,
+        patient_id: int,
     ) -> dict:
         statement = (
             select(
@@ -636,9 +627,7 @@ class PatientRepository:
                     func.sum(VisitModel.amount),
                     0,
                 ).label("patient_value"),
-                func.avg(VisitModel.amount).label(
-                    "average_visit_value"
-                ),
+                func.avg(VisitModel.amount).label("average_visit_value"),
             )
             .join(
                 AppointmentModel,
@@ -660,15 +649,18 @@ class PatientRepository:
         }
 
     async def get_patient_card_no_show_statistics(
-            self,
-            patient_id: int,
+        self,
+        patient_id: int,
     ) -> dict:
         statement = select(
-            func.count(AppointmentModel.id).filter(
+            func.count(AppointmentModel.id)
+            .filter(
                 AppointmentModel.status == AppointmentStatusEnum.NO_SHOW,
                 AppointmentModel.date_time < func.now(),
-            ).label("no_shows"),
-            func.count(AppointmentModel.id).filter(
+            )
+            .label("no_shows"),
+            func.count(AppointmentModel.id)
+            .filter(
                 AppointmentModel.status.in_(
                     [
                         AppointmentStatusEnum.COMPLETED,
@@ -676,7 +668,8 @@ class PatientRepository:
                     ]
                 ),
                 AppointmentModel.date_time <= func.now(),
-            ).label("finished_appointments"),
+            )
+            .label("finished_appointments"),
         ).where(
             AppointmentModel.patient_id == patient_id,
         )
@@ -690,9 +683,7 @@ class PatientRepository:
         no_show_rate = None
 
         if finished_appointments > 0:
-            no_show_rate = (
-                                   no_shows / finished_appointments
-                           ) * 100
+            no_show_rate = (no_shows / finished_appointments) * 100
 
         return {
             "no_shows": no_shows,
@@ -700,8 +691,8 @@ class PatientRepository:
         }
 
     async def get_patient_card_hygiene_statistics(
-            self,
-            patient_id: int,
+        self,
+        patient_id: int,
     ) -> dict:
         hygiene_treatments = [
             "Professional Cleaning",
@@ -728,9 +719,7 @@ class PatientRepository:
             )
         )
 
-        hygiene_treatment_ids_subquery = select(
-            TreatmentModel.id
-        ).where(
+        hygiene_treatment_ids_subquery = select(TreatmentModel.id).where(
             TreatmentModel.treatment.in_(
                 hygiene_treatments,
             )
@@ -791,21 +780,21 @@ class PatientRepository:
 
         months_since_hygiene_query = select(
             (
-                    func.extract(
-                        "year",
-                        func.age(
-                            func.now(),
-                            last_hygiene_visit,
-                        ),
-                    )
-                    * 12
-                    + func.extract(
-                "month",
-                func.age(
-                    func.now(),
-                    last_hygiene_visit,
-                ),
-            )
+                func.extract(
+                    "year",
+                    func.age(
+                        func.now(),
+                        last_hygiene_visit,
+                    ),
+                )
+                * 12
+                + func.extract(
+                    "month",
+                    func.age(
+                        func.now(),
+                        last_hygiene_visit,
+                    ),
+                )
             )
         )
 
