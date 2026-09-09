@@ -14,8 +14,8 @@ export const hygieneStatus:StatusHygieneOptions[] = [
     value: "no_history",
     label: "no history",
     description: "Appointment is booked and pending confirmation",
-    color: "bg-[#DBEAFE]",
-    textColor:"text-[#1E40AF]",
+    color: "bg-[#E5E7EB]",
+    textColor:"text-[#1F2937]",
     disabled: true,
   },
   {
@@ -29,8 +29,8 @@ export const hygieneStatus:StatusHygieneOptions[] = [
     value: "overdue",
     label: "overdue",
     description: "Visit is done and recorded",
-    color: "bg-[#4ADE80]",
-    textColor:"text-[#115E59]"
+    color: "bg-[#FFEDD5]",
+    textColor:"text-[#C2410C]"
   },
  
 ];

@@ -24,7 +24,7 @@ export const Header: React.FC = () => {
             <CiBellOn className=" w-[24px] h-[24px] " />
             <div className="absolute w-[8px] h-[8px] right-[12px] top-[13px] rounded-[100%] bg-[#EF4444]"></div>
           </button>
-
+<div className="h-full ml-[16px]  border-l border-[#E5E7EB]"></div>
           {user && <UserInfo user={user}/>}
         </div>
       </div>

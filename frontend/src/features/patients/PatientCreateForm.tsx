@@ -71,7 +71,7 @@ export const PatientCreateForm:React.FC = () => {
                       <Loader />
                     </div>
                   )}
-            <section className="mb-[24px]">
+            <section >
            <Search
   searchLabel="Search users"
   items={users}

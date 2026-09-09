@@ -99,7 +99,7 @@ export const BaseSelect = ({
             rounded-[8px]
             border
             bg-white
-           
+           text-[14px]
             px-[12px]
             py-[8px]
             text-left

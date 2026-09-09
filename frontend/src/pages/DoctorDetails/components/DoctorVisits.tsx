@@ -41,7 +41,7 @@ export const DoctorVisits = () => {
   }, [doctorId,appointmentsQuery, dispatch])
 
   const doctorAppointments = useAppSelector(state=>state.appointment.appointments)
-  return(<> <div className="w-full min-h-[380px] mt-[8px] p-[16px] rounded-[8px] bg-[#FFFFFF] ">
+  return(<> <div className="w-full min-h-[380px] mt-[8px] p-[16px] rounded-[8px] border border-[#E5E7EB] bg-[#FFFFFF] ">
     <div className="flex justify-between mb-[16px]">
        
       <span className="text-[14px] font-medium text-[#374151]" >PATIENTS VISITS</span>
@@ -100,7 +100,7 @@ export const DoctorVisits = () => {
                             <tr
                               key={appointment.id}
                               
-                              className=" h-[40px]  hover:bg-[#DCFCE7] transition-colors"
+                              className=" h-[40px]  hover:bg-[#F8FAFC] transition-colors"
                             >
                               <Td className="text-[#4B5563]">{`#${appointment.id}`}</Td>
         

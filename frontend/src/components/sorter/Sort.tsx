@@ -74,6 +74,7 @@ export const Sort = <T extends string>({
               border
               px-3
               text-[12px]
+              font-normal
               transition
 font-normal
               disabled:cursor-not-allowed

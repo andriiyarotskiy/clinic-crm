@@ -33,22 +33,22 @@ const yAxis = Array.from(
       <section className="h-[352px] rounded-lg border border-gray-200 bg-white py-[16px] px-[24px]">
         {/* Header */}
 
-        <h2 className="text-[13px] font-semibold text-gray-500">
+        <h2 className="text-[13px] font-semibold text-[#6B7280]">
           EXPECTED WEEKLY REVENUE
         </h2>
 
-        <div className="mt-2 flex items-center gap-4">
+        <div className="mt-2 flex  items-center gap-4">
           <span className="text-[24px] font-semibold leading-none text-gray-900">
             ₴ {total}
           </span>
 
-          {  change !== 0 && change !== null ? (<p className={`mt-3 text-[11px] font-medium ${change<0? "text-red-600":"text-green-700"}`}>
+          {  change !== 0 && change !== null ? (<span className={`  text-[11px] font-medium ${change<0? "text-red-600":"text-green-700"}`}>
         {change > 0 ? '↗ +' : '↓'}
        { `${change}% vs last week`}
-      </p>):(<p className={`mt-3 text-[11px] font-medium ${"text-green-700"}`}>
+      </span>):(<span className={` text-[11px] font-medium ${"text-green-700"}`}>
         
        { ``}
-      </p>)}
+      </span>)}
         </div>
 
         {/* Chart */}
@@ -92,7 +92,7 @@ const yAxis = Array.from(
 
                 {item.isPeakDay && item.expected < item.actual && (
                   <div
-                    className=" absolute  left-5.5 -translate-x-1/2 z-20 " 
+                    className={ `absolute  ${item.expected===0?"":"left-8 -translate-x-1/2"} z-20`  }
                     style={{
                       bottom: `${(item.actual / maxValue) * 101}%`,
                     }}
@@ -110,7 +110,7 @@ const yAxis = Array.from(
                 {item.expected > 0 && <div
                   className="relative w-[22px]  rounded-t-md  hover:border-[2px] border-amber-400  "
                   style={{
-                    height: `${(item.expected / maxValue) * 98}%`,
+                    height: `${(item.expected / maxValue) * 100}%`,
                   }}
                   onMouseEnter={() =>
                     setHoveredBar({
@@ -150,7 +150,7 @@ const yAxis = Array.from(
 
                 {/* ACTUAL BAR */}
 
-                <div
+              {item.actual>0 &&  <div
                   className={`relative w-[22px] rounded-t-md hover:border-[2px] border-[#1D4ED8] ${
                     item.day === currentDay
                       ? "bg-sky-500"
@@ -191,11 +191,11 @@ const yAxis = Array.from(
         </div>
       </div>
     )}
-</div>
+</div>}
                   {/* Day */}
 
-                <span className={`absolute -bottom-8 rounded-[8px] px-[6px] py-[3px] text-[12px] 
-                    ${item.day === currentDay?' text-[#030712] bg-[#DCFCE7]': 'text-gray-500'}`}>
+                <span className={`absolute -bottom-8 rounded-[8px] px-[6px] py-[3px] text-[14px] font-medium 
+                    ${item.day === currentDay?' text-[#0EA5E9] border border-[#0EA5E9]': 'text-[#6B7280]'}`}>
                     {item.day}
                   </span>
                 </div>

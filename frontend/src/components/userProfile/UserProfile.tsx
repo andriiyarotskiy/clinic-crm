@@ -42,9 +42,9 @@ export const UserProfile: React.FC<Props> = ({ avatar,selectedUser, type }) => {
               {selectedUser.firstName} {selectedUser.lastName}
             </h1>
 
-            <span className="rounded-md bg-teal-100 px-[7px] py-[4px] text-[12px] font-medium text-teal-700">
-              {type === "patient" ? capitalizeFirstLetter("active") :capitalizeFirstLetter( selectedUser.employmentType)}
-            </span>
+            {type === "doctor" && <span className="rounded-md bg-teal-100 px-[7px] py-[4px] text-[12px] font-medium text-teal-700">
+              capitalizeFirstLetter( selectedUser.employmentType)
+            </span>}
           </div>
 
           <div className=" flex items-center justify-between text-[14px] text-gray-500">

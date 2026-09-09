@@ -233,14 +233,14 @@ const handleCreateVisit = async () => {
             {appointmentsToday.map((appointment) => (
               <tr
                 key={appointment.id}
-                className=" h-[40px]  hover:bg-[#DCFCE7] transition-colors"
+                className=" h-[40px]  hover:bg-[#F8FAFC] transition-colors cursor-pointer"
                 onClick={() => {
                   dispatch(setSelectedAppointment(appointment))
                   
                   
                 }}
               >
-                <Td className="text-[#4B5563]">{`#${appointment.id}`}</Td>
+                <Td className="text-[#4B5563] text-[12px]">{`#${appointment.id}`}</Td>
 
                 <Td>
                   <UserContacts
@@ -268,7 +268,7 @@ const handleCreateVisit = async () => {
                     (status) =>
                       status.value === appointment.status && (
                         <span  key={`${status.value}${status.color}`}
-                          className={`text-[12px] ${status.textColor} rounded-[8px] px-[15px] py-[6px] ${status.color}`}
+                          className={`text-[12px] ${status.textColor} rounded-[16px] px-[17px] py-[6px] ${status.color}`}
                         >
                           {status.label}
                         </span>

@@ -197,7 +197,7 @@ const  navigate = useNavigate()
           
  
 
-        <div className="relative w-full min-h-[380px] p-[16px] rounded-[8px] bg-[#FFFFFF] ">
+        <div className="relative w-full min-h-[380px] p-[16px] rounded-[8px] border border-[#E5E7EB] bg-[#FFFFFF] ">
            {appointmentsLoading && (
                       <div className="absolute inset-0 z-10">
                         <Loader />
@@ -219,7 +219,7 @@ const  navigate = useNavigate()
                     <tr
                       key={appointment.id}
                       
-                      className=" h-[40px]  hover:bg-[#DCFCE7] transition-colors"
+                      className=" h-[40px]  hover:bg-[#F8FAFC] transition-colors"
                    >
                       <Td className="text-[#4B5563]">{`#${appointment.id}`}</Td>
 
@@ -253,7 +253,7 @@ const  navigate = useNavigate()
                       <Td>{statusOptions.map((status) =>
       
                         status.value === appointment.status && (
-                          <span key={`${status.value}${status.color}`} className={`text-[12px] ${status.textColor} rounded-[8px] px-[15px] py-[6px] ${status.color}`}>{status.label}</span>
+                          <span key={`${status.value}${status.color}`} className={`text-[12px] ${status.textColor}  rounded-[16px] px-[17px] py-[6px] ${status.color}`}>{status.label}</span>
                         ))}
                         </Td>
                       <Td className="relative  ">

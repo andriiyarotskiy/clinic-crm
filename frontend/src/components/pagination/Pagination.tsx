@@ -1,3 +1,4 @@
+import { GoChevronLeft, GoChevronRight } from "react-icons/go";
 type Props = {
   page: number ;
   pageSize: number;
@@ -17,7 +18,7 @@ const getPages = (): (number | "...")[] => {
   const siblingCount = 1;
   const boundaryCount = 1;
 
-  // Всі сторінки, якщо їх мало
+  
   const totalVisiblePages =
     boundaryCount * 2 + siblingCount * 2 + 3;
 
@@ -91,25 +92,26 @@ const getPages = (): (number | "...")[] => {
   return pages;
 };
   return (total !==0 &&( <div className="flex items-center justify-between">
-      <p className="text-sm text-gray-500">
+      <p className="text-[14px] font-medium text-gray-500">
         Showing {(page - 1) * pageSize + 1}-
         {Math.min(page * pageSize, total)} of {total}
       </p>
 
       <div className="flex items-center gap-2">
-        <button
+      <button
+        
           disabled={page === 1}
           onClick={() => onPageChange(page - 1)}
-          className="text-[14px] rounded-[8px] text-[#1F2937] cursor-pointer disabled:opacity-50"
+          className="flex items-center text-[14px] font-medium rounded-[8px] text-[#1F2937] cursor-pointer disabled:opacity-50"
         >
-          {"< Previous"}
+          {<GoChevronLeft className="mr-[8px]" size={16}/> }Previos
         </button>
 
         {getPages().map((item, index) =>
           item === "..." ? (
            <span
   key={`dots-${index}`}
-  className="w-[38px] h-[38px] flex items-center justify-center text-[18px] font-semibold text-gray-500 leading-none"
+  className="w-[38px] h-[38px] flex items-center justify-center text-[18px] font-medium text-[#9CA3AF] leading-none"
 >
   ...
 </span>
@@ -118,9 +120,9 @@ const getPages = (): (number | "...")[] => {
               key={item}
               disabled={page === item}
               onClick={() => onPageChange(item)}
-              className={`text-[14px] w-[38px] h-[38px] rounded-[8px] ${
+              className={`text-[14px] text-[#1F2937] w-[38px] h-[38px] rounded-[8px] ${
                 page === item
-                  ? " border   border-[#E5E7EB] text-blue-600 cursor-not-allowed"
+                  ? " border   border-[#E5E7EB]  cursor-not-allowed"
                   : "cursor-pointer"
               }`}
             >
@@ -132,9 +134,9 @@ const getPages = (): (number | "...")[] => {
         <button
           disabled={page === totalPages}
           onClick={() => onPageChange(page + 1)}
-          className="text-[14px] rounded-[8px] text-[#1F2937] cursor-pointer disabled:opacity-50"
-        >
-          {"Next >"}
+          className="flex items-center text-[14px] rounded-[8px] text-[#1F2937] cursor-pointer disabled:opacity-50"
+        > Next
+         {<GoChevronRight className="ml-[8px]" size={16}/> }
         </button>
       </div>
     </div>)

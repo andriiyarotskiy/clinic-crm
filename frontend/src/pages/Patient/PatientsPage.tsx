@@ -43,18 +43,12 @@ export const PatientsPage = () => {
     setOpenAside(prev => !prev)
   
   useEffect(() => {
-    const fetchPatient = async () => {
-      try {
-        
-        await dispatch(getAllPatientThunk(query)).unwrap()
-        await dispatch(patientManagementThunk()).unwrap()
-      } 
-      catch (e) {
-        console.log(e)
-      }
-    }
-    fetchPatient()
-  }, [dispatch, query])
+  dispatch(getAllPatientThunk(query))
+}, [dispatch, query])
+
+useEffect(() => {
+  dispatch(patientManagementThunk())
+}, [dispatch])
   const now = new Date();
   
 
@@ -115,7 +109,7 @@ export const PatientsPage = () => {
     
      <div className="flex  justify-between">
             <Filter
-        className="mb-[16px] w-[840px]"
+        className="mb-[16px] w-[600px]"
         search={query.search}
       onSearchChange={(value) =>
       dispatch(setQuery({ search: value, page: 1 }))
@@ -137,7 +131,7 @@ export const PatientsPage = () => {
     />
           </div>
    {(
-      <div className="relative w-full min-h-[380px] p-[16px] rounded-[8px] bg-[#FFFFFF] ">
+      <div className="relative w-full min-h-[380px] p-[16px] rounded-[8px] border border-[#E5E7EB] bg-[#FFFFFF] ">
          {loading && (
             <div className="absolute inset-0 z-10">
               <Loader />
@@ -162,7 +156,7 @@ export const PatientsPage = () => {
                     onClick={() => {
                       navigate(`/patients/${patient.id}`);
                     }}
-                    className=" h-[40px] cursor-pointer hover:bg-[#DCFCE7] transition-colors"
+                    className=" h-[40px] cursor-pointer hover:bg-[#F8FAFC] transition-colors"
                   >
                     <Td className="text-[#4B5563]">{`#${patient.id}`}</Td>
   
@@ -181,11 +175,11 @@ export const PatientsPage = () => {
                                                 </div>
                                                 <div className="font-medium text-[#1F2937]">
                                                   {dayjs(patient.lastVisitDate).format("HH:mm")}
-                                                </div></>) : "New Patient"
+                                                </div></>) : "No last visit"
                                               
                                             }</Td>
   
-                    <Td>{patient.treatment? patient.treatment : 'Advice'}</Td>
+                    <Td>{patient.treatment? patient.treatment : 'No treatments'}</Td>
   
                     <Td className="font-medium text-[#1F2937]">{`${patient.totalVisits} visits`}</Td>
   
@@ -193,7 +187,7 @@ export const PatientsPage = () => {
                      <Td>{hygieneStatus.map((status) =>
                           
                                             status.value ===patient.status && (
-                                              <span  key={`${status.value}${status.textColor}`} className={`text-[12px] ${status.textColor} rounded-[8px] px-[15px] py-[6px] ${status.color}`}>{capitalizeFirstLetter(status.label)}</span>
+                                              <span  key={`${status.value}${status.textColor}`} className={`text-[12px] ${status.textColor}  rounded-[16px] px-[17px] py-[6px] ${status.color}`}>{capitalizeFirstLetter(status.label)}</span>
                                             ))}
                     </Td>
                     

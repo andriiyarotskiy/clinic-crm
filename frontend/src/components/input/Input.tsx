@@ -76,7 +76,7 @@ export function Input<T extends FieldValues>({
           ${
             error
               ? "border-[#EF4444] focus:border-[#EF4444]"
-              : " border-[2px] border-[#E5E7EB] focus:border-[#2563EB]"
+              : " border-[1px] border-[#E5E7EB] focus:border-[#2563EB]"
           }
 
           ${inputClassName ?? ""}
@@ -118,6 +118,7 @@ export function Input<T extends FieldValues>({
             top-1/2
             -translate-y-1/2
             text-xl
+           
           "
         />
       )}
