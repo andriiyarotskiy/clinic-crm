@@ -168,3 +168,24 @@ async def update_visit(
         )
     except ValueError as error:
         raise_http_error(error)
+
+
+@router.delete(
+    "/{visit_id}/",
+    status_code=status.HTTP_204_NO_CONTENT,
+)
+async def delete_visit(
+    current_user: DoctorAdminOrSuperAdminDep,
+    visit_id: int = Path(
+        gt=0,
+    ),
+    db: AsyncSession = Depends(get_postgresql_db),
+) -> None:
+    service = VisitService(db)
+
+    try:
+        await service.delete(
+            visit_id=visit_id,
+        )
+    except ValueError as error:
+        raise_http_error(error)
