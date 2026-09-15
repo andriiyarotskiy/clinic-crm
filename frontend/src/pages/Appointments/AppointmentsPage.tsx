@@ -36,13 +36,16 @@ import { EmptyState } from "@/components/emptyState/EmptyState";
 import { dateOptions } from "@/features/doctors/model/dataRange";
 import { useNavigate } from "react-router-dom";
 import { Loader } from "@/components/loader/Loader";
+import { AppointmentEditForm } from "@/features/appointments/AppointmentUpdateForm";
 
 type ViewMode = "list" | "calendar";
 
 export const AppointmentsPage = () => {
   const [aside, setOpenAside] = useState(false);
+  const [editAside, setOpenEditAside] = useState(false)
   const [status, setOpenChangeStatus] = useState(false);
   const [viewMode, setViewMode] = useState<ViewMode>("list");
+  const [actionModalOpen, setActionModalOpen] = useState(false);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { appointments, selectedAppointment, appointmentsLoading } =
@@ -101,6 +104,10 @@ export const AppointmentsPage = () => {
 
   const handleAside = () => {
     setOpenAside((prev) => !prev);
+  };
+   const handleEditAside = () => {
+     setOpenEditAside((prev) => !prev);
+   dispatch(setSelectedAppointment(null))
   };
   const handleSearchChange = useCallback(
     (value: string) => {
@@ -262,32 +269,40 @@ export const AppointmentsPage = () => {
                     )}
                   </Td>
                   <Td className="relative  ">
-                    {
-                      <>
-                        <LuPencilLine
-                          className="cursor-pointer h-[16px] w-[16px]"
-                          onClick={() => {
-                            dispatch(setSelectedAppointment(appointment));
-                          }}
-                        />
-                        {selectedAppointment &&
-                          !status &&
-                          selectedAppointment.id === appointment.id && (
-                            <ActionModal
-                              detailsAppointment={() => {
-                                navigate(
-                                  `/patients/${selectedAppointment.patientId}/records`,
-                                );
-                              }}
-                              onClose={() => {
-                                dispatch(setSelectedAppointment(null));
-                              }}
-                              onEditStatus={() => setOpenChangeStatus(true)}
-                              onReschedule={() => {}}
-                            />
-                          )}{" "}
-                      </>
-                    }
+                   <>
+  <LuPencilLine
+    className={`h-[16px] w-[16px] ${
+      ["scheduled", "confirmed"].includes(appointment.status)
+        ? "cursor-pointer"
+        : "cursor-not-allowed opacity-40"
+    }`}
+    onClick={() => {
+      if (!["scheduled", "confirmed"].includes(appointment.status)) return;
+
+      dispatch(setSelectedAppointment(appointment));
+      setActionModalOpen(true);
+    }}
+  />
+
+  {selectedAppointment &&
+    actionModalOpen &&
+    !status &&
+    selectedAppointment.id === appointment.id &&
+    ["scheduled", "confirmed"].includes(selectedAppointment.status) && (
+      <ActionModal
+        detailsAppointment={() => {
+          navigate(
+            `/patients/${selectedAppointment.patientId}/records`,
+          );
+        }}
+        onClose={() => {
+          setActionModalOpen(false);
+        }}
+        onEditStatus={() => setOpenChangeStatus(true)}
+        onReschedule={() => setOpenEditAside(true)}
+      />
+    )}
+</>
                   </Td>
                 </tr>
               ))}
@@ -346,6 +361,32 @@ export const AppointmentsPage = () => {
             </>
           }
           title={"ADD APPOINTMENT"}
+          description={"Fill in the details below"}
+        />
+      )}
+        {editAside && selectedAppointment && (
+        <AsideMenu
+          handleAside={handleEditAside}
+          content={<AppointmentEditForm  handleEditAside={handleEditAside}/>}
+          footer={
+            <>
+              <ButtonPage
+                className={buttonStyles.formCancel}
+                onClick={handleEditAside}
+              >
+                <span className="text-[#172554]">Cancel</span>
+              </ButtonPage>
+
+              <ButtonPage
+                type="submit"
+                form="appointment-edit"
+                className={buttonStyles.formSubmit}
+              >
+                Update appointment
+              </ButtonPage>
+            </>
+          }
+          title={"UPDATE APPOINTMENT"}
           description={"Fill in the details below"}
         />
       )}

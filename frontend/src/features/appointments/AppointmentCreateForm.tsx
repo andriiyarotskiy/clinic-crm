@@ -80,11 +80,7 @@ export const AppointmentCreateForm: React.FC<Props> = ({
     (state) => state.appointment,
   );
 
-  /**
-   * =====================================================
-   * PATIENT → FORM
-   * =====================================================
-   */
+ 
 
   useEffect(() => {
     if (!selectedUser) {
