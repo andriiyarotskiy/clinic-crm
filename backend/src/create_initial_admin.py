@@ -1,7 +1,6 @@
-import argparse
 import asyncio
+import os
 import socket
-from getpass import getpass
 
 from sqlalchemy.exc import SQLAlchemyError
 
@@ -10,29 +9,31 @@ from database.session_postgresql import AsyncPostgresqlSessionLocal
 from repositories.users import UserRepository
 
 
-async def create_initial_admin(email: str) -> None:
-    normalized_email = email.strip().lower()
-    if not normalized_email:
-        raise ValueError("Email is required.")
+async def create_initial_admin() -> None:
+    email = os.getenv("INITIAL_ADMIN_EMAIL")
+    password = os.getenv("INITIAL_ADMIN_PASSWORD")
 
-    password = getpass("Superadmin password: ")
-    password_confirm = getpass("Confirm superadmin password: ")
+    if not email:
+        raise RuntimeError("INITIAL_ADMIN_EMAIL is not set.")
+
     if not password:
-        raise ValueError("Password cannot be empty.")
-    if password != password_confirm:
-        raise ValueError("Passwords do not match.")
+        raise RuntimeError("INITIAL_ADMIN_PASSWORD is not set.")
+
+    normalized_email = email.strip().lower()
 
     async with AsyncPostgresqlSessionLocal() as session:
         users = UserRepository(session)
+
         existing_superadmins = await users.count_users_with_role(
             UserRoleEnum.SUPERADMIN
         )
+
         if existing_superadmins:
-            raise RuntimeError(
-                "Superadmin already exists. Use superadmin role-change endpoint instead."
-            )
+            print("Superadmin already exists. Skipping.")
+            return
 
         existing_user = await users.get_by_email(normalized_email)
+
         if existing_user:
             existing_user.role = UserRoleEnum.SUPERADMIN
             existing_user.is_active = True
@@ -51,24 +52,14 @@ async def create_initial_admin(email: str) -> None:
 
         await session.commit()
 
-
-def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Create first superadmin user.")
-    parser.add_argument("--email", required=True, help="Superadmin email")
-    return parser.parse_args()
+    print("Initial superadmin user is ready.")
 
 
 def main() -> None:
-    args = parse_args()
     try:
-        asyncio.run(create_initial_admin(email=args.email))
+        asyncio.run(create_initial_admin())
     except (SQLAlchemyError, socket.gaierror) as error:
-        raise RuntimeError(
-            "Database connection failed. Check POSTGRES_HOST/POSTGRES_DB_PORT/"
-            "POSTGRES_USER/POSTGRES_PASSWORD in your .env file and make sure "
-            "the database container/service is running."
-        ) from error
-    print("Initial superadmin user is ready.")
+        raise RuntimeError("Database connection failed.") from error
 
 
 if __name__ == "__main__":
