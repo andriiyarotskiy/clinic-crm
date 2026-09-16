@@ -58,7 +58,7 @@ const doctorId = paramsDoctorId ?? access.doctorId?.toString();
       {aside && (
         <AsideMenu
           handleAside={handleAside}
-          content={<DoctorEditForm />}
+          content={<DoctorEditForm handleAside={handleAside} />}
           footer={<>
              <ButtonPage className={buttonStyles.formCancel} onClick={handleAside}>
                  <span className=" text-[#172554]">Cancel</span>

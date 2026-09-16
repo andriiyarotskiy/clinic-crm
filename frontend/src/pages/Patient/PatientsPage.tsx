@@ -61,7 +61,7 @@ useEffect(() => {
   return <>
     {aside && (<AsideMenu
       handleAside={handleAside}
-      content={<PatientCreateForm />}
+      content={<PatientCreateForm handleAside={handleAside}/>}
       footer = { <>
                <ButtonPage className={buttonStyles.formCancel} onClick={handleAside}>
                       <span className="text-[#172554]">Cancel</span>

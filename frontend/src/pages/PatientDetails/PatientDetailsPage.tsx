@@ -21,6 +21,8 @@ import { resetActiveVisits } from "@/features/visits/visitsSlice";
 import { getAccess } from "@/premissoons/getAccessPremissions";
 import { LuPencilLine } from "react-icons/lu";
 import { changeStatusAppointmentThunk } from "@/features/appointments/thunk/changeStatusAppointmentThunk";
+import { deleteVisitThunk } from "@/features/visits/thunks/deleteVisitThunk";
+import { setSelectedActiveAppointmentForVisit } from "@/features/appointments/appointmentsSlice";
 
 
 export const PatientDetailsPage = () => {
@@ -30,7 +32,7 @@ export const PatientDetailsPage = () => {
   const dispatch = useAppDispatch();
   const access = getAccess(user);
   const { loading, selectedPatient } = useAppSelector((state) => state.patient);
-  const {  isActiveVisit ,currentVisit} =
+  const {  isActiveVisit ,currentVisit,loading:visitLoading} =
     useAppSelector((state) => state.visit);
   const { patientId } = useParams();
   const navigate = useNavigate();
@@ -54,14 +56,26 @@ export const PatientDetailsPage = () => {
     }),
    ).unwrap();
     dispatch(resetActiveVisits())
-    successToast("visit will be close")
+     dispatch(setSelectedActiveAppointmentForVisit(null))
+    successToast("visit will be completed")
    }
   catch (e) {
     errorToast(e as string)
     
    }
   };
-  
+  const handleDeleteVisit = async () => {
+    if(!currentVisit){return}
+    try {
+      await dispatch(deleteVisitThunk(currentVisit.visitId)).unwrap();
+      successToast("Visit cancelled!");
+      dispatch(setSelectedActiveAppointmentForVisit(null))
+      dispatch(resetActiveVisits())
+      navigate("/dashboard")
+    } catch (e) {
+      errorToast(e as string)
+    }
+  }
   const handleRemove = async () => {
     try {
       await dispatch(removePatientThunk(Number(patientId))).unwrap();
@@ -88,7 +102,7 @@ export const PatientDetailsPage = () => {
       {aside && (
         <AsideMenu
           handleAside={handleAside}
-          content={<PatientEditForm />}
+          content={<PatientEditForm handleAside={handleAside}/>}
           footer={
             <>
               <ButtonPage
@@ -160,7 +174,17 @@ export const PatientDetailsPage = () => {
                 </div>
               )}
                 
-             {isActiveVisit && <ButtonPage
+              {isActiveVisit && (<> <div className="w-[300px] flex gap-4">
+                 <ButtonPage
+                    className={buttonStyles.removeButton}
+                    icon={<IoTrash className="mr-2 text-[#DC2626]" />}
+                  onClick={() => handleDeleteVisit()}
+                  disabled={visitLoading}
+                  >
+                    Cancell visit
+                </ButtonPage>
+                
+                <ButtonPage
                 className={buttonStyles.confirmVisits}
                 icon={<SiTicktick className="mr-2" />}
                     onClick={() => {
@@ -170,7 +194,7 @@ export const PatientDetailsPage = () => {
                     }}
               >
                 Complete visit
-              </ButtonPage>}
+              </ButtonPage> </div></>)}
             
           </section>
 

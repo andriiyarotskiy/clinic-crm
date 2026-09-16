@@ -241,7 +241,7 @@ dispatch(getAllDoctorsThunk({page: 1,
           onDateChange={handleDateChange}
           onClose={handleCalendarClose}
           error={errors.appointmentDate?.message}
-          minDate={dayjs()} // При редагуванні також не дозволяємо дати в минулому
+          minDate={dayjs()} 
         />
 
         <Select
@@ -263,7 +263,7 @@ dispatch(getAllDoctorsThunk({page: 1,
             label: time.time.slice(0, -3),
           }))}
           control={control}
-          rules={formValidation.requireField}
+          rules={formValidation.date}
           error={errors.appointmentTime?.message}
         />
       </div>

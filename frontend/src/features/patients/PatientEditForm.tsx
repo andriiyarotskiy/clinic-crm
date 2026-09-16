@@ -10,9 +10,12 @@ import { updatePatientThunk } from "./thunk/updatePatientThunk";
 
 
 
+type Props = {
+  handleAside: () => void;
+};
 
 
-export const PatientEditForm: React.FC = () => {
+export const PatientEditForm: React.FC<Props> = ({handleAside}) => {
   const methods = useForm<PatientFormData>();
   const { reset, handleSubmit } = methods;
 
@@ -55,6 +58,7 @@ export const PatientEditForm: React.FC = () => {
           Mr. {selectedPatient.firstName} {selectedPatient.lastName}
         </>,
       );
+      handleAside()
     } catch (e) {
       errorToast(e as string);
     }

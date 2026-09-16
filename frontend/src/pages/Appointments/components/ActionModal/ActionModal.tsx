@@ -35,7 +35,7 @@ export const ActionModal: React.FC<Props> = ({
     };
   }, [onClose]);
   return (
-    <div  ref={modalRef} className="absolute right-[100px] top-0  mt-2 z-50 w-[180px] h-[74px] rounded-lg border border-gray-200 bg-white shadow-lg">
+    <div  ref={modalRef} className="absolute right-full top-0 mr-2 z-50 w-[150px] h-[74px] rounded-lg border border-gray-200 bg-white shadow-lg">
       
       
 

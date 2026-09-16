@@ -17,7 +17,7 @@ type Props = {
   handleAside: () => void;
 };
 
-export const DoctorCreteForm: React.FC<Props> = () => {
+export const DoctorCreteForm: React.FC<Props> = ({handleAside}) => {
  
   const methods = useForm<DoctorFormData>();
   const { reset, setValue, handleSubmit } = methods;
@@ -89,6 +89,7 @@ if (data.phoneNumber) {
         Dr. {selectedUser.firstName} {selectedUser.lastName}
       </>,
     );
+    handleAside()
   } catch (e) {
     errorToast(e as string);
   }

@@ -180,3 +180,9 @@ class VisitRepository:
         visit.amount = amount
 
         return visit
+
+    async def delete(
+            self,
+            visit: VisitModel,
+    ) -> None:
+        await self.session.delete(visit)

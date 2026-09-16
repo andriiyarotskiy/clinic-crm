@@ -24,7 +24,7 @@ import { getAccess } from "@/premissoons/getAccessPremissions";
 import { EmptyState } from "@/components/emptyState/EmptyState";
 import { ConfirmModal } from "@/components/confirmModal/ConfirmModal";
 
-import { setSelectedAppointment } from "@/features/appointments/appointmentsSlice";
+import { setSelectedActiveAppointmentForVisit, setSelectedAppointment } from "@/features/appointments/appointmentsSlice";
 import { createVisitThunk } from "@/features/visits/thunks/createVisitThunk";
 import { errorToast, successToast } from "@/components/pushAppMessage/PushApp";
 import { getVisitByAppointmentIdThunk } from "@/features/visits/thunks/getVisitsByAppointmentsId";
@@ -34,7 +34,7 @@ import { doctorDashboardStatisticThunk } from "@/features/statistics/thunk/docto
 
 export const DashboardPage = () => {
   
-  const {selectedAppointment} = useAppSelector(state=>state.appointment)
+  const {activeAppointmentForVisit} = useAppSelector(state=>state.appointment)
   const{user,loading} = useAppSelector((state) => state.auth);
    const access = getAccess(user);
   const cards = useAppSelector((state) => state.statistic.statistics?.cards);
@@ -98,24 +98,24 @@ export const DashboardPage = () => {
   const handleAside = () => setOpenAside((prev) => !prev);
 
 const handleCreateVisit = async () => {
-  if (!selectedAppointment) return;
+  if (!activeAppointmentForVisit) return;
 
   try {
     await dispatch(
-      createVisitThunk(selectedAppointment.id)
+      createVisitThunk(activeAppointmentForVisit.id)
     ).unwrap();
-   await dispatch(getVisitByAppointmentIdThunk(selectedAppointment.id)).unwrap()
+   await dispatch(getVisitByAppointmentIdThunk(activeAppointmentForVisit.id)).unwrap()
 
     successToast(
       <>
         Visit from
         <br />
-        Mr. {selectedAppointment.patientFirstName}{" "}
-        {selectedAppointment.patientLastName} opened!
+        Mr. {activeAppointmentForVisit.patientFirstName}{" "}
+        {activeAppointmentForVisit.patientLastName} opened!
       </>
     );
 
-    navigate(`/patients/${selectedAppointment.patientId}/records`);
+    navigate(`/patients/${activeAppointmentForVisit.patientId}/records`);
   } catch (e) {
     errorToast(e as string);
   }
@@ -157,7 +157,7 @@ const handleCreateVisit = async () => {
           title={"ADD NEW USER"}
           description={"An invitation will be sent to the specified email"}
           handleAside={handleAside}
-          content={<UserForm />}
+          content={<UserForm handleAside={handleAside} />}
           footer={
             <>
               <ButtonPage
@@ -234,10 +234,10 @@ const handleCreateVisit = async () => {
           </span>}
         </div>
       
-        {selectedAppointment && <ConfirmModal
-          isOpen={selectedAppointment !== null}
+        {activeAppointmentForVisit && <ConfirmModal
+          isOpen={activeAppointmentForVisit !== null}
           title={'Start this patient’s visit?'}
-          onCancel={() => (dispatch(setSelectedAppointment(null)))}
+          onCancel={() => (dispatch(setSelectedActiveAppointmentForVisit(null)))}
           onConfirm={() => {handleCreateVisit()}}
           description={'Starting the visit begins the timer and logs the encounter.'}
           modalClassName="w-[439px] h-[356px]" />
@@ -260,7 +260,7 @@ const handleCreateVisit = async () => {
                 key={appointment.id}
                 className=" h-[40px]  hover:bg-[#F8FAFC] transition-colors cursor-pointer"
                 onClick={() => {
-                  dispatch(setSelectedAppointment(appointment))
+                  dispatch(setSelectedActiveAppointmentForVisit(appointment))
                   
                   
                 }}
