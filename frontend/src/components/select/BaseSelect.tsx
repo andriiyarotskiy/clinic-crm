@@ -117,9 +117,9 @@ export const BaseSelect = ({
     }
      ${
     error
-      ? "border-red-500"
+      ? !isOpen?"border-[#F87171]":""
       : isOpen
-        ? "border-[#2563EB] ring-2 ring-[#2563EB]"
+        ? "border-[#2563EB]"
         : "border-[#E5E7EB]"
   }
   `}

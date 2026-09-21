@@ -29,9 +29,11 @@ export const Footer: React.FC = () => {
       description="the session will be completed!"
     loading={loading}
     onConfirm={ handleLogout}
-    onCancel ={()=>setOpenModal(false)}/>
+      onCancel={() => setOpenModal(false)} />
+    
     
     <div className=" h-[48px] pl-[16px] pr-[16px] pb-16px border-t border-[#E5E7EB]  ">
+      
       <button disabled={loading} onClick={()=>setOpenModal(true)}
         className=" w-full h-full 
     flex items-center  rounded-[8px]

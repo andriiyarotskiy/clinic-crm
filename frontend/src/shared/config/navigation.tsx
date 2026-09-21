@@ -5,6 +5,7 @@ import { ROUTES } from "./routes";
 import { Stethoscope } from 'lucide-react';
 import { CiCalendar } from "react-icons/ci";
 import { LuDock } from "react-icons/lu";
+import { PiQuestionLight } from "react-icons/pi";
 export const navigation = [
   {
     title: "Dashboard",
@@ -46,5 +47,11 @@ export const navigation = [
     path: ROUTES.CALENDAR,
     icon: <CiCalendar className="h-[20px] w-[20px]"/>,
      roles:['admin','superadmin']
+  },
+  {
+    title: "About Us",
+    path: ROUTES.ABOUTUS,
+    icon: <PiQuestionLight strokeWidth={0.5} className="h-[20px] w-[20px]" />,
+    roles:['admin','superadmin','doctor','user']
   },
 ];
