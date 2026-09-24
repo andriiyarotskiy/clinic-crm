@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import dayjs, { type Dayjs } from "dayjs";
 import type { AppointmentFormData } from "@/types/appointmentFormData";
+import type { Appointment } from "@/types/appointment"; // добавьте цей тип
 
 import { Input } from "../input/Input";
 import { Select } from "../select/Select";
@@ -15,19 +16,22 @@ import { getFormAppointmentsDashboardThunk } from "@/features/appointments/thunk
 import { getFormAvailableTimeSlotsThunk } from "@/features/appointments/thunk/getFormAvailableTimeSlotsThunk";
 
 import Calendar from "@/pages/Appointments/components/Calendar";
+import { getAllDoctorsThunk } from "@/features/doctors/thunk/getAllDoctorsThunk";
 
 type Props = {
-  type: "create" | "update";
+  appointment: Appointment; 
 };
 
-export const AppointmentFormFields: React.FC<Props> = ({ type }) => {
+export const AppointmentEditFormFields: React.FC<Props> = ({ appointment }) => {
   const dispatch = useAppDispatch();
 
   const { doctors } = useAppSelector((state) => state.doctor);
 
   const { treatments } = useAppSelector((state) => state.appointment);
 
+
   
+
   const {
     availableDays,
     fullyBookedDays,
@@ -35,31 +39,42 @@ export const AppointmentFormFields: React.FC<Props> = ({ type }) => {
     calendarLoading,
   } = useAppSelector((state) => state.appointment.formCalendar);
 
-  const {
-    control,
-    setValue,
-    register,
-    watch,
-    formState: { errors },
-  } = useFormContext<AppointmentFormData>();
-
- 
-
+ const { control, reset, setValue, register, watch, formState: { errors } } =
+    useFormContext<AppointmentFormData>();
+  
   const doctorId = watch("doctorId");
-const appointmentDate = watch("appointmentDate");
-
-const [formDisplayedMonth, setFormDisplayedMonth] = useState<Dayjs>(() =>
-  appointmentDate
-    ? dayjs(appointmentDate).startOf("month")
-    : dayjs().startOf("month"),
-);
-
-
- 
-const justSelectedDateRef = useRef(false);
+  const appointmentDate = watch("appointmentDate");
 
   
+  const appointmentDayjs = dayjs(appointment.dateTime);
+ 
 
+  const [formDisplayedMonth, setFormDisplayedMonth] = useState<Dayjs>(() =>
+    appointmentDayjs.startOf("month"),
+  );
+
+
+
+  const justSelectedDateRef = useRef(false);
+
+ 
+
+useEffect(() => {
+  const appointmentDayjs = dayjs(appointment.dateTime);
+
+  reset({
+    firstName: appointment.patientFirstName,
+    lastName: appointment.patientLastName,
+    phoneNumber: appointment.patientPhoneNumber,
+    doctorId: String(appointment.doctorId),
+    treatmentId: String(appointment.treatmentId),
+    appointmentDate: appointmentDayjs.format("YYYY-MM-DD"),
+    appointmentTime: appointmentDayjs.format("HH:mm"),
+    notes: appointment.notes || "",
+  });
+}, [appointment, reset]);
+
+ 
   useEffect(() => {
     dispatch(
       getFormAppointmentsDashboardThunk({
@@ -74,7 +89,8 @@ const justSelectedDateRef = useRef(false);
     if (!doctorId || !appointmentDate) {
       return;
     }
-
+dispatch(getAllDoctorsThunk({page: 1,
+      pageSize: 100,}))
     dispatch(
       getFormAvailableTimeSlotsThunk({
         doctorId: Number(doctorId),
@@ -83,22 +99,18 @@ const justSelectedDateRef = useRef(false);
     );
   }, [dispatch, doctorId, appointmentDate]);
 
-  
-
   const handleDoctorChange = (id: string) => {
     setValue("doctorId", id, {
       shouldValidate: true,
       shouldDirty: true,
     });
 
-   
+    
     setValue("appointmentTime", "", {
       shouldValidate: true,
       shouldDirty: true,
     });
   };
-
- 
 
   const handleTreatmentChange = (value: string) => {
     setValue("treatmentId", value, {
@@ -106,8 +118,6 @@ const justSelectedDateRef = useRef(false);
       shouldDirty: true,
     });
   };
-
-  
 
   const handleDateChange = (date: string | null) => {
     justSelectedDateRef.current = date !== null;
@@ -117,7 +127,7 @@ const justSelectedDateRef = useRef(false);
       shouldDirty: true,
     });
 
-  
+    
     setValue("appointmentTime", "", {
       shouldValidate: true,
       shouldDirty: true,
@@ -132,7 +142,7 @@ const justSelectedDateRef = useRef(false);
 
     const resetMonth = appointmentDate
       ? dayjs(appointmentDate).startOf("month")
-      : dayjs().startOf("month");
+      : appointmentDayjs.startOf("month");
 
     setFormDisplayedMonth(resetMonth);
   };
@@ -150,10 +160,10 @@ const justSelectedDateRef = useRef(false);
           name="firstName"
           label="First name *"
           type="text"
-          placeholder="First, select a patient."
+          placeholder="Patient first name"
           register={register}
           rules={formValidation.name}
-          readOnly={type === "create"}
+          readOnly={true} 
         />
 
         <Input
@@ -162,10 +172,10 @@ const justSelectedDateRef = useRef(false);
           name="lastName"
           label="Last name *"
           type="text"
-          placeholder="First, select a patient."
+          placeholder="Patient last name"
           register={register}
           rules={formValidation.name}
-          readOnly={type === "create"}
+          readOnly={true} 
         />
       </div>
 
@@ -177,6 +187,7 @@ const justSelectedDateRef = useRef(false);
         placeholder="+38 (0XX) XXX-XXXX"
         register={register}
         rules={formValidation.phoneNumber}
+        readOnly={true} 
       />
 
       <p className="mb-[24px] text-xs text-[#6B7280]">
@@ -230,7 +241,7 @@ const justSelectedDateRef = useRef(false);
           onDateChange={handleDateChange}
           onClose={handleCalendarClose}
           error={errors.appointmentDate?.message}
-          minDate={dayjs()}
+          minDate={dayjs()} 
         />
 
         <Select
@@ -252,7 +263,7 @@ const justSelectedDateRef = useRef(false);
             label: time.time.slice(0, -3),
           }))}
           control={control}
-          rules={formValidation.requireField}
+          rules={formValidation.date}
           error={errors.appointmentTime?.message}
         />
       </div>

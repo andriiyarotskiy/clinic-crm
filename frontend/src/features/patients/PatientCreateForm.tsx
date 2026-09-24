@@ -14,9 +14,12 @@ import type { User } from "@/types/user";
 import { UserContacts } from "@/components/userContacts/UserContacts";
 import { Loader } from "@/components/loader/Loader";
 
+type Props = {
+  handleAside: () => void;
+};
 
 
-export const PatientCreateForm:React.FC = () => {
+export const PatientCreateForm:React.FC<Props> = ({handleAside}) => {
   
   const methods = useForm<PatientFormData>();
     const { reset, setValue, handleSubmit } = methods;
@@ -56,6 +59,7 @@ export const PatientCreateForm:React.FC = () => {
           Mr. {selectedUser.firstName} {selectedUser.lastName}
         </>,
       );
+      handleAside()
     } catch (e) {
       errorToast(e as string);
     }

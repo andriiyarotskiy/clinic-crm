@@ -20,6 +20,9 @@ import { SiTicktick } from "react-icons/si";
 import { resetActiveVisits } from "@/features/visits/visitsSlice";
 import { getAccess } from "@/premissoons/getAccessPremissions";
 import { LuPencilLine } from "react-icons/lu";
+import { changeStatusAppointmentThunk } from "@/features/appointments/thunk/changeStatusAppointmentThunk";
+import { deleteVisitThunk } from "@/features/visits/thunks/deleteVisitThunk";
+import { setSelectedActiveAppointmentForVisit } from "@/features/appointments/appointmentsSlice";
 
 
 export const PatientDetailsPage = () => {
@@ -29,11 +32,11 @@ export const PatientDetailsPage = () => {
   const dispatch = useAppDispatch();
   const access = getAccess(user);
   const { loading, selectedPatient } = useAppSelector((state) => state.patient);
-  const {  isActiveVisit } =
+  const {  isActiveVisit ,currentVisit,loading:visitLoading} =
     useAppSelector((state) => state.visit);
   const { patientId } = useParams();
   const navigate = useNavigate();
-console.log("couuuuuuuuunt",user)
+
   useEffect(() => {
     if (!patientId) return;
     dispatch(getPatientByIdThunk(Number(patientId)));
@@ -42,7 +45,37 @@ console.log("couuuuuuuuunt",user)
   }, [dispatch, patientId]);
 
   const handleAside = () => setOpenAside((prev) => !prev);
+  
+ const handleCompleteVisit = async () => {
+  if (!isActiveVisit || !currentVisit) return;
 
+  try {await dispatch(
+    changeStatusAppointmentThunk({
+      id: Number(currentVisit.appointmentId),
+      status: "completed",
+    }),
+   ).unwrap();
+    dispatch(resetActiveVisits())
+     dispatch(setSelectedActiveAppointmentForVisit(null))
+    successToast("visit will be completed")
+   }
+  catch (e) {
+    errorToast(e as string)
+    
+   }
+  };
+  const handleDeleteVisit = async () => {
+    if(!currentVisit){return}
+    try {
+      await dispatch(deleteVisitThunk(currentVisit.visitId)).unwrap();
+      successToast("Visit cancelled!");
+      dispatch(setSelectedActiveAppointmentForVisit(null))
+      dispatch(resetActiveVisits())
+      navigate("/dashboard")
+    } catch (e) {
+      errorToast(e as string)
+    }
+  }
   const handleRemove = async () => {
     try {
       await dispatch(removePatientThunk(Number(patientId))).unwrap();
@@ -69,7 +102,7 @@ console.log("couuuuuuuuunt",user)
       {aside && (
         <AsideMenu
           handleAside={handleAside}
-          content={<PatientEditForm />}
+          content={<PatientEditForm handleAside={handleAside}/>}
           footer={
             <>
               <ButtonPage
@@ -99,21 +132,29 @@ console.log("couuuuuuuuunt",user)
         <div className="rounded-xl bg-white p-[16px] shadow-sm mb-[16px]">
           <section className="mb-[16px] flex items-center justify-between">
             <div className="text-sm text-gray-500">
-              <span
-                className="cursor-pointer hover:text-blue-600"
-                onClick={() => navigate("/patients")}
-              >
-                &lt; Patient list
-              </span>
+               <span
+  className={`${
+    isActiveVisit
+      ? "cursor-not-allowed text-gray-400"
+      : "cursor-pointer hover:text-blue-600"
+  }`}
+  onClick={() => {
+    if (!isActiveVisit) {
+      navigate("/patients");
+    }
+  }}
+>
+  &lt; Patient list
+</span>
 
-              <span className="mx-2">/</span>
+<span className="mx-2">/</span>
 
-              <span className="font-medium text-gray-900">
-                {selectedPatient?.firstName} {selectedPatient?.lastName}
-              </span>
+<span className="font-medium text-gray-900">
+  {selectedPatient?.firstName} {selectedPatient?.lastName}
+</span>
             </div>
 
-              {access.canCreatePatient && (
+              {access.canCreatePatient && !isActiveVisit && (
                 <div className="w-[250px] flex gap-4">
                   <ButtonPage
                     className={buttonStyles.removeButton}
@@ -133,16 +174,27 @@ console.log("couuuuuuuuunt",user)
                 </div>
               )}
                 
-             {isActiveVisit && <ButtonPage
+              {isActiveVisit && (<> <div className="w-[300px] flex gap-4">
+                 <ButtonPage
+                    className={buttonStyles.removeButton}
+                    icon={<IoTrash className="mr-2 text-[#DC2626]" />}
+                  onClick={() => handleDeleteVisit()}
+                  disabled={visitLoading}
+                  >
+                    Cancell visit
+                </ButtonPage>
+                
+                <ButtonPage
                 className={buttonStyles.confirmVisits}
                 icon={<SiTicktick className="mr-2" />}
                     onClick={() => {
                   
-                     dispatch( resetActiveVisits())
+                     
+                      handleCompleteVisit()
                     }}
               >
                 Complete visit
-              </ButtonPage>}
+              </ButtonPage> </div></>)}
             
           </section>
 

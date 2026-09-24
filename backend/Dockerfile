@@ -34,6 +34,8 @@ RUN uv sync --frozen --no-dev
 COPY ./src /app/src
 COPY ./alembic.ini /app/alembic.ini
 COPY ./alembic /app/alembic
+COPY ./scripts /app/scripts
+COPY ./seed_data /app/seed_data
 
 # Copy commands
 COPY ./commands /commands

@@ -4,6 +4,7 @@ import type { CalendarQuery } from "@/features/appointments/model/calendarQuery"
 import { httpClient } from "@/http/httpClient"
 import type { AppointmentFormData } from "@/types/appointmentFormData";
 import { accessTokenService } from "./accessTokenService";
+import type { UpdateAppointmentPayload } from "@/features/appointments/thunk/updateAppointmentThunk";
 
 
 
@@ -99,6 +100,10 @@ getAppointments: async (query: AppointmentsQuery) => {
     is_main:query
     }
     const response = await httpClient.get('/treatments/', { params })
+    return response.data
+  },
+  updateAppointment: async (data:UpdateAppointmentPayload) => {
+    const response = await httpClient.patch(`appointments/${data.id}/`,data)
     return response.data
   }
 }

@@ -45,7 +45,7 @@ interface AppointmentsState {
 
   appointments: Appointment[];
   selectedAppointment: Appointment | null;
-
+  activeAppointmentForVisit: Appointment | null;
   page: number;
   pageSize: number;
   pages: number;
@@ -73,6 +73,7 @@ const initialState: AppointmentsState = {
 
   appointments: [],
   selectedAppointment: null,
+  activeAppointmentForVisit: null,
 
   page: 1,
   pageSize: 5,
@@ -153,6 +154,9 @@ const appointmentsSlice = createSlice({
     },
     setSelectedAppointment(state, action) {
       state.selectedAppointment = action.payload;
+    },
+    setSelectedActiveAppointmentForVisit(state, action) {
+      state.activeAppointmentForVisit = action.payload;
     },
     setDate(state, action) {
       state.calendar.selectedDate = action.payload;
@@ -308,6 +312,7 @@ export const {
   resetQuery,
   setSpecialization,
   setSelectedAppointment,
+  setSelectedActiveAppointmentForVisit,
   setDate,
   setDoctor,
   setTreatment,

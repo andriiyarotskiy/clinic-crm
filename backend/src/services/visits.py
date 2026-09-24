@@ -337,3 +337,25 @@ class VisitService:
         return await self._serialize_visit(
             visit,
         )
+
+    async def delete(
+        self,
+        visit_id: int,
+    ) -> None:
+        visit = await self.visits.get_by_id(
+            visit_id,
+        )
+
+        if visit is None:
+            raise ValueError("Visit not found.")
+
+        try:
+            await self.visits.delete(
+                visit,
+            )
+
+            await self.session.commit()
+
+        except SQLAlchemyError:
+            await self.session.rollback()
+            raise

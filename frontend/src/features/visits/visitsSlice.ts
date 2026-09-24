@@ -6,6 +6,7 @@ import { getVisits } from "./thunks/getVisitsThunk";
 import { getTreatmentsThunk } from "../appointments/thunk/getTreatments";
 import type { Treatment } from "@/types/treatment";
 import { updatePatientNoteThunk } from "./thunks/updateVisit";
+import { deleteVisitThunk } from "./thunks/deleteVisitThunk";
 
 interface VisitsState {
   visits: Visit[] | [];
@@ -91,6 +92,15 @@ const visitsSlice = createSlice({
         state.loading = false;
       })
       .addCase(updatePatientNoteThunk.rejected, (state) => {
+        state.loading = false;
+      })
+     .addCase(deleteVisitThunk.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(deleteVisitThunk.fulfilled, (state) => {
+        state.loading = false;
+      })
+      .addCase(deleteVisitThunk.rejected, (state) => {
         state.loading = false;
       });
   },

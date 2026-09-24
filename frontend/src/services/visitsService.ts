@@ -35,5 +35,8 @@ export const visitsService = {
     )
     return responce.data
   },
-  
+  deleteVisits: async (visitsId:number) => {
+    const response = await httpClient.delete(`visits/${visitsId}`)
+    return response.data
+  }
 }
