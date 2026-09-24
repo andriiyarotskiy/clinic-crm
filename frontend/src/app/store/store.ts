@@ -5,13 +5,18 @@ import userReducer from "@/features/users/userSlice"
 import doctorReducer from "@/features/doctors/doctorsSlice"
 import patientsReducer from "@/features/patients/patientsSlice"
 import appointmentsReducer from '@/features/appointments/appointmentsSlice'
+import statisticsReducer from '@/features/statistics/statisticsSlice'
+import visitsReducer from '@/features/visits/visitsSlice'
+
 const store = configureStore({
   reducer: {
 auth:authReducer,
     user: userReducer,  
     doctor: doctorReducer,
     patient: patientsReducer,
-  appointment:appointmentsReducer,
+    appointment: appointmentsReducer,
+    statistic: statisticsReducer,
+  visit:visitsReducer,
   },
 });
 

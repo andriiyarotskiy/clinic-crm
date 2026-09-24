@@ -1,7 +1,11 @@
 from fastapi import Depends
 
 from config.settings import Settings, get_settings
-from notifications import EmailSender, EmailSenderInterface
+from notifications import (
+    BrevoEmailSender,
+    EmailSender,
+    EmailSenderInterface,
+)
 from security.interfaces import JWTAuthManagerInterface
 from security.token_manager import JWTAuthManager
 from storages import S3StorageClient, S3StorageInterface
@@ -22,8 +26,21 @@ def get_jwt_auth_manager(
 def get_accounts_email_notificator(
     settings: Settings = Depends(get_settings),
 ) -> EmailSenderInterface:
-    # Use SMTP-based EmailSender configured via env vars (MailHog locally,
-    # production SMTP credentials in prod). We removed Brevo API HTTP calls.
+    if settings.EMAIL_PROVIDER == "brevo":
+        return BrevoEmailSender(
+            api_key=settings.EMAIL_API_KEY,
+            email_from=settings.EMAIL_FROM,
+            template_dir=settings.PATH_TO_EMAIL_TEMPLATES_DIR,
+            activation_email_template_name=settings.ACTIVATION_EMAIL_TEMPLATE_NAME,
+            activation_complete_email_template_name=(
+                settings.ACTIVATION_COMPLETE_EMAIL_TEMPLATE_NAME
+            ),
+            password_email_template_name=settings.PASSWORD_RESET_TEMPLATE_NAME,
+            password_complete_email_template_name=(
+                settings.PASSWORD_RESET_COMPLETE_TEMPLATE_NAME
+            ),
+        )
+
     return EmailSender(
         hostname=settings.EMAIL_HOST,
         port=settings.EMAIL_PORT,
@@ -33,9 +50,13 @@ def get_accounts_email_notificator(
         use_tls=settings.EMAIL_USE_TLS,
         template_dir=settings.PATH_TO_EMAIL_TEMPLATES_DIR,
         activation_email_template_name=settings.ACTIVATION_EMAIL_TEMPLATE_NAME,
-        activation_complete_email_template_name=settings.ACTIVATION_COMPLETE_EMAIL_TEMPLATE_NAME,
+        activation_complete_email_template_name=(
+            settings.ACTIVATION_COMPLETE_EMAIL_TEMPLATE_NAME
+        ),
         password_email_template_name=settings.PASSWORD_RESET_TEMPLATE_NAME,
-        password_complete_email_template_name=settings.PASSWORD_RESET_COMPLETE_TEMPLATE_NAME,
+        password_complete_email_template_name=(
+            settings.PASSWORD_RESET_COMPLETE_TEMPLATE_NAME
+        ),
     )
 
 

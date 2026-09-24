@@ -5,6 +5,7 @@ from fastapi import (
     Depends,
     HTTPException,
     Path,
+    Query,
     status,
 )
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -14,6 +15,7 @@ from schemas.visits import (
     VisitCreate,
     VisitResponse,
     VisitUpdate,
+    PatientClinicalNotesResponse,
 )
 from security.permissions import DoctorAdminOrSuperAdminDep
 from services.visits import VisitService
@@ -30,6 +32,7 @@ def raise_http_error(error: ValueError) -> NoReturn:
         "Visit not found.",
         "Visit not found for this appointment.",
         "Appointment not found.",
+        "Patient not found.",
         "Main appointment treatment not found.",
         "Additional treatment not found.",
     }
@@ -89,6 +92,39 @@ async def get_visit_by_appointment(
 
 
 @router.get(
+    "/by-patient/{patient_id}/clinical-notes/",
+    response_model=PatientClinicalNotesResponse,
+    status_code=status.HTTP_200_OK,
+)
+async def get_patient_clinical_notes(
+    current_user: DoctorAdminOrSuperAdminDep,
+    patient_id: int = Path(
+        gt=0,
+    ),
+    page: int = Query(
+        default=1,
+        ge=1,
+    ),
+    page_size: int = Query(
+        default=20,
+        ge=1,
+        le=100,
+    ),
+    db: AsyncSession = Depends(get_postgresql_db),
+) -> PatientClinicalNotesResponse:
+    service = VisitService(db)
+
+    try:
+        return await service.get_clinical_notes_by_patient_id(
+            patient_id=patient_id,
+            page=page,
+            page_size=page_size,
+        )
+    except ValueError as error:
+        raise_http_error(error)
+
+
+@router.get(
     "/{visit_id}/",
     response_model=VisitResponse,
     status_code=status.HTTP_200_OK,
@@ -129,6 +165,27 @@ async def update_visit(
         return await service.update(
             visit_id=visit_id,
             visit_data=visit_data,
+        )
+    except ValueError as error:
+        raise_http_error(error)
+
+
+@router.delete(
+    "/{visit_id}/",
+    status_code=status.HTTP_204_NO_CONTENT,
+)
+async def delete_visit(
+    current_user: DoctorAdminOrSuperAdminDep,
+    visit_id: int = Path(
+        gt=0,
+    ),
+    db: AsyncSession = Depends(get_postgresql_db),
+) -> None:
+    service = VisitService(db)
+
+    try:
+        await service.delete(
+            visit_id=visit_id,
         )
     except ValueError as error:
         raise_http_error(error)

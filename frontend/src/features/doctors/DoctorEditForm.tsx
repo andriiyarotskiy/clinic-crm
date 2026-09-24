@@ -11,9 +11,12 @@ import { useEffect } from "react";
 import { updateDoctorThunk } from "./thunk/updateDoctorThunk";
 
 
+type Props = {
+  handleAside: () => void;
+};
 
 
-export const DoctorEditForm: React.FC = () => {
+export const DoctorEditForm: React.FC<Props> = ({handleAside}) => {
   const methods = useForm<DoctorFormData>();
   const { reset, handleSubmit } = methods;
 
@@ -90,6 +93,7 @@ if (data.phoneNumber) {
           Dr. {selectedDoctor.firstName} {selectedDoctor.lastName}
         </>,
       );
+      handleAside()
     } catch (e) {
       errorToast(e as string);
     }

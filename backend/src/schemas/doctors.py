@@ -58,6 +58,7 @@ class DoctorResponseSchema(BaseModel):
     years_experience: int | None = None
     employment_type: DoctorEmploymentTypeEnum | None = None
     avatar_url: str | None = None
+    workload: float
     created_at: datetime
     updated_at: datetime
 
@@ -71,5 +72,5 @@ class DoctorListResponseSchema(BaseModel):
     page_size: int
 
 
-DoctorSortBy = Literal["name", "specialization", "years_experience", "created_at"]
+DoctorSortBy = Literal["name", "specialization", "years_experience", "created_at", "workload",]
 SortOrder = Literal["asc", "desc"]

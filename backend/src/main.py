@@ -8,6 +8,7 @@ from routes import (
     appointments_router,
     doctors_router,
     patients_router,
+    statistics_router,
     treatments_router,
     visits_router,
 )
@@ -43,6 +44,10 @@ app = FastAPI(
         {
             "name": "visits",
             "description": "Completed visit details and treatment totals.",
+        },
+        {
+            "name": "statistics",
+            "description": "Clinic dashboard statistics.",
         },
     ],
 )
@@ -81,6 +86,12 @@ app.include_router(
     visits_router,
     prefix="/visits",
     tags=["visits"],
+)
+
+app.include_router(
+    statistics_router,
+    prefix="/statistics",
+    tags=["statistics"],
 )
 
 origins = [

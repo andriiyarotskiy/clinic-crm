@@ -324,3 +324,6 @@ poetry.toml
 pyrightconfig.json
 
 # End of https://www.toptal.com/developers/gitignore/api/python,pycharm+all
+
+# Ignore accidental git internals files
+FETCH_HEAD

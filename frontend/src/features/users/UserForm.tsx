@@ -7,8 +7,10 @@ import { Loader } from "@/components/loader/Loader";
 import { errorToast, successToast } from "@/components/pushAppMessage/PushApp";
 import type { UserData } from "@/types/userFormData";
 
-
-export const UserForm: React.FC = () => {
+type Props = {
+  handleAside: () => void;
+}
+export const UserForm: React.FC<Props> = ({handleAside}) => {
   const {
     reset,
     register,
@@ -19,25 +21,31 @@ export const UserForm: React.FC = () => {
   const dispatch = useAppDispatch();
   const { loading } = useAppSelector((state) => state.user);
 
-  const onSubmit = async (data: UserData) => {
-    console.log("UserSubmit", data);
-    try {
-      await dispatch(createUserThunk(data)).unwrap();
-      reset();
-      successToast("User created successfully");
-    } catch (e) {
-      errorToast(e as string);
-    }
-  };
+ const onSubmit = async (data: UserData) => {
+  console.log(data);
+
+  try {
+    await dispatch(createUserThunk(data)).unwrap();
+    reset();
+    successToast("User created successfully");
+handleAside()
+  } catch (e) {
+    errorToast(e as string);
+  }
+};
   return (
     <>
       {" "}
-      {loading ? (
+      
+      <div className="relative w-full h-full">
+          {loading && (
+      <div className="absolute inset-0 z-10">
         <Loader />
-      ) : (
-        <div className="w-full h-full">
+      </div>
+    )}
           <form
-            id="user-create"
+          id="user-create"
+          
             className="flex flex-col gap-6"
             onSubmit={handleSubmit(onSubmit)}
           >
@@ -109,7 +117,7 @@ export const UserForm: React.FC = () => {
           
           </form>
         </div>
-      )}
+      
     </>
   );
 };

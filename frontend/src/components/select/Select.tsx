@@ -64,9 +64,11 @@ export const Select = <T extends FieldValues>({
       control={control}
       rules={rules}
       render={({ field }) => {
-        const selectedOption = options.find(
-          (option) => option.value === field.value
-        );
+         const selectedOption =
+          options.find((option) => option.value === field.value) ??
+          (field.value
+            ? { label: field.value, value: field.value }
+            : undefined);
 
         return (
           <div

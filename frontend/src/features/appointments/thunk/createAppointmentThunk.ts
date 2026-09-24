@@ -7,7 +7,7 @@ export const createAppointmentThunk = createAsyncThunk(
   "appointments/create",
   async (data:AppointmentFormData, thunkApi) => {
     try {
-      console.log("RESPONSE ", data)
+      
     return   await appointmentsService.createAppointments(data)
     }
     catch (e) {

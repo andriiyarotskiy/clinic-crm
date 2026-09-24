@@ -10,21 +10,21 @@ export const Header: React.FC = () => {
   console.log(user,'sdfsdf')
   return (
     <>
-      <div className="w-full  flex justify-between  h-[92px] pl-[40px] pr-[40px] pt-[24px] pb-[24px] ">
+      <div className="w-full flex  justify-between  h-[76px] px-[24px] py-[16px] ">
         <Input
           name="search"
-          // value={search}
           type="search"
           placeholder="Search patients, doctors, appointments..."
-          className="w-[400px]"
-          // onChange={(e)=>dispatch(setSearch(e.target.value))}
+          inputClassName=" h-[44px]"
+          
+         
         />
-        <div className="flex justify-between items-center">
-          <button className="relative w-[44px] h-[44px] p-[9px] ml-16px border border-solid border-[#E5E7EB] rounded-[8px]">
+        <div className="flex justify-between items-center ml-[16px]">
+          <button className="relative w-[44px] h-[44px] p-[9px]  border border-solid border-[#E5E7EB] rounded-[8px]">
             <CiBellOn className=" w-[24px] h-[24px] " />
             <div className="absolute w-[8px] h-[8px] right-[12px] top-[13px] rounded-[100%] bg-[#EF4444]"></div>
           </button>
-
+<div className="h-full ml-[16px]  border-l border-[#E5E7EB]"></div>
           {user && <UserInfo user={user}/>}
         </div>
       </div>

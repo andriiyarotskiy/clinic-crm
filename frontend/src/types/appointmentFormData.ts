@@ -4,7 +4,7 @@ export interface AppointmentFormData {
   lastName?: string;
   phoneNumber?: string;
   doctorId: number | string;
-  treatmentId: number;
+  treatmentId: number | string;
   appointmentDate: string;
   appointmentTime: string;
   duration: 30;

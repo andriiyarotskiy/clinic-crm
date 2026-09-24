@@ -11,5 +11,6 @@ export type Doctor = {
   "employmentType": string,
   "avatarUrl"?: string,
   "workingDays"?: string[];
+  workload: number;
 
 }

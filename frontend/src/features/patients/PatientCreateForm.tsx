@@ -11,9 +11,15 @@ import { createPatientThunk } from "./thunk/createPatientThunk";
 import { PatientsFormFields } from "@/components/formField/PatientFormField";
 import { getAllPatientThunk } from "./thunk/getAllPacientThunk";
 import type { User } from "@/types/user";
+import { UserContacts } from "@/components/userContacts/UserContacts";
+import { Loader } from "@/components/loader/Loader";
+
+type Props = {
+  handleAside: () => void;
+};
 
 
-export const PatientCreateForm:React.FC = () => {
+export const PatientCreateForm:React.FC<Props> = ({handleAside}) => {
   
   const methods = useForm<PatientFormData>();
     const { reset, setValue, handleSubmit } = methods;
@@ -53,6 +59,7 @@ export const PatientCreateForm:React.FC = () => {
           Mr. {selectedUser.firstName} {selectedUser.lastName}
         </>,
       );
+      handleAside()
     } catch (e) {
       errorToast(e as string);
     }
@@ -61,33 +68,35 @@ export const PatientCreateForm:React.FC = () => {
     return (
       <>
         {" "}
-        {/* {loading? (
-          <Loader />
-        ) : ( */}
-            <div className="w-full">
-              <section>
-  
-              </section>
-            <section className="mb-[24px]">
-            <Search
-              searchLabel="Search users"
-                items={users}
-                placeholder="Find an activated user"
-                loading={loading}
-                onSearch={(value) => dispatch(searchUsersThunk(value))}
-                selectedUser={selectedUser}
-                onSelect={setSelectedUser}
-                getKey={(user) => user.id}
-                getValue={(user) => `${user.firstName} ${user.lastName}`}
-                renderItem={(user) => (
-                  <>
-                    <div>
-                      {user.firstName} {user.lastName}
+        
+            <div className="relative w-full">
+                 {loading && (
+                    <div className="absolute inset-0 z-10">
+                      <Loader />
                     </div>
-                    <div>{user.email}</div>
-                  </>
-                )}
-              />
+                  )}
+            <section >
+           <Search
+  searchLabel="Search users"
+  items={users}
+  placeholder="Find an activated user"
+  loading={loading}
+  onSearch={(value) => {
+    dispatch(searchUsersThunk(value));
+  }}
+  selectedUser={selectedUser}
+  onSelect={setSelectedUser}
+  getKey={(user) => user.id}
+ 
+  renderItem={(user) => (
+    <UserContacts
+      avatar="user.png"
+      firstName={user.firstName}
+      lastName={user.lastName}
+      phone={user.email}
+    />
+  )}
+/>
             </section>
            
               <FormProvider {...methods}>
@@ -105,7 +114,7 @@ export const PatientCreateForm:React.FC = () => {
               
             </FormProvider>
           </div>
-        {/* )}{" "} */}
+        
       </>
     );
   };

@@ -336,6 +336,17 @@ class DoctorService:
         doctor: DoctorModel,
         storage: S3StorageInterface | None = None,
     ) -> dict:
+        daily_appointments_count = (
+            await self.doctors.get_daily_appointments_count(
+                doctor_id=doctor.id,
+            )
+        )
+
+        workload = min(
+            (daily_appointments_count / 10) * 100,
+            100,
+        )
+
         avatar_url = doctor.avatar_url
         if avatar_url and storage:
             avatar_url = await storage.generate_presigned_url(avatar_url)
@@ -354,4 +365,5 @@ class DoctorService:
             "avatar_url": avatar_url,
             "created_at": doctor.created_at,
             "updated_at": doctor.updated_at,
+            "workload": workload,
         }

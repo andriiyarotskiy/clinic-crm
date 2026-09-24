@@ -58,6 +58,7 @@ export function CheckboxGroup<
               <div
                 className={`
                   flex
+                  text-[15px] font-medium 
                   h-[44px]
                   w-[55px]
                   items-center

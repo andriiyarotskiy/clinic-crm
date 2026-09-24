@@ -1,14 +1,8 @@
-type StatusOption = {
-  label: string;
-  value: string;
-  description: string;
-  color: string;
-  disabled?: boolean;
-  icon?: React.ReactNode;
-};
+import type { StatusOptions } from "@/features/appointments/model/statusAppointments";
+
 
 type Props = {
-  options: StatusOption[];
+  options: StatusOptions[];
   value: string| null;
   onChange: (value: string) => void;
 };
@@ -18,6 +12,7 @@ export const AppointmentStatusSelector: React.FC<Props> = ({
   value,
   onChange,
 }) => {
+  console.log(options)
   return (
     <div className=" mb-[16px] rounded-lg border border-gray-200 overflow-hidden">
       {options.map((option) => (
@@ -76,7 +71,7 @@ export const AppointmentStatusSelector: React.FC<Props> = ({
                 </span>
 
                 <span
-                  className={`h-2.5 w-2.5 rounded-full ${option.color}`}
+                  className={`h-2.5 w-2.5 rounded-full   ${option.dotColor}`}
                 />
               </div>
 

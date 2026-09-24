@@ -6,7 +6,7 @@ from config import (
     get_jwt_auth_manager,
     get_settings,
 )
-from database import AsyncSessionDep
+from database import AsyncSessionDep, UserRoleEnum
 from exceptions import AuthServiceError, BaseSecurityError
 from notifications import EmailSenderInterface
 from schemas import (
@@ -231,8 +231,28 @@ async def update_user_role(
     status_code=status.HTTP_200_OK,
     summary="Get current user",
 )
-async def get_current_user_profile(user: CurrentUserDep) -> CurrentUserResponseSchema:
-    return CurrentUserResponseSchema.model_validate(user)
+async def get_current_user_profile(
+    user: CurrentUserDep,
+) -> CurrentUserResponseSchema:
+    doctor_id = None
+
+    if (
+        user.role == UserRoleEnum.DOCTOR
+        and user.doctor_profile is not None
+    ):
+        doctor_id = user.doctor_profile.id
+
+    return CurrentUserResponseSchema(
+        id=user.id,
+        role=user.role,
+        doctor_id=doctor_id,
+        first_name=user.first_name,
+        last_name=user.last_name,
+        phone_number=user.phone_number,
+        email=user.email,
+        registration_date=user.registration_date,
+        source=user.source,
+    )
 
 
 @router.get(

@@ -32,6 +32,8 @@ class Settings(BaseSettings):
     PASSWORD_RESET_TEMPLATE_NAME: str = "password_reset_request.html"
     PASSWORD_RESET_COMPLETE_TEMPLATE_NAME: str = "password_reset_complete.html"
 
+    EMAIL_PROVIDER: str = "smtp"
+
     EMAIL_HOST: str = "mailhog"
     EMAIL_PORT: int = 1025
     EMAIL_HOST_USER: str = "clinic@mail.com"

@@ -22,7 +22,7 @@ type Props = {
   firstSelectOptions?: FilterOption[];
   secondSelectOptions?: FilterOption[];
 
-  onSearchChange: (value: string) => void;
+  onSearchChange?: (value: string) => void;
   onFirstSelectChange?: (value: string) => void;
   onSecondSelectChange?: (value: string) => void;
 };
@@ -46,12 +46,13 @@ export const Filter: React.FC<Props> = ({
   const debouncedSearch = useDebounce(value, 500);
 
   useEffect(() => {
+    if(!onSearchChange){return}
     onSearchChange(debouncedSearch?? "");
   }, [debouncedSearch]);
 
   return (
     <div className ={`flex items-center gap-2  ${className ?? ""}`} >
-      <Input 
+      {onSearchChange && <Input 
          inputClassName="h-[36px]"
         name="124"
         type="search"
@@ -59,7 +60,7 @@ export const Filter: React.FC<Props> = ({
         placeholder="Search ..."
         onChange={(e) => setValue(e.target.value)}
         className="w-full h-[36px] rounded-[8px]  bg-white color-[#6B7280] "
-      />
+      />}
       {firstSelectOptions && (
         <BaseSelect
           name="firstSelect"

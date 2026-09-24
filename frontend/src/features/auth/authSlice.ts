@@ -41,6 +41,7 @@ const authSlice = createSlice({
         state.isAuth = true;
        
         state.loading = false;
+        console.log("doctors admin",action.payload)
       })
       .addCase(loginThunk.rejected, (state) => {
         state.user = null;

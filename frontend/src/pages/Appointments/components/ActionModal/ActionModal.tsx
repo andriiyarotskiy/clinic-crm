@@ -2,17 +2,19 @@ import { ButtonPage } from "@/components/button/ButtonsPage";
 import { useEffect, useRef } from "react";
 import { HiOutlinePencil } from "react-icons/hi2";
 import { TbRefresh } from "react-icons/tb";
-
+import { GiMedicines } from "react-icons/gi";
 type Props = {
   onEditStatus: () => void;
   onReschedule: () => void;
   onClose: () => void;
+   detailsAppointment: () => void;
 };
 
 export const ActionModal: React.FC<Props> = ({
   onClose,
   onEditStatus,
   onReschedule,
+  detailsAppointment,
 }) => {
     const modalRef = useRef<HTMLDivElement>(null);
 
@@ -33,7 +35,7 @@ export const ActionModal: React.FC<Props> = ({
     };
   }, [onClose]);
   return (
-    <div  ref={modalRef} className="absolute right-[100px] top-0  mt-2 z-50 w-[140px] h-[60px] rounded-lg border border-gray-200 bg-white shadow-lg">
+    <div  ref={modalRef} className="absolute right-full top-0 mr-2 z-50 w-[150px] h-[74px] rounded-lg border border-gray-200 bg-white shadow-lg">
       
       
 
@@ -51,6 +53,13 @@ export const ActionModal: React.FC<Props> = ({
       >
         <TbRefresh className="text-lg" />
         Reschedule
+      </ButtonPage>
+      <ButtonPage
+        onClick={detailsAppointment}
+        className="flex w-full h-[25px] items-center border-0 gap-3 px-4 py-3 text-sm hover:bg-gray-100 cursor-pointer"
+      >
+        <GiMedicines className="text-lg" />
+        Create Visits
       </ButtonPage>
     </div>
   );

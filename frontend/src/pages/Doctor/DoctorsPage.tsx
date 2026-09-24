@@ -1,34 +1,47 @@
 import { useAppDispatch, useAppSelector } from "@/app/store/hook";
 import { AsideMenu } from "@/components/asideMenu/AsideMenu";
 import { ButtonPage } from "@/components/button/ButtonsPage";
+import { EmptyState } from "@/components/emptyState/EmptyState";
 import { Filter } from "@/components/filter/Filter";
 import { Loader } from "@/components/loader/Loader";
 import { PageTitle } from "@/components/pageTitle/PageTitle";
 import { Pagination } from "@/components/pagination/Pagination";
+import { Sort } from "@/components/sorter/Sort";
 
 import { Table } from "@/components/table/Table";
 import { Td } from "@/components/table/Td";
 import { Th } from "@/components/table/Th";
 import { UserContacts } from "@/components/userContacts/UserContacts";
 import { DoctorCreteForm } from "@/features/doctors/DoctorCreateForm";
-import { setQuery } from "@/features/doctors/doctorsSlice";
+import { resetQuery, setQuery } from "@/features/doctors/doctorsSlice";
 import { employmentTypes } from "@/features/doctors/model/employmentTypes";
+import { doctorSortButtons } from "@/features/doctors/model/sortDoctorTypes";
+
 
 import { specializations } from "@/features/doctors/model/specialties";
 import { getAllDoctorsThunk } from "@/features/doctors/thunk/getAllDoctorsThunk";
+import { capitalizeFirstLetter } from "@/shared/functions/capitalizwFirstLetter";
 import { buttonStyles } from "@/shared/styles/formButtonStyles";
 import { useEffect, useState } from "react";
 import { BiPlus } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 
 export const DoctorsPage = () => {
-  const [aside, setOpenAside] = useState(false);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const [aside, setOpenAside] = useState(false);  
   const { doctors, total, loading, query } = useAppSelector(
     (state) => state.doctor
   );
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
+  
 
+
+  useEffect(() => {
+  return () => {
+    dispatch(resetQuery());
+  };
+}, [dispatch]);
+  
   useEffect(() => {
     const fetchDoctors = async () => {
       try {
@@ -63,7 +76,7 @@ export const DoctorsPage = () => {
         />
       )}
 
-      <div className="flex justify-between items-center  mb-[26px] h-[57px]">
+      <div className="flex justify-between items-center  mb-[16px] h-[57px]">
         <PageTitle
           text={`All doctors`}
           description={`showing ${total} doctors`}
@@ -79,15 +92,15 @@ export const DoctorsPage = () => {
         </div>
       </div>
 
-      <div className="flex  justify-between">
+      <div className="flex items-center justify-between mb-[16px]">
         <Filter
-          className="mb-[24px]"
+          
            search={query.search}
   firstSelect={query.specialization}
   secondSelect={query.employmentType}
 
-  firstPlaceholder="All specializations"
-  secondPlaceholder="Employment"
+  firstPlaceholder="Specialty"
+  secondPlaceholder="Type"
 
   firstSelectOptions={specializations}
   secondSelectOptions={employmentTypes}
@@ -101,27 +114,29 @@ export const DoctorsPage = () => {
             dispatch(setQuery({ employmentType: value, page: 1 }))
           }
         />
-        {/* <Sort
-          userCount = {doctors.length}
-          sortBy={query.sortBy}
-          sortOrder={query.sortOrder}
-          buttons={doctorSortButtons}
-          onChange={(sortBy, sortOrder) =>
-            dispatch(
-              setQuery({
-                sortBy,
-                sortOrder,
-                page: 1,
-              }),
-            )
-          }
-        /> */}
+      <Sort
+  userCount={doctors.length}
+  sortBy={query.sortBy ?? null}
+  sortOrder={query.sortOrder ?? null}
+  buttons={doctorSortButtons}
+  onChange={(sortBy, sortOrder) =>
+    dispatch(
+      setQuery({
+        sortBy: sortBy ?? undefined,
+        sortOrder: sortOrder ?? undefined,
+        page: 1,
+      }),
+    )
+  }
+/>
       </div>
 
-      {loading ? (
-        <Loader />
-      ) : (
-        <div className="w-full min-h-[380px] p-[16px] rounded-[8px] bg-[#FFFFFF] ">
+      {(
+        <div className=" relative w-full min-h-[380px] p-[16px] rounded-[8px] border border-[#E5E7EB] bg-[#FFFFFF] ">
+          {loading && (
+            <div className="absolute inset-0 z-10">
+              <Loader />
+            </div>)}
           <Table>
             <thead>
               <tr className="h-[40px] bg-[#F3F4F6]">
@@ -140,26 +155,50 @@ export const DoctorsPage = () => {
                   onClick={() => {
                     navigate(`/doctors/${doctor.id}`);
                   }}
-                  className=" h-[40px] cursor-pointer hover:bg-[#DCFCE7] transition-colors"
+                  className=" h-[40px] cursor-pointer hover:bg-[#F8FAFC] transition-colors"
                 >
-                  <Td>{`#${doctor.doctorCode}`}</Td>
+                  <Td className="text-[#4B5563] text-[14px]">{`#${doctor.doctorCode}`}</Td>
 
                   <Td>
                     <UserContacts
                       avatar = {`doctor.jpg`}
-                      firstName={doctor.firstName}
+                      firstName={`Dr.${doctor.firstName}`}
                       lastName={doctor.lastName}
-                      phone={doctor.phoneNumber}
+                      phone={(doctor.phoneNumber).toString()}
                     />
                   </Td>
 
-                  <Td>{doctor.email}</Td>
+                <Td>
+  <div className="flex items-center gap-2">
+    <div className="h-2 flex-1 overflow-hidden rounded-full bg-gray-200">
+      <div
+        className={`h-full rounded-full ${
+          doctor.workload < 65
+            ? "bg-[#FB923C]"
+            : doctor.workload < 85
+              ? "bg-[#22C55E]"
+              : "bg-[#EF4444]"
+        }`}
+        style={{ width: `${doctor.workload}%` }}
+      />
+    </div>
 
-                  <Td>{doctor.specialization}</Td>
+    <span className="w-10  text-xs text-gray-600">
+      {doctor.workload}%
+    </span>
+  </div>
+</Td>
+
+                  <Td className="text-[14px]">{capitalizeFirstLetter(doctor.specialization)}</Td>
 
                   <Td>{"09:00-18:00"}</Td>
 
-                  <Td>{doctor.employmentType}</Td>
+                     <Td>{employmentTypes.map((status) =>
+                        
+                                          status.value === doctor.employmentType && (
+                                            <span  key={`${status.value}${status.color}`} className={`text-[12px]   rounded-[16px] px-[17px] py-[6px] ${status.color} ${status.textColor}`}>{status.label}</span>
+                                          ))}
+                                          </Td>
                 </tr>
               ))}
              
@@ -167,15 +206,10 @@ export const DoctorsPage = () => {
               
             </Table>
              {doctors.length === 0 && (
-                <p className="p-3 text-center text-gray-500">
-                  Nothing found
-                </p>
+                <EmptyState description=" No doctors match your current filters. Try adjusting or clearing them."/>
             )}
              
-          </div>
-          
-      )}
-       <Pagination
+              <Pagination
         page={query.page ?? 1}
         pageSize={query.pageSize ?? 5}
         total={total}
@@ -187,6 +221,10 @@ export const DoctorsPage = () => {
           )
         }
       />
+          </div>
+          
+      )}
+     
       
 
    

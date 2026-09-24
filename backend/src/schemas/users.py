@@ -116,6 +116,7 @@ class UserRoleUpdateRequestSchema(BaseModel):
 class CurrentUserResponseSchema(BaseModel):
     id: int
     role: UserRoleEnum
+    doctor_id: int | None = None
     first_name: str
     last_name: str
     phone_number: str | None = None

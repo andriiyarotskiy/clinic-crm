@@ -1,9 +1,10 @@
-import { useFormContext } from "react-hook-form";
+import { Controller, useFormContext } from "react-hook-form";
 import { Input } from "@/components";
 import { formValidation } from "@/features/auth/model/form.validation";
 import type { PatientFormData } from "@/types/patientFormData";
 import { RadioGroup } from "../radioButtonGroup/RadioButtonGroup";
 import { GenderTypes } from "@/features/patients/model/gender";
+import Calendar from "@/pages/Appointments/components/Calendar";
 
 type Props = {
   type?: "create";
@@ -11,6 +12,7 @@ type Props = {
 
 export const PatientsFormFields: React.FC<Props> = ({ type }) => {
   const {
+    control,
     register,
     formState: { errors },
   } = useFormContext<PatientFormData>();
@@ -60,17 +62,20 @@ export const PatientsFormFields: React.FC<Props> = ({ type }) => {
       </section>
       <section>
         <div className="flex gap-4 ">
-          <Input
-            className="flex-1"
-            inputClassName=" h-[44px]"
-            name="dateOfBirth"
-            label="Date of Birth *"
-            type="date"
-            placeholder="choose a date."
-            register={register}
+        <Controller
+  name="dateOfBirth"
+  control={control}
             rules={formValidation.birthDate}
-            error={errors.dateOfBirth?.message}
-          />
+           
+  render={({ field }) => (
+    <Calendar
+      variant="picker"
+      selectedDate={field.value}
+      onDateChange={field.onChange}
+      error={errors.dateOfBirth?.message}
+    />
+  )}
+/>
           <Input
             className="flex-1"
             inputClassName=" h-[44px]"

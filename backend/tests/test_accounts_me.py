@@ -23,6 +23,7 @@ def test_get_current_user_profile_returns_authenticated_user() -> None:
         return user
 
     app.dependency_overrides[get_current_user] = override_get_current_user
+
     try:
         response = TestClient(app).get("/accounts/users/me")
     finally:
@@ -32,6 +33,7 @@ def test_get_current_user_profile_returns_authenticated_user() -> None:
     assert response.json() == {
         "id": 1,
         "role": "doctor",
+        "doctor_id": None,
         "first_name": "Ivan",
         "last_name": "Petrenko",
         "phone_number": "+380501112233",
@@ -45,4 +47,6 @@ def test_get_current_user_profile_requires_authorization() -> None:
     response = TestClient(app).get("/accounts/users/me")
 
     assert response.status_code == 401
-    assert response.json() == {"detail": "Authorization header is missing."}
+    assert response.json() == {
+        "detail": "Authorization header is missing.",
+    }

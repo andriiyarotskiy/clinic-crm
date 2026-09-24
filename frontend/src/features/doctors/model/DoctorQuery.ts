@@ -4,8 +4,8 @@ export interface DoctorQuery {
   search?: string;
   specialization?: string;
   employmentType?: string;
-  sortBy?: DoctorSortBy;
-  sortOrder?: "asc" | "desc";
+  sortBy?: DoctorSortBy | null;
+  sortOrder?: "asc" | "desc" | null;
   page?: number;
   pageSize?: number;
 }

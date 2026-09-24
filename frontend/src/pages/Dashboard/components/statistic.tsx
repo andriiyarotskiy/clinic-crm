@@ -1,45 +1,6 @@
-import {
-  FiCalendar,
-  FiDollarSign,
-  FiGitBranch,
-  FiUsers,
-} from "react-icons/fi";
 
 export const DashboardStats = () => {
-  const stats = [
-    {
-      title: "PATIENTS TODAY",
-      value: "34",
-      change: "↗ +8% vs last week",
-      changeClass: "text-green-700",
-      icon: FiUsers,
-      iconClass: "bg-blue-100 text-blue-600",
-    },
-    {
-      title: "DAILY APPOINTMENTS",
-      value: "28",
-      change: "↗ +12% vs last week",
-      changeClass: "text-green-700",
-      icon: FiCalendar,
-      iconClass: "bg-green-100 text-green-600",
-    },
-    {
-      title: "DAILY REVENUE",
-      value: "₴ 18 500",
-      change: "↗ +5% vs last week",
-      changeClass: "text-green-700",
-      icon: FiDollarSign,
-      iconClass: "bg-orange-100 text-orange-600",
-    },
-    {
-      title: "MONTHLY REVENUE",
-      value: "₴ 382 500",
-      change: "↓ -8% vs last week",
-      changeClass: "text-red-600",
-      icon: FiGitBranch,
-      iconClass: "bg-purple-100 text-purple-600",
-    },
-  ];
+  
 
   const revenue = [
     {
@@ -79,42 +40,7 @@ export const DashboardStats = () => {
 
         {/* ===================== STAT CARDS ===================== */}
 
-        <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 xl:grid-cols-4">
-          {stats.map((stat) => {
-            const Icon = stat.icon;
-
-            return (
-              <div
-                key={stat.title}
-                className="rounded-lg border border-gray-200 bg-white p-4"
-              >
-                <div className="flex items-start justify-between">
-                  <div>
-                    <p className="text-[11px] font-semibold text-gray-500">
-                      {stat.title}
-                    </p>
-
-                    <p className="mt-3 text-[21px] font-semibold leading-none text-gray-900">
-                      {stat.value}
-                    </p>
-                  </div>
-
-                  <div
-                    className={`flex h-10 w-10 items-center justify-center rounded-xl ${stat.iconClass}`}
-                  >
-                    <Icon size={17} strokeWidth={1.7} />
-                  </div>
-                </div>
-
-                <p
-                  className={`mt-3 text-[11px] font-medium ${stat.changeClass}`}
-                >
-                  {stat.change}
-                </p>
-              </div>
-            );
-          })}
-        </div>
+      
 
         {/* ===================== CHARTS ===================== */}
 
@@ -287,7 +213,7 @@ export const DashboardStats = () => {
                       {item.active && (
                         <div className="absolute bottom-[170px] left-1/2 -translate-x-1/2">
                           <div className="relative whitespace-nowrap rounded-lg bg-blue-600 px-3 py-2 text-[11px] font-medium text-white">
-                            ↑ Peak day
+                            ↑ Peak da
 
                             <span className="absolute bottom-[-6px] left-1/2 -translate-x-1/2 border-x-[6px] border-t-[6px] border-x-transparent border-t-blue-600" />
                           </div>

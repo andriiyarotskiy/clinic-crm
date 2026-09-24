@@ -11,4 +11,10 @@ export type Patient = {
   id: number,
   avatarUrl?: string;
   lastVisitDate?: string;
+  totalVisits: number;
+  treatment: string;
+  status: string;
+  visitsCount: number;
+  completedAppointmentsCount: number;
+ 
 }

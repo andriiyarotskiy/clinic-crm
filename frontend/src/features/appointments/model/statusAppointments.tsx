@@ -9,6 +9,7 @@ export type StatusOptions = {
   textColor: string;
   disabled?: boolean;
   icon?: ReactElement;
+  dotColor: string;
 }
 export const statusOptions:StatusOptions[] = [
   {
@@ -16,7 +17,8 @@ export const statusOptions:StatusOptions[] = [
     label: "Scheduled",
     description: "Appointment is booked and pending confirmation",
     color: "bg-[#DBEAFE]",
-    textColor:"text-[#1E40AF]",
+    textColor: "text-[#1E40AF]",
+    dotColor: "bg-[#1E40AF]",
     disabled: true,
   },
   {
@@ -24,21 +26,24 @@ export const statusOptions:StatusOptions[] = [
     label: "Confirmed",
     description: "Patient has confirmed their visit",
     color: "bg-[#DCFCE7]",
-    textColor:"text-[#115E59]"
+    textColor: "text-[#115E59]",
+     dotColor: "bg-[#115E59]"
   },
   {
     value: "completed",
     label: "Completed",
     description: "Visit is done and recorded",
-    color: "bg-[#4ADE80]",
-    textColor:"text-[#115E59]"
+    color: "bg-[#E5E7EB]",
+    textColor: "text-[#1F2937]",
+     dotColor: "bg-[#4ADE80]"
   },
   {
     value: "no_show",
     label: "No-show",
-    description: "Patient did not arrive - slot will be free",
+    description: "Patient did not arrive - slot will be booked",
     color: "bg-[#FFEDD5]",
-    textColor:"text-[#C2410C]"
+    textColor: "text-[#C2410C]",
+     dotColor: "bg-[#FB923C]"
   },
   {
     value: "cancelled",
@@ -46,6 +51,7 @@ export const statusOptions:StatusOptions[] = [
     description: "Appointment cancelled by patient or clinic",
     color: "bg-[#FEE2E2]",
     icon: <TfiAlert />,
-    textColor:"text-[#991B1B]"
+    textColor: "text-[#991B1B]",
+     dotColor: "bg-[#F87171]"
   },
 ];

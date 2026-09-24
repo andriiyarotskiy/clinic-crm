@@ -13,9 +13,13 @@ type Props = {
   value?: string | number | null;
   placeholder?: string;
   onChange: (value: string) => void;
+  disabled?: boolean;
+  error?: boolean;
 };
 
 export const BaseSelect = ({
+  error,
+  disabled,
   name,
   classNames,
   label,
@@ -81,7 +85,11 @@ export const BaseSelect = ({
         <button
           id={name}
           type="button"
-          onClick={() => setIsOpen((prev) => !prev)}
+          disabled={disabled}
+          onClick={() => {
+            if (disabled) return;
+            setIsOpen((prev) => !prev)
+          }}
           className={`
             flex
             w-full
@@ -91,27 +99,36 @@ export const BaseSelect = ({
             rounded-[8px]
             border
             bg-white
-            
+           text-[14px]
             px-[12px]
             py-[8px]
             text-left
             outline-none
             transition-all
             duration-150
-            cursor-pointer
+            
 
             ${
-              isOpen
-                ? "border-[#2563EB] ring-2 ring-[#2563EB]"
-                : "border-[#E5E7EB]"
-            }
-          `}
+      disabled
+        ? "cursor-not-allowed border-[#E5E7EB] bg-[#F3F4F6] text-[#9CA3AF]"
+        : isOpen
+          ? "cursor-pointer border-[#2563EB] ring-2 ring-[#2563EB]"
+          : "cursor-pointer border-[#E5E7EB] bg-white"
+    }
+     ${
+    error
+      ? "border-red-500"
+      : isOpen
+        ? "border-[#2563EB] ring-2 ring-[#2563EB]"
+        : "border-[#E5E7EB]"
+  }
+  `}
         >
           <span
             className={
               hasValue
-                ? "text-[#1F2937]"
-                : "text-[#1F2937]"
+                ? "text-[#1F2937] font-medium"
+                : "text-[#6B7280] "
             }
           >
             {selectedOption?.label ?? placeholder}
@@ -161,7 +178,7 @@ export const BaseSelect = ({
                 ${isOpen ? "rotate-180" : ""}
               `}
             >
-              {<MdKeyboardArrowDown/>}
+              {<MdKeyboardArrowDown className="h-[16px] w-[16px]"/>}
             </span>}
           </div>
         </button>
@@ -176,10 +193,11 @@ export const BaseSelect = ({
               w-full
               overflow-hidden
               rounded-[8px]
+              font-medium
               border
               border-[#E5E7EB]
               bg-white
-              mt-[12px]
+              mt-[8px]
               p-[4px]
               shadow-[0_4px_12px_rgba(0,0,0,0.08)]
             "

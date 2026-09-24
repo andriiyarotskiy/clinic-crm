@@ -36,7 +36,7 @@ export const Footer: React.FC = () => {
         className=" w-full h-full 
     flex items-center  rounded-[8px]
      pl-[12px] pr-[12px] 
-      hover:bg-[#EF4444]
+      hover:bg-[#C2410C]
        hover:text-[#FFFF]
    text-[#1F2937]">
         

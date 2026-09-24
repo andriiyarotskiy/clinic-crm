@@ -46,7 +46,9 @@ class UserRepository:
 
     async def get_current_by_id(self, user_id: int) -> UserModel | None:
         return await self.session.scalar(
-            select(UserModel).where(UserModel.id == user_id)
+            select(UserModel)
+            .options(joinedload(UserModel.doctor_profile))
+            .where(UserModel.id == user_id)
         )
 
     async def count_users_with_role(self, role: UserRoleEnum) -> int:

@@ -1,16 +1,22 @@
-import type { SortBy } from "@/types/sortTypes";
+import type { PatientQuery } from "./patientsQuery";
 
-export const sortButtons: { value: SortBy; label: string }[] = [
+type PatientSortBy = NonNullable<PatientQuery["sortBy"]>;
+
+type PatientsSortButton<T extends string = string> = {
+  value: T;
+  ascLabel: string;
+  descLabel: string;
+};
+
+export const patientsSortButtons: PatientsSortButton<PatientSortBy>[] = [
   {
     value: "name",
-    label: "Name",
+    ascLabel: "Name A→Z",
+    descLabel: "Name Z→A",
   },
   {
     value: "recent_visit",
-    label: "Recent visit",
-  },
-  {
-    value: "upcoming_visit",
-    label: "Upcoming visit",
+    ascLabel: "Recent visit ↑",
+    descLabel: "Recent visit ↓",
   },
 ];

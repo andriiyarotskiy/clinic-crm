@@ -1,72 +1,119 @@
-import type { SortButton, SortOrder } from "./sortTypes";
+import type { SortProps } from "@/features/doctors/model/sortDoctorTypes";
+import { IoClose, IoSwapVertical } from "react-icons/io5";
 
-type Props<T extends string> = {
-  userCount: number;
-  className?: string;
-  sortBy: T;
-  sortOrder: SortOrder;
-  buttons: SortButton<T>[];
-  onChange: (sortBy: T, sortOrder: SortOrder) => void;
-};
+
 
 export const Sort = <T extends string>({
-  className,
   userCount,
-  buttons,
+  className,
   sortBy,
   sortOrder,
+  buttons,
   onChange,
-}: Props<T>) => {
+}: SortProps<T>) => {
   const handleClick = (value: T) => {
+   
     if (value === sortBy) {
       onChange(
         value,
         sortOrder === "asc" ? "desc" : "asc",
       );
-    } else {
-      onChange(value, "asc");
+
+      return;
+    }
+
+   
+    onChange(value, "asc");
+  };
+
+  const handleClear = (event: React.MouseEvent, value: T) => {
+   
+    event.stopPropagation();
+
+    if (value === sortBy) {
+      onChange(null, null);
     }
   };
 
   return (
     <div
-      className={`h-[32px] flex items-center gap-4 ${
-        className ?? ""
-      }`}
+      className={`
+        flex
+        h-[32px]
+        items-center
+        gap-2
+        ${className ?? ""}
+      `}
     >
-      <span>Sort:</span>
+      <div className="flex items-center gap-1 text-sm text-[#6B7280]">
+        <IoSwapVertical size={16} />
 
-      {buttons.map((button) => (
-        <button
-          key={button.value}
-          type="button"
-          disabled={userCount < 5}
-          onClick={() => handleClick(button.value)}
-          className={`h-[32px]
-            flex
-            items-center
-            rounded-[8px]
-            px-3
-            transition
-            disabled:opacity-50
-            disabled:cursor-not-allowed
-            disabled:bg-gray-200
-            disabled:text-gray-400
-            ${
-              sortBy === button.value
-                ? "border-blue-600 bg-blue-600 text-white"
-                : "border-gray-300 bg-white hover:bg-[#DBEAFE]"
-            }`}
-        >
-          {button.label}
+        <span className="text-[12px]">Sort:</span>
+      </div>
 
-          {sortBy === button.value && (
-            <span className="ml-2">
-              {sortOrder === "asc" ? "↑" : "↓"}
-            </span>
-          )}
-        </button>
-      ))}
+      {buttons.map((button) => {
+        const isActive = sortBy === button.value;
+
+        const label =
+          isActive && sortOrder === "desc"
+            ? button.descLabel
+            : button.ascLabel;
+
+        return (
+          <button
+            key={button.value}
+            type="button"
+            disabled={userCount < 2}
+            onClick={() => handleClick(button.value)}
+            className={`
+              flex
+              h-[32px]
+              items-center
+              gap-1.5
+              rounded-full
+              border
+              px-3
+              text-[12px]
+              font-normal
+              transition
+font-normal
+              disabled:cursor-not-allowed
+              disabled:opacity-50
+
+              ${
+                isActive
+                  ? "border-[#BFDBFE] bg-[#DBEAFE] text-[#2563EB]"
+                  : "border-[#E5E7EB] bg-white text-[#4B5563] hover:bg-[#F9FAFB]"
+              }
+            `}
+          >
+            <span>{label}</span>
+
+            {isActive && (
+              <span
+                role="button"
+                tabIndex={0}
+                onClick={(event) =>
+                  handleClear(event, button.value)
+                }
+                onKeyDown={(event) => {
+                  if (
+                    event.key === "Enter" ||
+                    event.key === " "
+                  ) {
+                    event.preventDefault();
+
+                    onChange(null, null);
+                  }
+                }}
+                className="flex shrink-0 cursor-pointer items-center"
+              >
+                <IoClose size={15} />
+              </span>
+            )}
+          </button>
+        );
+      })}
     </div>
   );
 };

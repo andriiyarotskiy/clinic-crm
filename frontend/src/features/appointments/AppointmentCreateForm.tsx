@@ -1,82 +1,172 @@
 import { useAppDispatch, useAppSelector } from "@/app/store/hook";
-import { errorToast, successToast } from "@/components/pushAppMessage/PushApp";
+import {
+  errorToast,
+  successToast,
+} from "@/components/pushAppMessage/PushApp";
+
 import { useEffect, useState } from "react";
-import { FormProvider, useForm } from "react-hook-form";
+import {
+  FormProvider,
+  useForm,
+} from "react-hook-form";
+
 import { Search } from "@/components/search/Search";
 
 import type { AppointmentFormData } from "@/types/appointmentFormData";
+
 import { getAllPatientThunk } from "@/features/patients/thunk/getAllPacientThunk";
+
 import { AppointmentFormFields } from "@/components/formField/AppointmentFormFields";
+
 import { createAppointmentThunk } from "./thunk/createAppointmentThunk";
 import { getAppointmentsThunk } from "./thunk/getAppointmentsThunk";
-import { getAvailableTimeSlotsThunk } from "./thunk/getAvailableSlots";
+
 import { Loader } from "@/components/loader/Loader";
+
 import type { Patient } from "@/types/patient";
 
-export const AppointmentCreateForm: React.FC = () => {
-  const methods = useForm<AppointmentFormData>();
-  const { reset, setValue, handleSubmit } = methods;
-  const [selectedUser, setSelectedUser] = useState<Patient | null>(null);
+import { UserContacts } from "@/components/userContacts/UserContacts";
+
+
+import { getAvailableTimeSlotsThunk } from "./thunk/getAvailableSlots";
+
+type Props = {
+  handleAside: (arg: boolean) => void;
+};
+
+export const AppointmentCreateForm: React.FC<Props> = ({
+  handleAside,
+}) => {
+  const {
+    selectedDoctor,
+    selectedDate,
+    selectedSlotsTime,
+    selectedTreatment,
+  } = useAppSelector((state) => state.appointment.calendar);
+
+  const methods = useForm<AppointmentFormData>({
+  mode: "onChange",
+  defaultValues: {
+    doctorId: selectedDoctor ? String(selectedDoctor.id) : "",
+    treatmentId: selectedTreatment ?? "",
+    appointmentDate: selectedDate ?? "",
+    appointmentTime: selectedSlotsTime ?? "",
+  },
+});
+
+  const {
+    reset,
+    setValue,
+    handleSubmit,
+  } = methods;
+
+
+  const [selectedUser, setSelectedUser] =
+    useState<Patient | null>(null);
+
   const dispatch = useAppDispatch();
-  const { patients, loading } = useAppSelector((state) => state.patient);
-  const {appointmentsQuery,appointmentsLoading} = useAppSelector((state)=>state.appointment)
-const {selectedDoctor,selectedDate,selectedSlotsTime,selectedTreatment} = useAppSelector(
-    (state) => state.appointment.calendar
+
+  const {
+    patients,
+    loading,
+  } = useAppSelector(
+    (state) => state.patient,
   );
+
+  const {
+    appointmentsQuery,
+    appointmentsLoading,
+  } = useAppSelector(
+    (state) => state.appointment,
+  );
+
  
 
   useEffect(() => {
-    if (selectedDoctor && selectedSlotsTime && selectedDate) {
-      setValue("doctorId", String(selectedDoctor.id))
-      setValue("appointmentDate", selectedDate)
-      setValue("appointmentTime",selectedSlotsTime)
-  }
-    if (!selectedUser) return;
-    
-    setValue("firstName", selectedUser.firstName);
-    setValue("lastName", selectedUser.lastName);
-    setValue("phoneNumber", selectedUser.phoneNumber);
-    
-    
-}, [selectedUser, selectedDoctor, setValue]);
+    if (!selectedUser) {
+      return;
+    }
 
-   const onSubmit = async () => {
-     if (!selectedUser ||
-       !selectedDoctor ||
-       !selectedTreatment ||
-       !selectedDate ||
-    !selectedSlotsTime) {
+    setValue(
+      "firstName",
+      selectedUser.firstName,
+    );
+
+    setValue(
+      "lastName",
+      selectedUser.lastName,
+    );
+
+    setValue(
+      "phoneNumber",
+      selectedUser.phoneNumber,
+    );
+  }, [
+    selectedUser,
+    setValue,
+  ]);
+
+ 
+
+  const onSubmit = async (
+    data: AppointmentFormData,
+  ) => {
+    if (!selectedUser) {
       return;
     }
 
     try {
-      await dispatch(createAppointmentThunk({
-        patientId: selectedUser.id,
-        doctorId: selectedDoctor.id,
-        treatmentId: Number(selectedTreatment),
-        appointmentDate: selectedDate,
-        appointmentTime: selectedSlotsTime,
-        notes:'',
-        duration: 30,
-        
-        
-        
+      await dispatch(
+        createAppointmentThunk({
+          patientId: selectedUser.id,
+
+          doctorId: Number(
+            data.doctorId,
+          ),
+
+          treatmentId: Number(
+            data.treatmentId,
+          ),
+
+          appointmentDate:
+            data.appointmentDate,
+
+          appointmentTime:
+            data.appointmentTime,
+
+          notes: data.notes ?? "",
+
+          duration: 30,
+        }),
+      ).unwrap();
       
-      })).unwrap();
+  await dispatch(
+  getAvailableTimeSlotsThunk({
+    doctorId: Number(data.doctorId),
+    date: data.appointmentDate,
+  }),
+).unwrap();
 
-      await dispatch(getAppointmentsThunk(appointmentsQuery)).unwrap()
-      await dispatch(getAvailableTimeSlotsThunk({
-        doctorId: selectedDoctor.id,
-        date: selectedDate,
-      }))
+      
+      await dispatch(
+        getAppointmentsThunk(
+          appointmentsQuery,
+        ),
+      ).unwrap();
 
+    
       reset();
+
+      setSelectedUser(null);
+
+      handleAside(false);
 
       successToast(
         <>
           Appointments created successfully
           <br />
-         {` For ${selectedUser.firstName} For${selectedUser.lastName}`}
+          For {selectedUser.firstName}{" "}
+          {selectedUser.lastName}
         </>,
       );
     } catch (e) {
@@ -86,33 +176,35 @@ const {selectedDoctor,selectedDate,selectedSlotsTime,selectedTreatment} = useApp
 
   return (
     <>
-      
       {appointmentsLoading ? (
         <Loader />
       ) : (
         <div className="w-full">
-          <section></section>
+          <section />
+
           <section className="mb-[24px]">
-           
-              <Search
+            <Search
               searchLabel="Search patients"
               items={patients}
               placeholder="Find an pacient"
               loading={loading}
               onSearch={(value) =>
-                dispatch(getAllPatientThunk({ search: value }))
+                dispatch(
+                  getAllPatientThunk({
+                    search: value,
+                  }),
+                )
               }
               selectedUser={selectedUser}
               onSelect={setSelectedUser}
               getKey={(user) => user.id}
-              getValue={(user) => `${user.firstName} ${user.lastName}`}
               renderItem={(user) => (
-                <>
-                  <div>
-                    {user.firstName} {user.lastName}
-                  </div>
-                  <div>{user.email}</div>
-                </>
+                <UserContacts
+                  avatar="patient.jpg"
+                  firstName={user.firstName}
+                  lastName={user.lastName}
+                  phone={user.phoneNumber}
+                />
               )}
             />
           </section>
@@ -120,14 +212,18 @@ const {selectedDoctor,selectedDate,selectedSlotsTime,selectedTreatment} = useApp
           <FormProvider {...methods}>
             <form
               id="appointment-create"
-              className="flex flex-col "
-              onSubmit={handleSubmit(onSubmit)}
+              className="flex flex-col"
+              onSubmit={handleSubmit(
+                onSubmit,
+              )}
             >
-              {<AppointmentFormFields type={"create"} />}
+              <AppointmentFormFields
+                type="create"
+              />
             </form>
           </FormProvider>
         </div>
-      
-      )}</>
+      )}
+    </>
   );
 };

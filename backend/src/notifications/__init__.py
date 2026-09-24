@@ -1,4 +1,8 @@
-from notifications.emails import EmailSender
+from notifications.emails import BrevoEmailSender, EmailSender
 from notifications.interfaces import EmailSenderInterface
 
-__all__ = ["EmailSender", "EmailSenderInterface"]
+__all__ = [
+    "BrevoEmailSender",
+    "EmailSender",
+    "EmailSenderInterface",
+]

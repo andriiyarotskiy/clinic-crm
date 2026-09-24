@@ -41,6 +41,7 @@ class PatientModel(Base):
     )
     gender: Mapped[PatientGenderEnum | None] = mapped_column(String(20))
     date_of_birth: Mapped[date | None] = mapped_column(Date)
+    city: Mapped[str | None] = mapped_column(String(100))
     address: Mapped[str | None] = mapped_column(String(255))
     source: Mapped[PatientSourceEnum] = mapped_column(
         Enum(

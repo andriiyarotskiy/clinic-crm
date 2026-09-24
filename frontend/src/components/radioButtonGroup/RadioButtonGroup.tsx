@@ -40,7 +40,7 @@ export function RadioGroup<T extends FieldValues> ({
           <label
             key={option.label}
             htmlFor={`${name}-${option.label}`}
-            className="flex flex-1 cursor-pointer items-center gap-2 rounded-[8px] border border-[#E5E7EB] p-[12px] h-[44px]"
+            className="flex flex-1 cursor-pointer items-center text-[14px] font-medium gap-2 rounded-[8px] border border-[#E5E7EB] p-[12px] h-[44px]"
           >
             <input className=""
               id={`${name}-${option.label}`}

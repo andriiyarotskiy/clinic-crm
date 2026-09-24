@@ -14,8 +14,8 @@ export const doctorsService = {
     const params: Record<string, string | number | undefined> = {
       page: query.page,
       page_size: query.pageSize,
-      sort_by: query.sortBy,
-      sort_order: query.sortOrder,
+      sort_by: query.sortBy ?? undefined,
+  sort_order: query.sortOrder ?? undefined,
     };
   
     if (query.search) {

@@ -5,8 +5,11 @@ export const ROUTES = {
   PATIENT: "patients",
   DOCTORS: "doctors",
   APPOINTMENTS: "appointments",
+  APPDETAILS:"appointments/:appointmentId",
   CALENDAR: "calendar",
   ACTIVATE:"accounts/activate",
   DETAILS: 'doctors/:doctorId',
-PATDETAILS:'patients/:patientId',
+  PATDETAILS: 'patients/:patientId',
+ MYDOCTOR: "/my-doctor",
+
 } as const;

@@ -1,11 +1,10 @@
 import { useAppDispatch, useAppSelector } from "@/app/store/hook";
 import { ButtonPage } from "@/components/button/ButtonsPage";
-import { TfiPencil } from "react-icons/tfi";
 import { IoTrash } from "react-icons/io5";
 import { useEffect, useState } from "react";
 import { AsideMenu } from "@/components/asideMenu/AsideMenu";
 import { DoctorEditForm } from "@/features/doctors/DoctorEditForm";
-import { useNavigate, useParams } from "react-router-dom";
+import { Outlet, useNavigate, useParams } from "react-router-dom";
 
 import { UserProfile } from "../../components/userProfile/UserProfile";
 import { getDoctorByIdThunk } from "@/features/doctors/thunk/getDoctorByIdThunk";
@@ -14,21 +13,29 @@ import { errorToast, successToast } from "@/components/pushAppMessage/PushApp";
 import { Loader } from "@/components/loader/Loader";
 import { ConfirmModal } from "@/components/confirmModal/ConfirmModal";
 import { buttonStyles } from "@/shared/styles/formButtonStyles";
-import { DashboardOverview } from "./components/overwiew/DoctorOverview";
-
+import { doctorDetailsStatisticThunk } from "@/features/statistics/thunk/doctorDetailsStatisticsThunk";
+import { doctorDetailsNavigation } from "@/features/doctors/model/doctorDetailsNavigation";
+import { SmallNavbar } from "./components/SmallNavbar";
+import { getAccess } from "@/premissoons/getAccessPremissions";
+import { LuPencilLine } from "react-icons/lu";
 export const DoctorDetailsPage = () => {
   const dispatch = useAppDispatch();
   const [aside, setOpenAside] = useState(false);
   const [modal, setOpenModal] = useState(false);
-
-  const { doctorId } = useParams();
+  const user = useAppSelector(state => state.auth.user)
+  const access = getAccess(user);
+  const { doctorId: paramsDoctorId } = useParams();
   const navigate = useNavigate();
   const { selectedDoctor, loading } = useAppSelector((state) => state.doctor);
-
+  const cards = useAppSelector(state => state.statistic.statistics.doctorDetailsCard)
+  
+const doctorId = paramsDoctorId ?? access.doctorId?.toString();
+  
   useEffect(() => {
     if (!doctorId) return;
 
     dispatch(getDoctorByIdThunk(doctorId));
+    dispatch(doctorDetailsStatisticThunk(+doctorId))
   }, [dispatch, doctorId]);
 
   const handleAside = () => setOpenAside((prev) => !prev);
@@ -44,13 +51,14 @@ export const DoctorDetailsPage = () => {
       setOpenModal(false);
     }
   };
-
+  
+  
   return (
     <>
       {aside && (
         <AsideMenu
           handleAside={handleAside}
-          content={<DoctorEditForm />}
+          content={<DoctorEditForm handleAside={handleAside} />}
           footer={<>
              <ButtonPage className={buttonStyles.formCancel} onClick={handleAside}>
                  <span className=" text-[#172554]">Cancel</span>
@@ -67,6 +75,8 @@ export const DoctorDetailsPage = () => {
       )}
 
       <ConfirmModal
+         modalClassName="w-[439px] h-[356px]"
+        confirmButtonClassName={buttonStyles.deleteButton}
         loading={loading}
         isOpen={modal}
         title="Delete doctor?"
@@ -79,8 +89,8 @@ export const DoctorDetailsPage = () => {
       {loading ? (
         <Loader />
       ) : (
-        <div className="rounded-xl bg-white p-[16px] shadow-sm">
-          <section className="mb-[16px] flex items-center justify-between">
+        <div className="rounded-xl bg-white p-[16px] mb-[16px] shadow-sm">
+         {access.canViewAllDoctors && <section className="mb-[16px] flex items-center justify-between">
             <div className="text-sm text-gray-500">
               <span
                 className="cursor-pointer hover:text-blue-600"
@@ -96,7 +106,7 @@ export const DoctorDetailsPage = () => {
               </span>
             </div>
 
-            <div className="w-[250px] flex gap-3">
+          {access?.canCreateDoctor && < div className="w-[250px] flex gap-3">
               <ButtonPage
                 className={buttonStyles.removeButton}
                 icon={<IoTrash className="mr-2 text-[#DC2626]" />}
@@ -107,17 +117,18 @@ export const DoctorDetailsPage = () => {
 
               <ButtonPage
                 className={buttonStyles.editButton}
-                icon={<TfiPencil className="mr-2" />}
+                icon={<LuPencilLine className="mr-2" />}
                 onClick={handleAside}
               >
                 Edit doctor
               </ButtonPage>
-            </div>
-          </section>
+            </div>}
+          </section>}
 
-          <section className="flex items-center justify-between rounded-[8px] border border-gray-200 ">
+          <section className="flex items-center justify-between  rounded-[8px] ">
             {!loading && selectedDoctor && (
                 <UserProfile
+                  patients = {cards?.patients?.total != null ? Number(cards.patients.total) : null}
                   type='doctor'
                   avatar={'doctor.jpg'}
                   selectedUser={selectedDoctor} />
@@ -125,7 +136,12 @@ export const DoctorDetailsPage = () => {
           </section>
         </div>
       )}
-      <DashboardOverview/>
+      <SmallNavbar
+      arrayNavigation={doctorDetailsNavigation}/>
+      
+     
+        <Outlet />
+
     </>
   );
 };

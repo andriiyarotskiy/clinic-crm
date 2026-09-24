@@ -1,9 +1,12 @@
+import type { UserRole } from "./userRole";
+
 export type User = {
+  doctorId?: number;
   id: number;
   firstName: string;
   lastName: string;
   email: string;
-  role?: 'admin' | 'user' | 'doctor' |'superadmin'
+  role: UserRole;
   phoneNumber: number,
   registrationDate?: Date,
   source?: string,

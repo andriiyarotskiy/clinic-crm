@@ -1,4 +1,5 @@
 from math import ceil
+from datetime import date
 
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -8,10 +9,12 @@ from database.models.users import UserRoleEnum
 from exceptions import DatabaseWriteError
 from repositories.patients import PatientRepository
 from repositories.users import UserRepository
+from repositories.visits import VisitRepository
 from schemas.patients import (
     PatientCreate,
     PatientStatisticsResponse,
     PatientUpdate,
+    PatientCardStatisticsResponse,
 )
 
 
@@ -20,6 +23,7 @@ class PatientService:
         self.session = session
         self.patients = PatientRepository(session)
         self.users = UserRepository(session)
+        self.visits = VisitRepository(session)
 
     async def create_profile(
         self,
@@ -81,6 +85,10 @@ class PatientService:
         self,
         category: str = "all",
         search: str | None = None,
+        doctor_id: int | None = None,
+        visit_date: date | None = None,
+        sort_by: str = "last_name",
+        sort_order: str = "asc",
         page: int = 1,
         page_size: int = 20,
     ) -> dict:
@@ -89,11 +97,17 @@ class PatientService:
         total = await self.patients.count(
             category=category,
             search=search,
+            doctor_id=doctor_id,
+            visit_date=visit_date,
         )
 
         items = await self.patients.get_all(
             category=category,
             search=search,
+            doctor_id=doctor_id,
+            visit_date=visit_date,
+            sort_by=sort_by,
+            sort_order=sort_order,
             offset=offset,
             limit=page_size,
         )
@@ -116,6 +130,19 @@ class PatientService:
 
         if patient is None:
             raise ValueError("Patient profile not found.")
+
+        visits_count = await self.visits.get_total_by_patient_id(
+            patient_id=patient_id,
+        )
+
+        completed_appointments_count = (
+            await self.patients.get_completed_appointments_count(
+                patient_id=patient_id,
+            )
+        )
+
+        patient["visits_count"] = visits_count
+        patient["completed_appointments_count"] = completed_appointments_count
 
         return patient
 
@@ -163,6 +190,40 @@ class PatientService:
             raise ValueError("Patient profile not found.")
 
         return updated_patient
+
+    async def get_patient_card_statistics(
+        self,
+        patient_id: int,
+    ) -> PatientCardStatisticsResponse:
+        patient = await self.patients.get_by_id(patient_id)
+
+        if patient is None:
+            raise ValueError("Patient profile not found.")
+
+        appointments_statistics = (
+            await self.patients.get_patient_card_appointments_statistics(
+                patient_id=patient_id,
+            )
+        )
+
+        value_statistics = await self.patients.get_patient_card_value_statistics(
+            patient_id=patient_id,
+        )
+
+        no_show_statistics = await self.patients.get_patient_card_no_show_statistics(
+            patient_id=patient_id,
+        )
+
+        hygiene_statistics = await self.patients.get_patient_card_hygiene_statistics(
+            patient_id=patient_id,
+        )
+
+        return PatientCardStatisticsResponse(
+            **appointments_statistics,
+            **value_statistics,
+            **no_show_statistics,
+            **hygiene_statistics,
+        )
 
     async def get_statistics(
         self,

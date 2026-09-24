@@ -1,5 +1,8 @@
 
 export const formValidation = {
+   requireField: {
+    required: "required field",
+  },
   email: {
     required: "email is required",
     pattern: {
@@ -17,13 +20,13 @@ export const formValidation = {
         "The password must consist of at least 8 characters and contain letters, numbers, and special characters.",
     },
   },
-  phoneNumber: {
-    required: "Phone number is required",
-    pattern: {
-      value: /^\+?[0-9]{10,15}$/,
-      message: "Enter a valid phone number",
-    },
+ phoneNumber: {
+  required: "Phone number is required",
+  pattern: {
+    value: /^\+380\d{9}$/,
+    message: "Enter a valid phone number +380XXXXXXXXX",
   },
+},
   name: {
     required: "First name is required",
     pattern: {
@@ -133,4 +136,15 @@ export const formValidation = {
       message: "Notes cannot exceed 255 characters",
     },
   },
+   tooth:{
+    required: "Tooth is required",
+    min: {
+      value: 1,
+      message: "Enter a valid tooth number",
+    },
+    max: {
+      value: 36,
+      message: "Enter a valid tooth number",
+    },
+  }
 };
