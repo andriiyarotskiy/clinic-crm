@@ -1,3 +1,57 @@
+name: CI/CD
+
+on:
+  pull_request:
+    branches: [dev]
+  push:
+    branches: [dev]
+  workflow_dispatch:
+
+jobs:
+  backend-lint-and-test:
+    runs-on: ubuntu-latest
+
+    env:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_HOST: localhost
+      POSTGRES_DB_PORT: 5432
+      POSTGRES_DB: clinic_db
+
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: admin
+          POSTGRES_PASSWORD: admin
+          POSTGRES_DB: clinic_db
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd="pg_isready -U admin -d clinic_db"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=10
+
+    defaults:
+      run:
+        working-directory: ./backend
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v9.0.0
+        with:
+          python-version: "3.12"
+          enable-cache: true
+          working-directory: ./backend
+
+      - name: Install dependencies (including dev group)
+        run: uv sync --group dev
+
+      - name: Run linter (ruff)
+        run: uv run ruff check .
+
       - name: Run unit tests without integration
         run: uv run pytest -v -m "not integration"
 
@@ -49,25 +103,25 @@
     needs: [backend-lint-and-test, frontend-lint-and-build]
 
     steps:
-       - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-       - name: Login to Docker Hub
-         uses: docker/login-action@v4
-         with:
-           username: ${{ vars.DOCKERHUB_USERNAME }}
-           password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Login to Docker Hub
+        uses: docker/login-action@v4
+        with:
+          username: ${{ vars.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-       - name: Set up QEMU
-         uses: docker/setup-qemu-action@v4
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v4
 
-       - name: Set up Docker Buildx
-         uses: docker/setup-buildx-action@v4
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v4
 
-       - name: Build and push
-         uses: docker/build-push-action@v7
-         with:
-           context: ./backend
-           push: true
-           tags: |
-             ${{ vars.DOCKERHUB_USERNAME }}/clinic-crm-backend:latest
-             ${{ vars.DOCKERHUB_USERNAME }}/clinic-crm-backend:${{ github.sha }}
+      - name: Build and push
+        uses: docker/build-push-action@v7
+        with:
+          context: ./backend
+          push: true
+          tags: |
+            ${{ vars.DOCKERHUB_USERNAME }}/clinic-crm-backend:latest
+            ${{ vars.DOCKERHUB_USERNAME }}/clinic-crm-backend:${{ github.sha }}
