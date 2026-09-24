@@ -20,6 +20,7 @@ import { PatientDocuments } from "@/pages/PatientDetails/components/PatientDocum
 import { PatientHistory } from "@/pages/PatientDetails/components/PatientHistoty";
 import { ErrorPage } from "@/pages/ErrorPages/ErrorPages";
 import { errorPageConfig } from "@/pages/ErrorPages/errorConfig";
+import { AboutUs } from "@/pages/AboutUs/AboutUs";
 
 
 
@@ -78,6 +79,10 @@ export const Root: React.FC = () => {
   <Route
     path={ROUTES.CALENDAR}
     element={<CalendarPage />}
+            />
+             <Route
+    path={ROUTES.ABOUTUS}
+    element={<AboutUs />}
   />
 </Route>
 

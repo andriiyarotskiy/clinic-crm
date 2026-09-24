@@ -12,14 +12,19 @@ export const LoginForm = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<LoginData>();
+ const {
+  register,
+  handleSubmit,
+  formState: { errors },
+} = useForm<LoginData>({
+  defaultValues: {
+    email: "admin@admin.com",
+    password: "Cl1nic_Admin123!",
+  },
+});
 
   const onSubmit = async (data: LoginData) => {
-    console.log("SUBMIT", data);
+  
 
     try {
       await dispatch(loginThunk(data)).unwrap();

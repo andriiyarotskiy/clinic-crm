@@ -5,6 +5,7 @@ import { ROUTES } from "./routes";
 import { Stethoscope } from 'lucide-react';
 import { CiCalendar } from "react-icons/ci";
 import { LuDock } from "react-icons/lu";
+
 export const navigation = [
   {
     title: "Dashboard",
@@ -47,4 +48,5 @@ export const navigation = [
     icon: <CiCalendar className="h-[20px] w-[20px]"/>,
      roles:['admin','superadmin']
   },
+ 
 ];
