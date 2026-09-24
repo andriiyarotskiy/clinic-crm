@@ -51,16 +51,16 @@ export const teamMembers: TeamMember[] = [
     role: "Frontend / Full-stack Developer",
     description:
       "Developed the CRM interface and contributed to frontend and full-stack functionality.",
-    linkedin: "www.linkedin.com/in/oleh-mysko-fs",
+    linkedin: "https://www.linkedin.com/in/oleh-mysko-fs",
     photo: "/teamMembers/oleh.jpg",
   },
   {
     name: "Nataliia Buhaiets",
     role: "Data Analyst",
     description:
-      "Worked with project data, analytics and statistics to support business insights.",
+      "Designed a logical database schema of CRM, prepared data,  created a business metrics dictionary, developed SQL queries and analytics dashboards.",
     linkedin: "https://www.linkedin.com/in/nataliia-buhaiets-056351239/",
-    photo: "/teamMembers/Natalia.jfif",
+    photo: "/teamMembers/natalia.webp",
   },
   {
     name: "Ivan Verba",
