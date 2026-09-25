@@ -4,7 +4,10 @@ from fastapi import APIRouter, Depends, HTTPException, Query, status
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from database.session_postgresql import get_postgresql_db
-from exceptions import DatabaseWriteError
+from exceptions import (
+    DatabaseWriteError,
+    PhoneNumberAlreadyExistsError,
+)
 from schemas.patients import (
     PaginatedPatientResponse,
     PatientCardStatisticsResponse,
@@ -35,6 +38,11 @@ async def create_patient(
 
     try:
         return await service.create_profile(patient_data)
+    except PhoneNumberAlreadyExistsError as error:
+        raise HTTPException(
+            status_code=error.status_code,
+            detail=error.detail,
+        ) from error
 
     except ValueError as error:
         raise HTTPException(
@@ -188,6 +196,11 @@ async def update_patient(
             patient_id=patient_id,
             patient_data=patient_data,
         )
+    except PhoneNumberAlreadyExistsError as error:
+        raise HTTPException(
+            status_code=error.status_code,
+            detail=error.detail,
+        ) from error
 
     except ValueError as error:
         raise HTTPException(

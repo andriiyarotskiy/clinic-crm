@@ -13,6 +13,11 @@ class UserAlreadyExistsError(AuthServiceError):
         self.detail = f"A user with this email {email} already exists."
 
 
+class PhoneNumberAlreadyExistsError(AuthServiceError):
+    status_code = 409
+    detail = "Phone number is already in use."
+
+
 class ActiveActivationTokenError(AuthServiceError):
     status_code = 409
 
