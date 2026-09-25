@@ -13,6 +13,7 @@ from exceptions import (
     InvalidDoctorAvatarError,
     InvalidDoctorProfileUserError,
     UserNotFoundError,
+    PhoneNumberAlreadyExistsError,
 )
 from repositories.doctors import DoctorRepository
 from repositories.users import UserRepository
@@ -52,6 +53,17 @@ class DoctorService:
         existing_profile = await self.doctors.get_by_user_id(user_id)
         if existing_profile:
             raise DoctorProfileAlreadyExistsError
+
+        if phone_number is not None:
+            existing_user_with_phone = await self.users.get_by_phone_number(
+                phone_number,
+            )
+
+            if (
+                    existing_user_with_phone is not None
+                    and existing_user_with_phone.id != user.id
+            ):
+                raise PhoneNumberAlreadyExistsError
 
         doctor = DoctorModel(
             user_id=user.id,
@@ -129,6 +141,17 @@ class DoctorService:
         user_fields = {"first_name", "last_name", "phone_number"}
         doctor_fields = {"specialization", "years_experience", "employment_type"}
         old_avatar_key = doctor.avatar_url
+
+        if "phone_number" in data and data["phone_number"] is not None:
+            existing_user_with_phone = await self.users.get_by_phone_number(
+                data["phone_number"],
+            )
+
+            if (
+                    existing_user_with_phone is not None
+                    and existing_user_with_phone.id != doctor.user_id
+            ):
+                raise PhoneNumberAlreadyExistsError
 
         try:
             for field, value in data.items():

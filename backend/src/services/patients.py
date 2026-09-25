@@ -6,7 +6,10 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from database.models.patient import PatientModel
 from database.models.users import UserRoleEnum
-from exceptions import DatabaseWriteError
+from exceptions import (
+    DatabaseWriteError,
+    PhoneNumberAlreadyExistsError,
+)
 from repositories.patients import PatientRepository
 from repositories.users import UserRepository
 from repositories.visits import VisitRepository
@@ -47,9 +50,20 @@ class PatientService:
         if user.role != UserRoleEnum.USER:
             raise ValueError("Patient profile can be created only for a regular user.")
 
+        existing_user_with_phone = await self.users.get_by_phone_number(
+            patient_data.phone_number,
+        )
+
+        if (
+                existing_user_with_phone is not None
+                and existing_user_with_phone.id != user.id
+        ):
+            raise PhoneNumberAlreadyExistsError
+
         patient_fields = patient_data.model_dump(
             exclude={"phone_number"},
         )
+
         patient = PatientModel(**patient_fields)
 
         user.phone_number = patient_data.phone_number
@@ -162,10 +176,21 @@ class PatientService:
             raise ValueError("User not found.")
 
         if (
-            "phone_number" in patient_data.model_fields_set
-            and patient_data.phone_number is None
+                "phone_number" in patient_data.model_fields_set
+                and patient_data.phone_number is None
         ):
             raise ValueError("Phone number cannot be null.")
+
+        if "phone_number" in patient_data.model_fields_set:
+            existing_user_with_phone = await self.users.get_by_phone_number(
+                patient_data.phone_number,
+            )
+
+            if (
+                    existing_user_with_phone is not None
+                    and existing_user_with_phone.id != user.id
+            ):
+                raise PhoneNumberAlreadyExistsError
 
         self.patients.update(
             patient=patient,

@@ -13,6 +13,7 @@ from exceptions.auth import (
     RefreshTokenNotFoundError,
     UserNotFoundError,
     SettingSuperAdminRoleError,
+    PhoneNumberAlreadyExistsError,
 )
 from exceptions.doctors import (
     DoctorProfileAlreadyExistsError,
@@ -48,4 +49,5 @@ __all__ = [
     "DoctorServiceError",
     "InvalidDoctorAvatarError",
     "InvalidDoctorProfileUserError",
+    "PhoneNumberAlreadyExistsError",
 ]

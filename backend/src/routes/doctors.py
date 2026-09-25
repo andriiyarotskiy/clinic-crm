@@ -13,7 +13,12 @@ from fastapi import (
 
 from config import get_s3_storage_client
 from database import AsyncSessionDep, DoctorEmploymentTypeEnum
-from exceptions import BaseS3StorageError, DoctorServiceError, UserNotFoundError
+from exceptions import (
+    BaseS3StorageError,
+    DoctorServiceError,
+    PhoneNumberAlreadyExistsError,
+    UserNotFoundError,
+)
 from routes.accounts import map_auth_error
 from schemas import (
     DoctorListResponseSchema,
@@ -110,6 +115,8 @@ async def create_doctor_profile(
         )
     except UserNotFoundError as error:
         raise map_auth_error(error) from error
+    except PhoneNumberAlreadyExistsError as error:
+        raise map_auth_error(error) from error
     except DoctorServiceError as error:
         raise map_doctor_error(error) from error
     except BaseS3StorageError as error:
@@ -174,6 +181,8 @@ async def update_doctor_profile(
             avatar_file_data=await data.avatar.read() if data.avatar else None,
             avatar_content_type=data.avatar.content_type if data.avatar else None,
         )
+    except PhoneNumberAlreadyExistsError as error:
+        raise map_auth_error(error) from error
     except DoctorServiceError as error:
         raise map_doctor_error(error) from error
     except BaseS3StorageError as error:
@@ -181,6 +190,7 @@ async def update_doctor_profile(
             status_code=status.HTTP_502_BAD_GATEWAY,
             detail=str(error),
         ) from error
+
     return DoctorResponseSchema.model_validate(doctor)
 
 

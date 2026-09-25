@@ -32,6 +32,16 @@ class UserRepository:
             select(UserModel).where(UserModel.email == email)
         )
 
+    async def get_by_phone_number(
+            self,
+            phone_number: str,
+    ) -> UserModel | None:
+        return await self.session.scalar(
+            select(UserModel).where(
+                UserModel.phone_number == phone_number,
+            )
+        )
+
     async def get_by_email_with_activation_token(self, email: str) -> UserModel | None:
         return await self.session.scalar(
             select(UserModel)
