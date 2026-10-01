@@ -1,6 +1,6 @@
 # Monitoring setup for Clinic CRM
 
-This document describes how to configure Prometheus and Grafana for the Clinic CRM backend.
+This document describes how Prometheus and Grafana are configured for the Clinic CRM backend.
 
 ## Technology stack
 
@@ -8,22 +8,21 @@ This document describes how to configure Prometheus and Grafana for the Clinic C
 - Package manager: uv
 - Metrics library: prometheus-fastapi-instrumentator
 
-## Prometheus configuration
+## Architecture
 
-Use `prometheus.yml` to configure Prometheus scraping for the FastAPI app.
+Prometheus and Grafana are deployed as **separate Web Services on Render**, alongside the main backend service. They are not run via docker-compose in production — docker-compose is only used for local development.
 
-```yaml
-global:
-  scrape_interval: 15s
-  evaluation_interval: 15s
+| Service    | URL                                              | Purpose                          |
+|------------|---------------------------------------------------|-----------------------------------|
+| Backend    | https://clinic-crm-5nec.onrender.com              | Main app, exposes `/metrics`      |
+| Prometheus | https://clinic-crm-1-snle.onrender.com            | Scrapes and stores metrics        |
+| Grafana    | https://grafana-clinic-crm.onrender.com           | Visualizes metrics from Prometheus|
 
-scrape_configs:
-  - job_name: 'clinic-crm'
-    metrics_path: /metrics
-    scheme: https
-    static_configs:
-      - targets: ['your-app-name.onrender.com']
-```
+Each is deployed independently from the same GitHub repo, using a different **Root Directory** on Render:
+
+- Backend → `backend/`
+- Prometheus → `backend/monitoring/`
+- Grafana → `backend/monitoring/grafana/`
 
 ## How `/metrics` works
 
@@ -49,45 +48,57 @@ Key metrics available for visualization in Grafana:
 - `python_gc_objects_uncollectable_total` — uncollectable Python objects.
 - `python_info` — Python runtime version information.
 
-## Running Prometheus + Grafana with Docker Compose
+## Prometheus configuration
 
-Create a `docker-compose.monitoring.yml` file and use it to run Prometheus and Grafana side-by-side.
-
-Example `docker-compose.monitoring.yml`:
+`backend/monitoring/prometheus.yml`:
 
 ```yaml
-version: '3.9'
-services:
-  prometheus:
-    image: prom/prometheus:latest
-    container_name: prometheus
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
-    ports:
-      - '9090:9090'
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
 
-  grafana:
-    image: grafana/grafana:latest
-    container_name: grafana
-    ports:
-      - '3000:3000'
-    environment:
-      - GF_SECURITY_ADMIN_PASSWORD=admin
+scrape_configs:
+  - job_name: 'clinic-crm'
+    metrics_path: /metrics
+    scheme: https
+    static_configs:
+      - targets: ['clinic-crm-5nec.onrender.com']
 ```
 
-Start the monitoring stack:
+Deployed via `backend/monitoring/Dockerfile`:
 
-```bash
-docker compose -f docker-compose.monitoring.yml up -d
+```dockerfile
+FROM prom/prometheus:latest
+COPY prometheus.yml /etc/prometheus/prometheus.yml
 ```
 
-Open:
+## Grafana configuration
 
-- Prometheus UI: `http://localhost:9090`
-- Grafana UI: `http://localhost:3000`
+Deployed via `backend/monitoring/grafana/Dockerfile`:
+
+```dockerfile
+FROM grafana/grafana:latest
+COPY provisioning /etc/grafana/provisioning
+```
+
+The Prometheus datasource is provisioned automatically on startup via `backend/monitoring/grafana/provisioning/datasources/datasource.yml`, pointing to the Prometheus service URL above — no manual setup needed after deploy.
+
+Required environment variables on Render (Grafana service):
+- `GF_SECURITY_ADMIN_USER=admin`
+- `GF_SECURITY_ADMIN_PASSWORD=<set your own, do not use the default>`
+- `GF_USERS_ALLOW_SIGN_UP=false`
+
+## Local development
+
+For local debugging, Prometheus and Grafana can still be run via a `docker-compose.monitoring.yml` file if needed, using the same `prometheus.yml` config with `scheme: http` and an internal target instead of the public Render hostname. This is optional and not required for the production monitoring stack described above.
+
+## How to check things are working
+
+1. Open Prometheus → **Status → Target health**: the `clinic-crm` target should show **UP**.
+2. Open Grafana → the `FastAPI Observability` dashboard should show live request counts and latency.
+3. Trigger a request against the backend (e.g. open `/docs` or call an endpoint) and confirm the dashboard updates within ~15-30 seconds.
 
 ## Notes
 
-- Replace `your-app-name.onrender.com` with your actual Render hostname.
-- Keep `/metrics` accessible by Prometheus.
-- Add more scrape jobs for other services as needed.
+- Credentials for Grafana are shared with the team separately (not committed to the repo).
+- Add more scrape jobs to `prometheus.yml` if additional services need monitoring.
