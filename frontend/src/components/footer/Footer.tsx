@@ -42,7 +42,7 @@ export const Footer: React.FC = () => {
     loading={loading}
     onConfirm={ handleLogout}
       onCancel={() => setOpenModal(false)} />
- <div className="mt-auto flex w-[260px] flex-col px-[16px] pb-[24px] bg-[#FFFFFF]">
+  <div className="pt-[8px] mx-[16px] border-t border-[#E5E7EB] ">
     <div className=" h-[40px]  pb-16px  ">
       <nav className="flex flex-col ">
         <ul>

@@ -141,7 +141,7 @@ export const DoctorsPage = () => {
             <thead>
               <tr className="h-[40px] bg-[#F3F4F6]">
                 <Th>ID</Th>
-                <Th className="w-[350px]">DOCTOR/CONTACT</Th>
+                <Th>DOCTOR/CONTACT</Th>
                 <Th>WORKLOAD</Th>
                 <Th>SPECIALITY</Th>
                 <Th>SCHEDULE</Th>
@@ -159,7 +159,7 @@ export const DoctorsPage = () => {
                 >
                   <Td className="text-[#4B5563] text-[14px]">{`#${doctor.doctorCode}`}</Td>
 
-                  <Td   >
+                  <Td>
                     <UserContacts
                       avatar = {`doctor.jpg`}
                       firstName={`Dr.${doctor.firstName}`}

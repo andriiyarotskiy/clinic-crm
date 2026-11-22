@@ -150,7 +150,7 @@ const justSelectedDateRef = useRef(false);
           name="firstName"
           label="First name *"
           type="text"
-          placeholder="First, select a patient"
+          placeholder="First, select a patient."
           register={register}
           rules={formValidation.name}
           readOnly={type === "create"}
@@ -162,7 +162,7 @@ const justSelectedDateRef = useRef(false);
           name="lastName"
           label="Last name *"
           type="text"
-          placeholder="First, select a patient"
+          placeholder="First, select a patient."
           register={register}
           rules={formValidation.name}
           readOnly={type === "create"}

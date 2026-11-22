@@ -138,7 +138,7 @@ export const Select = <T extends FieldValues>({
                   right-0
                   top-[calc(100%+2px)]
                   z-50
-                  max-h-[190px]
+                  max-h-[220px]
                   overflow-y-auto
                   rounded-[8px]
                   border

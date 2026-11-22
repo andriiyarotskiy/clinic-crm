@@ -392,7 +392,7 @@ export default function Calendar({
           />
         </div>
       ) : (
-        <div className="min-w-0 flex-1">
+        <div className="w-1/2">
           <label className="mb-[10px] block font-[Inter] font-medium text-[14px]">
             Date *
           </label>
@@ -411,43 +411,34 @@ export default function Calendar({
             }
             fixedWeekNumber={6}
             format="DD.MM.YYYY"
-          slotProps={{
-  textField: {
-    fullWidth: true,
-    error: !!error,
-    helperText: error,
+            slotProps={{
+              textField: {
+                fullWidth: true,
+                error: !!error,
+                helperText: error,
 
-    sx: {
-      width: "100%",
-      maxWidth: "100%",
-      boxSizing: "border-box",
+                sx: {
+                  "& .MuiPickersInputBase-root": {
+                    height: "44px",
+                    borderRadius: "8px",
+                    width: "100%",
+                    padding: "12px",
+                  },
 
-      "& .MuiPickersInputBase-root": {
-        height: "44px",
-        width: "100%",
-        maxWidth: "100%",
-        boxSizing: "border-box",
-        borderRadius: "8px",
-        padding: "12px",
-         minWidth: 0,
-      },
+                  "& .MuiPickersInputBase-sectionsContainer": {
+                    padding: 0,
+                    flex: 1,
+                  },
 
-      "& .MuiPickersInputBase-sectionsContainer": {
-        padding: 0,
-        flex: 1,
-        minWidth: 0,
-      },
+                  "& .MuiInputAdornment-root": {
+                    marginLeft: "0px",
+                  },
 
-      "& .MuiInputAdornment-root": {
-        marginLeft: "0px",
-      },
-
-      "& .MuiIconButton-root": {
-        padding: "8px",
-      },
-    },
-  },
-
+                  "& .MuiIconButton-root": {
+                    padding: "8px",
+                  },
+                },
+              },
 
               day: {
                 sx: {

@@ -29,7 +29,7 @@ export const PatientsFormFields: React.FC<Props> = ({ type }) => {
             name="firstName"
             label="First name *"
             type="text"
-            placeholder="First, select a user"
+            placeholder="First, select a user."
             register={register}
             rules={formValidation.name}
             error={errors.firstName?.message}
@@ -42,7 +42,7 @@ export const PatientsFormFields: React.FC<Props> = ({ type }) => {
             name="lastName"
             label="Last name *"
             type="text"
-            placeholder="First, select a user"
+            placeholder="First, select a user."
             register={register}
             rules={formValidation.name}
             error={errors.lastName?.message}
