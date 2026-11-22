@@ -140,7 +140,7 @@ useEffect(() => {
               <thead>
                 <tr className="h-[40px] bg-[#F3F4F6]">
                   <Th>ID</Th>
-                  <Th className="w-[350px]">PATIENT/CONTACT</Th>
+                  <Th>PATIENT/CONTACT</Th>
                   <Th>LAST VISIT</Th>
                   <Th>TYPE OF TREATMENT</Th>
                   <Th>TOTAL VISITS</Th>

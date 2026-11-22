@@ -36,7 +36,7 @@ export const DoctorFormFields: React.FC<Props> = ({ type }) => {
             name="firstName"
             label="First name *"
             type="text"
-            placeholder="First, select a user"
+            placeholder="First, select a user."
             register={register}
             
             readOnly={type === "create"}
@@ -48,7 +48,7 @@ export const DoctorFormFields: React.FC<Props> = ({ type }) => {
             name="lastName"
             label="Last name *"
             type="text"
-            placeholder="First, select a user"
+            placeholder="First, select a user."
             register={register}
             
             readOnly={type === "create"}

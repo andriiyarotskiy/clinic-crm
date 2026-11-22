@@ -23,8 +23,20 @@ export const NavBar: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col w-[260px] px-[16px] py-[24px] h-full  bg-[#FFFFFF]">
-    
+    <div className="flex flex-col w-[260px] px-[16px] py-[8px] h-full bottom-0 bg-[#fff]">
+      <div className="h-[68px] flex items-center border-b border-[#F3F4F6] mb-[24px] ">
+        <img
+          className="mr-[16px]"
+          src="smallLogo.png"
+          alt="smallLogo"
+        />
+
+        <div className="flex">
+          <span className="m-0 p-0 font-[Inter] font-semibold text-[18px]">
+            LumiDent
+          </span>
+        </div>
+      </div>
 
       <nav className="flex flex-col">
         <ul>

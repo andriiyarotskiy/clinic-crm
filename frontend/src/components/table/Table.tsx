@@ -6,18 +6,8 @@ type Props = {
 
 export const Table = ({ children }: Props) => {
   return (
-    <div className="mb-[16px] bg-white">
-      <table className="w-full">
-        <colgroup>
-          <col  />
-          <col />
-          <col />
-          <col />
-          <col />
-          <col />
-          <col />
-        </colgroup>
-
+    <div className=" mb-[16px] bg-white">
+      <table className="w-full ">
         {children}
       </table>
     </div>

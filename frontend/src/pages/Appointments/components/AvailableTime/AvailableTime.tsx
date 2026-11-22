@@ -149,7 +149,7 @@ export const AvailableTime: React.FC<Props> = ({
                       slot.status === "expired"
                     }
                     key={slot.time}
-                    className="h-[36px] text-[#2563EB] border border-[#E5E7EB]"
+                    className="h-[36px] text-[#2563EB]"
                     onClick={() => {
                       handleAside();
                       dispatch(setTime(slot.time));
@@ -162,7 +162,7 @@ export const AvailableTime: React.FC<Props> = ({
                   <ButtonPage
                     key={time}
                     disabled
-                    className="h-[36px] text-[#9CA3AF] border border-[#E5E7EB]"
+                    className="h-[36px] text-[#9CA3AF]"
                   >
                     {time}
                   </ButtonPage>

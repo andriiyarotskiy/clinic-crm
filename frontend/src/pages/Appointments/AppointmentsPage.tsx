@@ -215,12 +215,12 @@ export const AppointmentsPage = () => {
             <thead>
               <tr className="h-[40px] bg-[#F3F4F6]">
                 <Th>ID</Th>
-                <Th >PATIENT/DOCTOR</Th>
+                <Th>PATIENT/DOCTOR</Th>
                 <Th>TIME</Th>
                 <Th>PRICE</Th>
                 <Th>TREATMENT</Th>
                 <Th>STATUS</Th>
-               <Th >ACTION</Th>
+                <Th>ACTION</Th>
               </tr>
             </thead>
             <tbody>
@@ -231,7 +231,7 @@ export const AppointmentsPage = () => {
                 >
                   <Td className="text-[#4B5563]">{`#${appointment.id}`}</Td>
 
-                  <Td className="w-[350px]">
+                  <Td>
                     <UserContacts
                       avatar={"patient.jpg"}
                       firstName={appointment.patientFirstName}
@@ -268,22 +268,20 @@ export const AppointmentsPage = () => {
                         ),
                     )}
                   </Td>
-        <Td className="relative ">
-  <div className="flex justify-center ">
-    <LuPencilLine
-      className={`h-[16px] w-[16px] ${
-        ["scheduled", "confirmed"].includes(appointment.status)
-          ? "cursor-pointer"
-          : "cursor-not-allowed opacity-40"
-      }`}
-      onClick={() => {
-        if (!["scheduled", "confirmed"].includes(appointment.status)) return;
+          <Td className="relative text-center">
+  <LuPencilLine
+    className={`mx-auto h-[16px] w-[16px] ${
+      ["scheduled", "confirmed"].includes(appointment.status)
+        ? "cursor-pointer"
+        : "cursor-not-allowed opacity-40"
+    }`}
+    onClick={() => {
+      if (!["scheduled", "confirmed"].includes(appointment.status)) return;
 
-        dispatch(setSelectedAppointment(appointment));
-        setActionModalOpen(true);
-      }}
-    />
-  </div>
+      dispatch(setSelectedAppointment(appointment));
+      setActionModalOpen(true);
+    }}
+  />
 
   {/* ActionModal */}
 
